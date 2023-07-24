@@ -37,7 +37,7 @@ export const login = ({ email, password }) => async dispatch => {
     // debugger
     const data = await response.json();
     
-    // console.log(data)
+    console.log(data)
     // debugger
     storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user));
@@ -58,7 +58,7 @@ export const logout = () => async dispatch => {
         method: 'DELETE'
     });
     storeCurrentUser(null);
-    // console.log(response)
+    console.log(response)
     dispatch(removeCurrentUser());
     return response;
 };
