@@ -1,0 +1,298 @@
+  [1m[35m (192.6ms)[0m  [1m[35mCREATE DATABASE "eventbite_development" ENCODING = 'unicode'[0m
+  [1m[35m (106.3ms)[0m  [1m[35mCREATE DATABASE "eventbite_test" ENCODING = 'unicode'[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE DATABASE "eventbite_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE DATABASE "eventbite_test" ENCODING = 'unicode'[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7432779185946095205)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20230724145215)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "first_name" character varying NOT NULL, "last_name" character varying NOT NULL, "email" character varying NOT NULL, "password_digest" character varying NOT NULL, "session_token" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230724145215"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-07-24 14:53:29.722453"], ["updated_at", "2023-07-24 14:53:29.722453"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7432779185946095205)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/api/session" for ::1 at 2023-07-24 11:00:24 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+
+ActionController::RoutingError - uninitialized constant Api::SessionsController
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+            raise MissingController.new(error.message, error.name)
+            ^^^^^:
+
+Started GET "/api/session" for ::1 at 2023-07-24 11:02:53 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+Completed 200 OK in 30ms (Views: 0.3ms | ActiveRecord: 2.6ms | Allocations: 6771)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:03:39 -0400
+Processing by Api::UsersController#create as */*
+  Parameters: {"formats"=>:json, "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 13.7ms | Allocations: 24677)
+
+Errno::EIO - Input/output error - read:
+	app/controllers/api/users_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 545143ms (Views: 498.4ms | ActiveRecord: 0.3ms | Allocations: 2275239)
+
+
+Started GET "/api/session" for ::1 at 2023-07-24 11:22:12 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+Completed 200 OK in 33ms (Views: 0.3ms | ActiveRecord: 6.2ms | Allocations: 6204)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:22:44 -0400
+Processing by Api::UsersController#create as */*
+  Parameters: {"formats"=>:json, "user"=>{}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 2.3ms | Allocations: 337)
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+	app/controllers/api/users_controller.rb:19:in `user_params'
+	app/controllers/api/users_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 51559ms (Views: 50.8ms | ActiveRecord: 0.8ms | Allocations: 68614)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:25:30 -0400
+Processing by Api::UsersController#create as */*
+  Parameters: {"formats"=>:json, "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 104)
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+	app/controllers/api/users_controller.rb:20:in `user_params'
+	app/controllers/api/users_controller.rb:8:in `create'
+
+Completed 500 Internal Server Error in 10729ms (Views: 1.8ms | ActiveRecord: 0.2ms | Allocations: 8238)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:25:59 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"formats"=>:json, "user"=>{}}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 2.6ms | Allocations: 368)
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+	app/controllers/api/users_controller.rb:20:in `user_params'
+	app/controllers/api/users_controller.rb:8:in `create'
+
+Completed 500 Internal Server Error in 45ms (Views: 19.0ms | ActiveRecord: 2.3ms | Allocations: 8760)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:26:55 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"formats"=>:json, "user"=>{}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.8ms | Allocations: 368)
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+	app/controllers/api/users_controller.rb:20:in `user_params'
+	app/controllers/api/users_controller.rb:8:in `create'
+
+Completed 500 Internal Server Error in 44ms (Views: 22.5ms | ActiveRecord: 2.3ms | Allocations: 8875)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:27:38 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"formats"=>:json, "user"=>{}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 3.3ms | Allocations: 368)
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+	app/controllers/api/users_controller.rb:20:in `user_params'
+	app/controllers/api/users_controller.rb:8:in `create'
+
+Completed 500 Internal Server Error in 47ms (Views: 20.3ms | ActiveRecord: 3.1ms | Allocations: 8760)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:29:16 -0400
+Processing by Api::UsersController#create as */*
+  Parameters: {"formats"=>:json, "user"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.6ms | Allocations: 172)
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+	app/controllers/api/users_controller.rb:20:in `user_params'
+	app/controllers/api/users_controller.rb:8:in `create'
+
+Completed 500 Internal Server Error in 22ms (Views: 14.8ms | ActiveRecord: 3.1ms | Allocations: 3920)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:29:51 -0400
+Processing by Api::UsersController#create as */*
+  Parameters: {"formats"=>:json, "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 104)
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+	app/controllers/api/users_controller.rb:20:in `user_params'
+	app/controllers/api/users_controller.rb:8:in `create'
+
+Completed 500 Internal Server Error in 54050ms (Views: 1.6ms | ActiveRecord: 1.9ms | Allocations: 5696)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:30:48 -0400
+Processing by Api::UsersController#create as */*
+  Parameters: {"formats"=>:json, "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 69)
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+	app/controllers/api/users_controller.rb:20:in `user_params'
+	app/controllers/api/users_controller.rb:8:in `create'
+
+Completed 500 Internal Server Error in 31432ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 5004)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:31:34 -0400
+Processing by Api::UsersController#create as */*
+  Parameters: {"formats"=>:json, "user"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.3ms | Allocations: 69)
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+	app/controllers/api/users_controller.rb:20:in `user_params'
+	app/controllers/api/users_controller.rb:8:in `create'
+
+Completed 500 Internal Server Error in 10363ms (Views: 1.1ms | ActiveRecord: 0.4ms | Allocations: 4729)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:31:47 -0400
+Processing by Api::UsersController#create as */*
+  Parameters: {"formats"=>:json, "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.5ms | Allocations: 68)
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+	app/controllers/api/users_controller.rb:20:in `user_params'
+	app/controllers/api/users_controller.rb:8:in `create'
+
+Completed 500 Internal Server Error in 3485ms (Views: 2.1ms | ActiveRecord: 0.3ms | Allocations: 4789)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:33:22 -0400
+Processing by Api::UsersController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "firstName"=>"joe", "lastName"=>"ra", "formats"=>:json, "user"=>{"email"=>"joe@hi.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:41:in `block in generate_session_token'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `block in generate_session_token'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:9:in `create'
+Completed 200 OK in 8555ms (Views: 1.1ms | ActiveRecord: 10.7ms | Allocations: 18261)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:34:22 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "firstName"=>"joe", "lastName"=>"ra", "formats"=>:json, "user"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:41:in `block in generate_session_token'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `block in generate_session_token'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:9:in `create'
+Completed 200 OK in 306ms (Views: 0.3ms | ActiveRecord: 6.0ms | Allocations: 16491)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:35:45 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "firstName"=>"joe", "lastName"=>"ra", "formats"=>:json, "user"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:41:in `block in generate_session_token'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `block in generate_session_token'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:9:in `create'
+Completed 200 OK in 92868ms (Views: 0.6ms | ActiveRecord: 6.5ms | Allocations: 73003)
+
+
+Started POST "/api/users" for ::1 at 2023-07-24 11:37:22 -0400
+Processing by Api::UsersController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "firstName"=>"joe", "lastName"=>"ra", "formats"=>:json, "user"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]", "firstName"=>"joe", "lastName"=>"ra"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:41:in `block in generate_session_token'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `block in generate_session_token'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:9:in `create'
+  [1m[36mUser Create (4.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "joe"], ["last_name", "ra"], ["email", "joe@hi.com"], ["password_digest", "[FILTERED]"], ["session_token", "[FILTERED]"], ["created_at", "2023-07-24 15:37:39.216502"], ["updated_at", "2023-07-24 15:37:39.216502"]]
+  ↳ app/controllers/api/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:51:in `reset_session_token!'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:51:in `reset_session_token!'
+  [1m[36mUser Update (2.0ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-24 15:37:39.238117"], ["id", 1]]
+  ↳ app/models/user.rb:51:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:51:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (Duration: 1.9ms | Allocations: 389)
+Completed 200 OK in 16375ms (Views: 18.4ms | ActiveRecord: 13.6ms | Allocations: 16704)
+
+
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
