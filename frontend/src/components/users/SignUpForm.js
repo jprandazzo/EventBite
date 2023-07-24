@@ -20,7 +20,7 @@ export default function SignUpForm () {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        debugger
+        // debugger
 
         return dispatch(signup({email, password, firstName, lastName}))
     }

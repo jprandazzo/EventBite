@@ -1501,3 +1501,12 @@ SystemExit - exit:
   (byebug):1:in `invalid_authenticity_token'
   app/controllers/application_controller.rb:26:in `invalid_authenticity_token'
 
+Started GET "/api/session" for ::1 at 2023-07-24 15:06:58 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `current_user'
+Completed 200 OK in 19ms (Views: 0.4ms | ActiveRecord: 2.1ms | Allocations: 5987)
+
+

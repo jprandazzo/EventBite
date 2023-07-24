@@ -34,11 +34,11 @@ export const login = ({ email, password }) => async dispatch => {
       method: "POST",
       body: JSON.stringify({ email, password })
     });
-    debugger
+    // debugger
     const data = await response.json();
     
-    console.log(data)
-    debugger
+    // console.log(data)
+    // debugger
     storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user));
     return response;
@@ -58,13 +58,13 @@ export const logout = () => async dispatch => {
         method: 'DELETE'
     });
     storeCurrentUser(null);
-    console.log(response)
+    // console.log(response)
     dispatch(removeCurrentUser());
     return response;
 };
 
 export const signup = user => async dispatch => {
-    debugger
+    // debugger
     const {firstName, lastName, email, password} = user;
     const response = await csrfFetch('api/users', {
         method: "POST",
@@ -76,7 +76,7 @@ export const signup = user => async dispatch => {
         })
     });
     const data = await response.json();
-    debugger
+    // debugger
     storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user));
     return response;

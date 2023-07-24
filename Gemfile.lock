@@ -87,6 +87,8 @@ GEM
     date (3.3.3)
     debug_inspector (1.1.0)
     erubi (1.12.0)
+    faker (3.2.0)
+      i18n (>= 1.8.11, < 2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -121,6 +123,8 @@ GEM
       net-protocol
     nio4r (2.5.9)
     nokogiri (1.15.3-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.15.3-x86_64-linux)
       racc (~> 1.4)
     pg (1.5.3)
     pry (0.14.2)
@@ -193,6 +197,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   annotate
@@ -201,6 +206,7 @@ DEPENDENCIES
   binding_of_caller
   bootsnap
   byebug
+  faker
   importmap-rails
   jbuilder
   pg (~> 1.1)

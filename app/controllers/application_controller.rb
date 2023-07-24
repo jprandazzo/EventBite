@@ -17,12 +17,12 @@ class ApplicationController < ActionController::Base
 
     def attach_authenticity_token
         headers['X-CSRF-Token'] = masked_authenticity_token(session)
-        debugger
+        # debugger
         # headers['X-CSRF-Token'] = form_authenticity_token
     end
 
     def invalid_authenticity_token
-        debugger
+        # debugger
         render json: {message: 'Invalid authenticity token',
             status: :unprocessible_entity}
     end

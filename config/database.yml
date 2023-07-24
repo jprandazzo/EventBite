@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: eventbite_production
-  username: eventbite
-  password: <%= ENV["EVENTBITE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
