@@ -4,6 +4,12 @@ import usersReducer from './usersReducer';
 import sessionReducer from './sessionReducer';
 // import eventsReducer from './events';
 
+const rootReducer = combineReducers({
+  // users: usersReducer,
+  session: sessionReducer/*,
+  events: eventsReducer*/
+});
+
 let enhancer;
 
 if (process.env.NODE_ENV === 'production') {
@@ -15,11 +21,7 @@ if (process.env.NODE_ENV === 'production') {
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
-export const rootReducer = combineReducers({
-    users: usersReducer,
-    session: sessionReducer/*,
-    events: eventsReducer*/
-});
+
 
 export default function configureStore (preloadedState = {}) {
     return createStore(rootReducer, preloadedState, enhancer)

@@ -3,6 +3,10 @@ class Api::UsersController < ApplicationController
 
     wrap_parameters :user, include: User.attribute_names + ['password', 'firstName', 'lastName']
 
+    def index
+        render json: {users: User.all}
+    end
+
     def create
         
         @user = User.new(user_params)
@@ -10,7 +14,8 @@ class Api::UsersController < ApplicationController
             login(@user)
             render :show
         else
-            render json: {errors: @user.errors.full_messages, status: 422}
+            render json: {errors: @user.errors.full_messages},
+            status: :unprocessable_entity
         end
     end
 

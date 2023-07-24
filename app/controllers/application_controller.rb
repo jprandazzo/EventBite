@@ -1,12 +1,13 @@
 class ApplicationController < ActionController::Base
+    before_action :snake_case_params
+    before_action :attach_authenticity_token
+    
     include ActionController::RequestForgeryProtection
 
     rescue_from StandardError, with: :unhandled_error
     rescue_from ActionController::InvalidAuthenticityToken,
         with: :invalid_authenticity_token
-
-    before_action :snake_case_params
-    before_action :attach_authenticity_token
+    
     protect_from_forgery with: :exception
     # skip_before_action :verify_authenticity_token
 
@@ -16,10 +17,12 @@ class ApplicationController < ActionController::Base
 
     def attach_authenticity_token
         headers['X-CSRF-Token'] = masked_authenticity_token(session)
+        debugger
         # headers['X-CSRF-Token'] = form_authenticity_token
     end
 
     def invalid_authenticity_token
+        debugger
         render json: {message: 'Invalid authenticity token',
             status: :unprocessible_entity}
     end

@@ -1,5 +1,4 @@
 import { csrfFetch } from "./csrf"
-import { useDispatch } from "react-redux";
 
 const SET_CURRENT_USER = 'session/setCurrentUser'
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser'
@@ -17,25 +16,35 @@ const storeCSRFToken = response => {
     const csrfToken = response.headers.get("X-CSRF-Token");
     if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
 }
+
+async function restoreCSRF () {
+    const response = await csrfFetch("/api/session");
+    storeCSRFToken(response)
+    return response
+}
   
 const storeCurrentUser = user => {
     if (user) sessionStorage.setItem("currentUser", JSON.stringify(user));
     else sessionStorage.removeItem("currentUser");
 }
 
-export const login = ({ credential, password }) => async dispatch => {
+export const login = ({ email, password }) => async dispatch => {
+    
     const response = await csrfFetch("/api/session", {
       method: "POST",
-      body: JSON.stringify({ credential, password })
+      body: JSON.stringify({ email, password })
     });
-    const data = await response.json();
-    storeCurrentUser(data.user);
     debugger
+    const data = await response.json();
+    
+    console.log(data)
+    debugger
+    storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user));
     return response;
 };
 
-export const restoreSession = async dispatch => {
+export const restoreSession = () => async dispatch => {
     let res = await csrfFetch('/api/session');
     storeCSRFToken(res);
     let data = await res.json();
@@ -55,9 +64,10 @@ export const logout = () => async dispatch => {
 };
 
 export const signup = user => async dispatch => {
+    debugger
     const {firstName, lastName, email, password} = user;
     const response = await csrfFetch('api/users', {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify({
             firstName,
             lastName,
@@ -66,6 +76,7 @@ export const signup = user => async dispatch => {
         })
     });
     const data = await response.json();
+    debugger
     storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user));
     return response;

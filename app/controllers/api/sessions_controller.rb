@@ -1,6 +1,6 @@
 class Api::SessionsController < ApplicationController
-    before_action :require_logged_in, only: [:create]
-    before_action :require_logged_in, only: [:destroy]
+    # before_action :require_logged_in, only: [:create]
+    # before_action :require_logged_in, only: [:destroy]
 
     def show
         if current_user
@@ -19,12 +19,13 @@ class Api::SessionsController < ApplicationController
             login(@user)
             render 'api/users/show'
         else
-            render json: { errors: ['Invalid credentials, please try again'] }, status: 422
+            render json: { errors: ['Invalid credentials, please try again'] }, 
+            status: :unauthorized
         end
     end
 
     def destroy
         logout!
-        render json: {message: 'Successfully logged out'}
+        render json: {message: ['Successfully logged out']}
     end
 end

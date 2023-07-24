@@ -8,16 +8,16 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import configureStore from './store';
 import * as sessionActions from './store/sessionReducer'
+import { csrfFetch } from './store/csrf';
 import { createUser, loginUser, logoutUser } from './store/usersReducer'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
-  // window.login = sessionActions.login;
+  window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
-  // window.signup = sessionActions.signup;
-  window.store = configureStore()
+  window.store = store;
 }
 
 // let currentUser = sessionStorage.getItem('currentUser') ? JSON.parse(sessionStorage.getItem('currentUser')) : null;
@@ -47,7 +47,7 @@ if (
   sessionStorage.getItem('currentUser') === null ||
   sessionStorage.getItem('X-CSRF-Token') === null
 ) {
-store.dispatch(restoreSession()).then(initializeApp)
+store.dispatch(sessionActions.restoreSession()).then(initializeApp)
 } else {
 initializeApp();
 }
