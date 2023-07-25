@@ -12,6 +12,10 @@ const removeCurrentUser = () => ({
     type: REMOVE_CURRENT_USER
 });
 
+export const getCurrentUser = (state) => {
+    return state.session.user ? state.session.user : null
+}
+
 const storeCSRFToken = response => {
     const csrfToken = response.headers.get("X-CSRF-Token");
     if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
@@ -58,7 +62,6 @@ export const logout = () => async dispatch => {
         method: 'DELETE'
     });
     storeCurrentUser(null);
-    console.log(response)
     dispatch(removeCurrentUser());
     return response;
 };

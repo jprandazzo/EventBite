@@ -1,0 +1,16 @@
+.navbar {
+    display: inline;
+    list-style-type: none;
+}
+
+li span {
+    margin: 2em;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}

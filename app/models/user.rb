@@ -31,7 +31,8 @@ class User < ApplicationRecord
         if user &.authenticate(pw)
             user
         else
-            render status: "No user found with that email/password combination. Please try again"
+            # render status: "No user found with that email/password combination. Please try again"
+            nil
         end
     end
 
@@ -50,5 +51,6 @@ class User < ApplicationRecord
         self.session_token = generate_session_token
         save!
         self.session_token
+
     end
 end

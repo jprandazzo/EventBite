@@ -34,11 +34,7 @@ module Eventbite
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.railties_order = [:all, :main_app]
-  end
-end
 
-module Backend
-  class Application < Rails::Application
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore,
       key: '_eventbite_session',
@@ -46,3 +42,13 @@ module Backend
       secure: Rails.env.production?
   end
 end
+
+# module Backend
+#   class Application < Rails::Application
+#     config.middleware.use ActionDispatch::Cookies
+#     config.middleware.use ActionDispatch::Session::CookieStore,
+#       key: '_eventbite_session',
+#       same_site: :lax,
+#       secure: Rails.env.production?
+#   end
+# end

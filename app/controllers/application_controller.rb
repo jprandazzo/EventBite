@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
     before_action :attach_authenticity_token
     
     include ActionController::RequestForgeryProtection
-
+    # debugger
     rescue_from StandardError, with: :unhandled_error
     rescue_from ActionController::InvalidAuthenticityToken,
         with: :invalid_authenticity_token
@@ -17,18 +17,16 @@ class ApplicationController < ActionController::API
 
     def attach_authenticity_token
         headers['X-CSRF-Token'] = masked_authenticity_token(session)
-        # debugger
         # headers['X-CSRF-Token'] = form_authenticity_token
     end
 
     def invalid_authenticity_token
-        # debugger
         render json: {message: 'Invalid authenticity token',
             status: :unprocessible_entity}
     end
     
     def current_user
-        @current_user ||= User.find_by(session_token: session[:session_token])
+        @current_user ||= User.find_by(session_token: session['_eventbite_session'])
     end
 
     def require_logged_in
@@ -44,7 +42,7 @@ class ApplicationController < ActionController::API
     end
 
     def login(user)
-        session[:session_token] = user.reset_session_token!
+        session['_eventbite_session'] = user.reset_session_token!
     end
 
     def logged_in?
@@ -52,9 +50,8 @@ class ApplicationController < ActionController::API
     end
 
     def logout!
-        debugger
         current_user.reset_session_token!
-        session[:session_token] = nil
+        session['_eventbite_session'] = nil
         @current_user = nil
     end
 

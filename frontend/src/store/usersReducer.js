@@ -32,11 +32,8 @@ export const loginUser = user => async dispatch => {
         method: 'POST',
         body: JSON.stringify(user)
     });
-    // debugger
     let data = await res.json();
-    // debugger
     sessionStorage.setItem('currentUser', JSON.stringify(data.user));
-    // debugger
     dispatch({
         type: RECEIVE_USER,
         user: data
