@@ -1,13 +1,18 @@
-.dropdown:hover {
+.user-dropdown:hover {
     cursor: pointer;
 }
 
-.dropdown-content {
-    /* display: none; */
+.user-dropdown:hover {
+    cursor: pointer;
+}
+
+.user-dropdown-content {
+    display: none;
     position: relative;
     top: 2em;
 }
 
-.dropdown:hover .dropdown-content {
+.user-dropdown:hover .user-dropdown-content {
     display: block;
+    cursor: pointer;
 }

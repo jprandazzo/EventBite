@@ -3,20 +3,17 @@ import './UserTile.css'
 
 export default function UserTile ({user}) {
     const toggleDropdown = (e) => {
-        // let dropdown = e.target.childNodes[0]
-
-        // if (dropdown.style.display === 'none') {
-        //     dropdown.style.display === 'block'
-        // } else dropdown.style.display === 'none'
+        let dropdown = e.target.children[0]
+        dropdown.style.display === 'none' ? dropdown.style.display = 'block' : dropdown.style.display = 'none'
     }
 
     if (user) {
 
         return (
             <>
-                <button class='dropdown' onClick={e => toggleDropdown(e)}>
+                <span class='user-dropdown' onClick={e => toggleDropdown(e)}>
                     {user.email}
-                    {/* <div class='dropdown-content'>
+                    <div class='user-dropdown-content'>
                         <ul>
                             <li>Browse Events</li>
                             <li>Manage my Events</li>
@@ -25,8 +22,8 @@ export default function UserTile ({user}) {
                             <li>Following</li>
                             <li>Logout</li>
                         </ul>
-                    </div> */}
-                </button>
+                    </div>
+                </span>
             </>
         )
     } else {
@@ -36,7 +33,7 @@ export default function UserTile ({user}) {
                 <Link to='/signin'>Log In</Link>
             </span>
             <span>
-                <Link to='/signin/signup'>Sign Up</Link>
+                <Link to='/signup'>Sign Up</Link>
             </span>
             </>
         )

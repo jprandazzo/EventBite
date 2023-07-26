@@ -40,7 +40,7 @@ export default function NavBar () {
         <nav id='main-navigation'>
             <ul className='navbar'>
                 <li className='left'> 
-                    <span id='eblogo'>
+                    <span id='eblogo-nav'>
                     <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' />
                     </span>
                 </li>

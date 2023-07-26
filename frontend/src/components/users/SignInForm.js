@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import * as sessionActions from "../../store/sessionReducer"
@@ -13,9 +13,14 @@ export default function SignInForm () {
     // not allow user to sign up
     // const [firstName, setFirstName] = useState('')
     // const [lastName, setLastName] = useState('')
+    const [stateChange, setStateChange] = useState(false)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
+
+    useEffect(() =>{
+        setStateChange(true)
+    }, [history])
 
     const focusInput = (e) => {
         //blur anything that's currently focused
@@ -66,25 +71,25 @@ export default function SignInForm () {
         
         setErrors([])
         return dispatch(sessionActions.login({email, password}))
-            .catch(async (res) => {
-                let data;
-                try {
-                    data = await res.clone().json();
-                } catch {
-                    data = await res.text();
-                }
-                if (data?.errors) setErrors(data.errors);
-                else if (data) setErrors([data]);
-                else setErrors([res.statusText]);
-            })
-            .then(() =>{history.push('/')});
+            // .catch(async (res) => {
+            //     let data;
+            //     try {
+            //         data = await res.clone().json();
+            //     } catch {
+            //         data = await res.text();
+            //     }
+            //     if (data?.errors) setErrors(data.errors);
+            //     else if (data) setErrors([data]);
+            //     else setErrors([res.statusText]);
+            // })
+            // .then(() =>{history.push('/')});
     };
     return(
         <>
             <main onClick={e => focusInput(e)}>
-                <section className='split left' id='signin'>
+                <section className='split split-left' id='signin'>
                     <div className='centered'>
-                        <div id='eblogo'>
+                        <div id='eblogo-auth'>
                             <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' />
                         </div>
                         <h1>Log in</h1>
@@ -146,8 +151,10 @@ export default function SignInForm () {
                         </form>
                     </div>
                 </section>
-                <section className='split right' id='auth-side-photo'>
-                    <div className='centered'>*Photo goes here*</div>
+                <section className='split split-right' id='auth-side-photo'>
+                    <div className='centered login-image'>
+                        <img src='https://i.ibb.co/Qp4jyky/Screenshot-2023-07-26-at-1-38-15-PM.png' />
+                    </div>
                 </section>
             </main>
         </>

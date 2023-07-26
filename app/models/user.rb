@@ -23,6 +23,8 @@ class User < ApplicationRecord
     validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
     has_secure_password
 
+    has_one_attached :profile_photo
+
     before_validation :ensure_session_token
 
     def self.find_by_credentials(email, pw)

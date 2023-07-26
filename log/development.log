@@ -5280,3 +5280,1650 @@ Processing by Api::SessionsController#create as */*
 Completed 200 OK in 923ms (Views: 559.0ms | ActiveRecord: 48.0ms | Allocations: 290673)
 
 
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7432779185946095205)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20230726150828)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (41.0ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying, "created_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" bigserial primary key, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230726150828"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7432779185946095205)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Load (4.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Create (1.1ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "ox7rfllw6j0wlofbismbddvs3zcc"], ["filename", "joe.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "amazon_dev"], ["byte_size", 2172572], ["checksum", "NwlNoo+QtwQ3Cuq5uRFP7g=="], ["created_at", "2023-07-26 16:13:08.107649"]]
+  [1m[36mActiveStorage::Attachment Create (3.6ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "profile_photo"], ["record_type", "User"], ["record_id", 1], ["blob_id", 1], ["created_at", "2023-07-26 16:13:08.111096"]]
+  [1m[36mUser Update (1.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1 WHERE "users"."id" = $2[0m  [["updated_at", "2023-07-26 16:13:08.115689"], ["id", 1]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+[36m  S3 Storage (661.9ms) [0m[32mUploaded file to key: ox7rfllw6j0wlofbismbddvs3zcc (checksum: NwlNoo+QtwQ3Cuq5uRFP7g==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 17aada95-f8fa-490d-aeb9-6932cdc1ab11) to Async(default) with arguments: #<GlobalID:0x0000000110e72500 @uri=#<URI::GID gid://eventbite/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [17aada95-f8fa-490d-aeb9-6932cdc1ab11]   [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [17aada95-f8fa-490d-aeb9-6932cdc1ab11] Performing ActiveStorage::AnalyzeJob (Job ID: 17aada95-f8fa-490d-aeb9-6932cdc1ab11) from Async(default) enqueued at 2023-07-26T16:13:08Z with arguments: #<GlobalID:0x0000000110ec16f0 @uri=#<URI::GID gid://eventbite/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [17aada95-f8fa-490d-aeb9-6932cdc1ab11] Skipping image analysis because the ruby-vips gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [17aada95-f8fa-490d-aeb9-6932cdc1ab11]   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [17aada95-f8fa-490d-aeb9-6932cdc1ab11]   [1m[36mActiveStorage::Blob Update (0.7ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [17aada95-f8fa-490d-aeb9-6932cdc1ab11]   [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [17aada95-f8fa-490d-aeb9-6932cdc1ab11] Performed ActiveStorage::AnalyzeJob (Job ID: 17aada95-f8fa-490d-aeb9-6932cdc1ab11) from Async(default) in 365.11ms
+[36m  S3 Storage (2.2ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T161321Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=faefa6720a5b42d0d264cc442fd1cd61f420b06e1fb1cd8d25f6fb988112e505)[0m
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:38:48 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (1.7ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:38:49.066395"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (1.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (1.0ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (58.6ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T163849Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=8b3c9c5b8bd1a458f5819b0923ce0359002a96f8090a9a37c889b46bb4b3c4af)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 131.1ms | Allocations: 173634)
+Completed 200 OK in 719ms (Views: 480.6ms | ActiveRecord: 16.7ms | Allocations: 468891)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:38:54 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.9ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T163854Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=f60ab4bf97d7b15e161844a93c245e6447f77997cc4005f157d921f22544293b)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 9.0ms | Allocations: 3244)
+Completed 200 OK in 15ms (Views: 11.2ms | ActiveRecord: 1.0ms | Allocations: 5027)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 12:39:00 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:39:00.809367"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 1.7ms | Allocations: 3978)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:39:04 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 792)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:39:20 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:39:20.290334"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.4ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T163920Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=d0777bea9da3944cbcf14990413f59ba0e26e52f39d0154249111979c46f6fce)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 6.4ms | Allocations: 2700)
+Completed 200 OK in 218ms (Views: 6.4ms | ActiveRecord: 1.9ms | Allocations: 6702)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:39:37 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.7ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T163937Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=fef79ec4c16912d11e9a8d15c3d7fd5a8df9b71d6a528b036a658be49136de7f)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 8.5ms | Allocations: 2703)
+Completed 200 OK in 13ms (Views: 8.4ms | ActiveRecord: 1.4ms | Allocations: 3455)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:41:53 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.6ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164154Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=4f46a789dbe7678750f63aad17df5e1864b354a91b8ebc20f36d196d7367b27d)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 8.2ms | Allocations: 2703)
+Completed 200 OK in 11ms (Views: 8.1ms | ActiveRecord: 0.9ms | Allocations: 3455)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:41:57 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (2.2ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164157Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=35d53912f12450a68d7d5a85d8bf6b8627c183e9e72e123b35a0cd3b585f233b)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 10.3ms | Allocations: 2706)
+Completed 200 OK in 14ms (Views: 10.0ms | ActiveRecord: 1.5ms | Allocations: 3459)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:42:01 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:42:01.276015"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.0ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164201Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=8fe0af9d4e69e292ce62becca61be747b9138b7977b6375a15ffeb37d53cd2c7)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 5.2ms | Allocations: 2696)
+Completed 200 OK in 221ms (Views: 5.2ms | ActiveRecord: 1.9ms | Allocations: 6669)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:42:45 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.8ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164245Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=25426aca6cb35442cb3fe4d93d9ffbc6006b67c331eddabdd5322f4c1ca421eb)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 9.6ms | Allocations: 2703)
+Completed 200 OK in 13ms (Views: 10.0ms | ActiveRecord: 1.0ms | Allocations: 3455)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 12:42:47 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:42:47.587017"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 47ms (Views: 0.1ms | ActiveRecord: 1.5ms | Allocations: 3851)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:42:50 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:42:54 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:42:54.293538"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.2ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164254Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=13a818981f30b04f496b18e64d180ce1d564dea201ce61f9108fee5df0a24356)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 5.5ms | Allocations: 2700)
+Completed 200 OK in 215ms (Views: 5.5ms | ActiveRecord: 2.1ms | Allocations: 6678)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:43:06 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.3ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164306Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=3f834902df67d7ede0934839442539bab3adc692f7f9d854ef3e4cb5d6e666e6)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 9.1ms | Allocations: 2704)
+Completed 200 OK in 13ms (Views: 9.4ms | ActiveRecord: 1.0ms | Allocations: 3456)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 12:43:07 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:43:07.699666"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 1.5ms | Allocations: 3847)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:44:10 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 17ms (Views: 0.2ms | ActiveRecord: 2.3ms | Allocations: 6250)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:44:15 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:44:15.747968"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (57.7ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164416Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=1c0f145842cd42012b428a9da0a131de09c666614b93a12971156bee0a1cb4ba)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 123.4ms | Allocations: 173599)
+Completed 200 OK in 816ms (Views: 590.6ms | ActiveRecord: 11.1ms | Allocations: 463558)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:44:23 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (14.8ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (24.8ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164423Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=0de349915358f8f13bfd28d230cff92e8d066318e77bdf8afa4df292ff2c5cae)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 66.1ms | Allocations: 2782)
+Completed 200 OK in 74ms (Views: 52.0ms | ActiveRecord: 16.3ms | Allocations: 3814)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 12:44:26 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:44:26.112478"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 1.3ms | Allocations: 3940)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:44:43 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 763)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:44:54 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:44:54.836203"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.1ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164454Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=f4e1970d2fac2d1d163d071edb6693fd8f08d0a923f9b2eb59bd7891d4cc64ee)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 5.1ms | Allocations: 2700)
+Completed 200 OK in 211ms (Views: 5.2ms | ActiveRecord: 2.4ms | Allocations: 6683)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:44:56 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.5ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164456Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=a85f3622c4fb1f6adb1bbfdb9737f0c162a9ca700f0ace2dca49b738d2df95f9)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 6.7ms | Allocations: 2703)
+Completed 200 OK in 9ms (Views: 6.8ms | ActiveRecord: 0.8ms | Allocations: 3455)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:44:59 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.6ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164459Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=e4986c70e87e2987ff01e180b9ab8f6462f4c83949b7b89141e28a86c63af19e)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 6.2ms | Allocations: 2703)
+Completed 200 OK in 9ms (Views: 6.3ms | ActiveRecord: 0.7ms | Allocations: 3455)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:45:00 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.5ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164500Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=fa1897f751d21a97038596aa7cbc13c48a705f074a391e298fefeff8d652260d)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 8.0ms | Allocations: 2706)
+Completed 200 OK in 11ms (Views: 8.2ms | ActiveRecord: 0.8ms | Allocations: 3459)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:46:31 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.5ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164631Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=db8338b0ca2a5c5e7f28e425df9f7e4b77df1f2cc6a1801f7d38fb36d9c4b65f)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 5.6ms | Allocations: 2706)
+Completed 200 OK in 8ms (Views: 5.7ms | ActiveRecord: 0.5ms | Allocations: 3459)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:46:35 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:46:35.951142"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.1ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164635Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=38abd69fb09a9b8228438bc9555d0492c1894573fcfdc319ffb0c29738b98dbb)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 4.1ms | Allocations: 2696)
+Completed 200 OK in 210ms (Views: 4.2ms | ActiveRecord: 2.0ms | Allocations: 6669)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:47:13 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:47:13.470590"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.5ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164713Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=e4440aab6f9d4ac7a53b77634e0a3f8207c1ef7744e1a033ac2113609ba33eda)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 5.8ms | Allocations: 2696)
+Completed 200 OK in 217ms (Views: 5.9ms | ActiveRecord: 3.3ms | Allocations: 6669)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:48:34 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.7ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164834Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=c4fef6e8c8026b2bea4e6df7e442521d1629d1f4ff91697d517e5fbe635a9344)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 9.2ms | Allocations: 2704)
+Completed 200 OK in 13ms (Views: 9.3ms | ActiveRecord: 1.2ms | Allocations: 3457)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:48:38 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (3.2ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164838Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=cc5079f91d0be95c3456912dcb7b02186927f0aa3e16047cb9a9a4dc4a8b2561)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 10.6ms | Allocations: 2703)
+Completed 200 OK in 15ms (Views: 11.0ms | ActiveRecord: 0.9ms | Allocations: 3456)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:48:39 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (2.5ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164839Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=49011376493ff7f78af32bcdc934732ad2564b520366b426df18c50d0bb37df7)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 11.4ms | Allocations: 2703)
+Completed 200 OK in 16ms (Views: 11.1ms | ActiveRecord: 2.0ms | Allocations: 3455)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:48:42 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.8ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164842Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=30a64b88bfe0de164ae464f9bf454333bf44d41c532e8d108b298361ba9de58c)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 9.7ms | Allocations: 2704)
+Completed 200 OK in 13ms (Views: 10.1ms | ActiveRecord: 0.8ms | Allocations: 3456)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:48:46 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:48:47.173107"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+[36m  S3 Storage (1.0ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T164847Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=81974dbc0ccb056db53842315636a0b1079a13edb40dfed7249256e7adc41ac5)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 5.5ms | Allocations: 2696)
+Completed 200 OK in 219ms (Views: 6.1ms | ActiveRecord: 2.4ms | Allocations: 6672)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:50:37 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:50:37.451886"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+[36m  S3 Storage (1.3ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165037Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=374f3d2de8a51b98889a12a28663a3457d34e96fd0aa4c55d31e914b65897056)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 28.1ms | Allocations: 10635)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.9ms | Allocations: 176)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:3
+	app/views/api/users/show.json.jbuilder:1
+	app/controllers/api/sessions_controller.rb:20:in `create'
+
+Completed 500 Internal Server Error in 248ms (Views: 2.3ms | ActiveRecord: 2.5ms | Allocations: 16522)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:51:25 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (1.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+[36m  S3 Storage (2.6ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165125Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=59928a9b9068d15416c64b74b46e0304c07b239c261982ec22db8fe37ec2428d)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 15.4ms | Allocations: 6797)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.0ms | Allocations: 145)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:7
+	app/controllers/api/sessions_controller.rb:8:in `show'
+
+Completed 500 Internal Server Error in 27ms (Views: 3.1ms | ActiveRecord: 2.1ms | Allocations: 9360)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:51:27 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+[36m  S3 Storage (1.9ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165127Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=7a0bfa67650a6766a1978b1e24974bcaa0fec91c8d112c05ee2fbd4e91b99bf0)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 14.2ms | Allocations: 6257)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 69)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:7
+	app/controllers/api/sessions_controller.rb:8:in `show'
+
+Completed 500 Internal Server Error in 20ms (Views: 0.7ms | ActiveRecord: 1.3ms | Allocations: 7743)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:51:30 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+[36m  S3 Storage (1.8ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165130Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=5ae5c15999a2d2fb4efcdd633207ea7ddeeac9677b3f62abb87c150c297ef0b1)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 12.2ms | Allocations: 6256)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.3ms | Allocations: 69)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:7
+	app/controllers/api/sessions_controller.rb:8:in `show'
+
+Completed 500 Internal Server Error in 17ms (Views: 1.2ms | ActiveRecord: 0.9ms | Allocations: 7721)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:51:34 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+[36m  S3 Storage (2.7ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165134Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=0ae9b994d57fa25b77b85c5542e79ce76065d2a342dcdf53e813d67deafcf7a5)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 12.6ms | Allocations: 6256)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 69)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:7
+	app/controllers/api/sessions_controller.rb:8:in `show'
+
+Completed 500 Internal Server Error in 18ms (Views: 1.3ms | ActiveRecord: 1.0ms | Allocations: 7721)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:51:35 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (Duration: 3.1ms | Allocations: 234)
+Completed 200 OK in 9ms (Views: 6.9ms | ActiveRecord: 0.2ms | Allocations: 1738)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 12:52:32 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:52:32.924035"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 1.8ms | Allocations: 4065)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:52:35 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 753)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:52:41 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:52:41.473995"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:8
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:8
+  Rendered api/users/show.json.jbuilder (Duration: 4.5ms | Allocations: 2382)
+Completed 200 OK in 216ms (Views: 6.4ms | ActiveRecord: 2.2ms | Allocations: 7104)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:54:00 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:54:00.684659"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+[36m  S3 Storage (1.2ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165400Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=68ad758679c59a65976f9d8bf6e4c39f6bce09d38b14731a5573c993aa19f4c2)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 7.6ms | Allocations: 6773)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.9ms | Allocations: 145)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:7
+	app/controllers/api/sessions_controller.rb:20:in `create'
+
+Completed 500 Internal Server Error in 226ms (Views: 2.1ms | ActiveRecord: 2.0ms | Allocations: 12614)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 12:54:19 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:54:19.796849"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 9ms (Views: 0.1ms | ActiveRecord: 1.3ms | Allocations: 3955)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:54:21 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 1.6ms | Allocations: 750)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:54:25 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:54:26.332464"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+[36m  S3 Storage (1.8ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165426Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=26db3e5d596f247267227244874ba6678eb8e81fec2466433c3aff2aaa1a3bb0)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 63.1ms | Allocations: 6754)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.9ms | Allocations: 146)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:7
+	app/controllers/api/sessions_controller.rb:20:in `create'
+
+Completed 500 Internal Server Error in 802ms (Views: 2.5ms | ActiveRecord: 4.5ms | Allocations: 12480)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:55:03 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+[36m  S3 Storage (1.8ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165504Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=c44d00c068eee036bc5d1adc75712a8beac6cb78b05b17255f85d57afb9f3ffe)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 16.0ms | Allocations: 6237)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.3ms | Allocations: 69)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:7
+	app/controllers/api/sessions_controller.rb:8:in `show'
+
+Completed 500 Internal Server Error in 21ms (Views: 1.4ms | ActiveRecord: 0.6ms | Allocations: 7723)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:55:05 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+[36m  S3 Storage (1.1ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165506Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=34fb9061cd3aadc6ab31e757f1035fc2704ed05c69a1aba4f60849917b85b29b)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 7.2ms | Allocations: 6237)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 69)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:7
+	app/controllers/api/sessions_controller.rb:8:in `show'
+
+Completed 500 Internal Server Error in 11ms (Views: 0.8ms | ActiveRecord: 0.5ms | Allocations: 7702)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:55:07 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+[36m  S3 Storage (3.8ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165507Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=e40af7c8ec2162c52ddf937d437092c54212b38f601c6fa754da8ad551bb0ea7)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 14.0ms | Allocations: 6237)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 69)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:7
+	app/controllers/api/sessions_controller.rb:8:in `show'
+
+Completed 500 Internal Server Error in 22ms (Views: 1.1ms | ActiveRecord: 1.4ms | Allocations: 7702)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:55:07 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+[36m  S3 Storage (1.9ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165507Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=e40af7c8ec2162c52ddf937d437092c54212b38f601c6fa754da8ad551bb0ea7)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 25.9ms | Allocations: 6237)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 69)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:7
+	app/controllers/api/sessions_controller.rb:8:in `show'
+
+Completed 500 Internal Server Error in 32ms (Views: 1.6ms | ActiveRecord: 1.2ms | Allocations: 7703)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:55:08 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+[36m  S3 Storage (1.8ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165508Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=3f8fbeb77d7f6862b36cfa04ff443afdd9fa90dbb359604efd3504e85428b694)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 12.6ms | Allocations: 6238)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.3ms | Allocations: 69)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:7
+	app/controllers/api/sessions_controller.rb:8:in `show'
+
+Completed 500 Internal Server Error in 19ms (Views: 2.1ms | ActiveRecord: 0.7ms | Allocations: 7704)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:56:10 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+[36m  S3 Storage (3.1ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T165611Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=5bf7a01b2b9c1a67d5b3057915f1b8ad4103c1b8ae454121922e55029d95a7a5)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 18.3ms | Allocations: 6779)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 2.3ms | Allocations: 145)
+
+ActionView::Template::Error - undefined method `img_url' for nil:NilClass:
+	app/views/api/users/show.json.jbuilder:7
+	app/controllers/api/sessions_controller.rb:8:in `show'
+
+Completed 500 Internal Server Error in 36ms (Views: 8.6ms | ActiveRecord: 0.8ms | Allocations: 9270)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:56:24 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  Rendered api/users/show.json.jbuilder (Duration: 8.8ms | Allocations: 2312)
+Completed 200 OK in 14ms (Views: 11.3ms | ActiveRecord: 1.0ms | Allocations: 3824)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 12:56:26 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:56:26.287474"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 9ms (Views: 0.1ms | ActiveRecord: 1.8ms | Allocations: 3949)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:56:27 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:56:30 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:56:31.080619"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  Rendered api/users/show.json.jbuilder (Duration: 3.6ms | Allocations: 1961)
+Completed 200 OK in 219ms (Views: 3.8ms | ActiveRecord: 2.4ms | Allocations: 5942)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 12:56:45 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (1.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (4.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  Rendered api/users/show.json.jbuilder (Duration: 14.3ms | Allocations: 1985)
+Completed 200 OK in 18ms (Views: 8.8ms | ActiveRecord: 6.5ms | Allocations: 2735)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 12:59:27 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 16:59:27.719704"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (Duration: 0.9ms | Allocations: 213)
+Completed 200 OK in 214ms (Views: 3.4ms | ActiveRecord: 1.9ms | Allocations: 4940)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 13:00:21 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 17:00:21.660296"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+[36m  S3 Storage (1.0ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T170021Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=0d6f63e917adc9105409ac96bfc34d6a5267f1f6a4ef5bd0f8a2272524d54ccc)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 6.9ms | Allocations: 7543)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.2ms | Allocations: 152)
+
+ActionView::Template::Error - undefined method `img_url=' for [:id, :email, :first_name, :last_name, :created_at]:Array:
+	app/views/api/users/show.json.jbuilder:3
+	app/views/api/users/show.json.jbuilder:1
+	app/controllers/api/sessions_controller.rb:20:in `create'
+
+Completed 500 Internal Server Error in 224ms (Views: 2.7ms | ActiveRecord: 2.3ms | Allocations: 13546)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 13:00:42 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 17:00:42.428422"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 10ms (Views: 0.1ms | ActiveRecord: 1.8ms | Allocations: 3955)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:00:45 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 13:00:49 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 17:00:49.493180"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+[36m  S3 Storage (1.3ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T170049Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=12a69df8d3156d86792e764a7312d6825ecb900d4c562ea560e358d9e2b9c2c3)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 7.0ms | Allocations: 7539)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.4ms | Allocations: 152)
+
+ActionView::Template::Error - undefined method `img_url=' for [:id, :email, :first_name, :last_name, :created_at]:Array:
+	app/views/api/users/show.json.jbuilder:3
+	app/views/api/users/show.json.jbuilder:1
+	app/controllers/api/sessions_controller.rb:20:in `create'
+
+Completed 500 Internal Server Error in 224ms (Views: 1.4ms | ActiveRecord: 1.5ms | Allocations: 13307)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:01:06 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:4
+[36m  S3 Storage (1.9ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230726%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T170207Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=4b091fac2c911306d66cf9de3403e7dab83e329552d13d9fe271f3bbf6d1e0b8)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 60684.8ms | Allocations: 91187)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.0ms | Allocations: 177)
+
+ActionView::Template::Error - undefined method `img_url=' for [:id, :email, :first_name, :last_name, :created_at]:Array:
+	app/views/api/users/show.json.jbuilder:4
+	app/views/api/users/show.json.jbuilder:1
+	app/controllers/api/sessions_controller.rb:8:in `show'
+
+Completed 500 Internal Server Error in 60695ms (Views: 2.9ms | ActiveRecord: 1.1ms | Allocations: 93812)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:02:07 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (Duration: 0.6ms | Allocations: 138)
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.1ms | Allocations: 1664)
+
+
+
+TypeError - no implicit conversion of Symbol into String:
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:02:09 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (Duration: 0.2ms | Allocations: 30)
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.2ms | Allocations: 867)
+
+
+
+TypeError - no implicit conversion of Symbol into String:
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:02:16 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (Duration: 22.8ms | Allocations: 6981)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.8ms | Allocations: 159)
+
+ActionView::Template::Error - undefined local variable or method `res' for #<ActionView::Base:0x00000000018538>
+Did you mean?  redo:
+	app/views/api/users/show.json.jbuilder:3
+	app/views/api/users/show.json.jbuilder:1
+	app/controllers/api/sessions_controller.rb:8:in `show'
+
+Completed 500 Internal Server Error in 32ms (Views: 3.3ms | ActiveRecord: 0.1ms | Allocations: 9536)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:02:17 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (Duration: 1.3ms | Allocations: 234)
+Completed 200 OK in 8ms (Views: 4.6ms | ActiveRecord: 0.3ms | Allocations: 1810)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 13:02:19 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 17:02:19.168534"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 1.9ms | Allocations: 4066)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:02:20 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 753)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 13:02:27 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 17:02:28.197661"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ (byebug):1
+  Rendered api/users/show.json.jbuilder (Duration: 123641.7ms | Allocations: 35077)
+Completed 200 OK in 123855ms (Views: 123644.3ms | ActiveRecord: 1.9ms | Allocations: 39815)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:04:33 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:12
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:12
+  Rendered api/users/show.json.jbuilder (Duration: 50297.3ms | Allocations: 27304)
+Completed 200 OK in 50303ms (Views: 50299.0ms | ActiveRecord: 1.4ms | Allocations: 28830)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:05:24 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  Rendered api/users/show.json.jbuilder (Duration: 6.3ms | Allocations: 2312)
+Completed 200 OK in 10ms (Views: 8.3ms | ActiveRecord: 0.7ms | Allocations: 3837)
+
+
+Started GET "/Users/joerandazzo/Documents/App%20Academy/aA%20Projects/Eventbite2/eventbite/frontend/src/components/users/SignInSampleImage.png" for 127.0.0.1 at 2023-07-26 13:40:17 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#frontend_index as PNG
+  Parameters: {"path"=>"Users/joerandazzo/Documents/App Academy/aA Projects/Eventbite2/eventbite/frontend/src/components/users/SignInSampleImage"}
+  Rendering public/index.html
+  Rendered public/index.html (Duration: 0.7ms | Allocations: 15)
+Completed 200 OK in 16ms (Views: 10.7ms | ActiveRecord: 0.0ms | Allocations: 2715)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 13:43:54 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (1.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 17:43:54.561058"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (1.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.8ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  Rendered api/users/show.json.jbuilder (Duration: 84.4ms | Allocations: 42191)
+Completed 200 OK in 705ms (Views: 452.5ms | ActiveRecord: 19.1ms | Allocations: 336452)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 13:47:24 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (1.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 17:47:24.077747"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 23ms (Views: 0.2ms | ActiveRecord: 10.1ms | Allocations: 4105)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:48:48 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.6ms | Allocations: 781)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 13:49:52 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 17:49:52.834404"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  Rendered api/users/show.json.jbuilder (Duration: 3.5ms | Allocations: 1986)
+Completed 200 OK in 212ms (Views: 3.7ms | ActiveRecord: 2.5ms | Allocations: 5995)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 13:49:58 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 17:49:58.660930"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 1.3ms | Allocations: 3847)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:53:40 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 763)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:55:45 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:55:48 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 750)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 13:55:49 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.0ms | Allocations: 143)
+
+NoMethodError - undefined method `reset_session_token!' for nil:NilClass
+
+        current_user.reset_session_token!
+                    ^^^^^^^^^^^^^^^^^^^^^:
+	app/controllers/application_controller.rb:53:in `logout!'
+	app/controllers/api/sessions_controller.rb:28:in `destroy'
+
+Completed 500 Internal Server Error in 9ms (Views: 2.3ms | ActiveRecord: 0.2ms | Allocations: 3461)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:56:05 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:56:09 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 750)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 13:56:13 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 17:56:13.474455"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  Rendered api/users/show.json.jbuilder (Duration: 4.7ms | Allocations: 1962)
+Completed 200 OK in 222ms (Views: 4.8ms | ActiveRecord: 2.7ms | Allocations: 5934)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 13:58:53 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 17:58:53.288087"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  Rendered api/users/show.json.jbuilder (Duration: 4.1ms | Allocations: 1960)
+Completed 200 OK in 227ms (Views: 4.4ms | ActiveRecord: 2.7ms | Allocations: 5932)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 13:59:51 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 17:59:51.378197"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 10ms (Views: 0.1ms | ActiveRecord: 2.1ms | Allocations: 3850)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 13:59:55 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-26 13:59:59 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 18:00:00.071966"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:7
+  Rendered api/users/show.json.jbuilder (Duration: 3.7ms | Allocations: 1961)
+Completed 200 OK in 278ms (Views: 3.8ms | ActiveRecord: 2.4ms | Allocations: 5935)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-26 14:05:01 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:44:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-26 18:05:01.929213"], ["id", 1]]
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:54:in `reset_session_token!'
+Completed 200 OK in 13ms (Views: 0.3ms | ActiveRecord: 2.3ms | Allocations: 3847)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 14:05:04 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 14:06:34 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-26 14:07:36 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
