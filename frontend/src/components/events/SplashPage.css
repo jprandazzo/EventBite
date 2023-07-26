@@ -1,0 +1,32 @@
+/* #splash-main {
+    width: 170em;
+} */
+.splash-banner {
+    position: relative;
+
+    background-image: url('https://cdn.evbstatic.com/s3-build/fe/build/images/5fe808e647422b815b98b73c28ecf405-3_tablet_1067x470.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 150em;
+    height: 32.6em;
+    margin-top: none;
+    padding-top: none;
+    border: none;
+}
+
+.splash-banner button {
+    position: absolute;
+    bottom: 1.6em;
+    left: 19.5em;
+    padding: 1.1em 1.5em;
+    background: #d1420a;
+    font-family: 'Roboto';
+    font-weight: 500;
+    border: none;
+    border-radius: 3px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}

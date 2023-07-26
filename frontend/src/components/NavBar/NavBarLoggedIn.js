@@ -45,12 +45,12 @@ export default function NavBarLoggedIn ({user}) {
                     </span>
                 </li>
                 <li className='nav-left'> 
-                    <span id='search'>Search Events</span>
+                    <span id='search-events'>Search Events</span>
                 </li>
                 <li className='nav-right'>
-                    <span class='user-dropdown' onClick={e => toggleDropdown(e)}>
+                    <span class='dropdown' id='user-dropdown' onClick={e => toggleDropdown(e)}>
                         {user.email}
-                        <div class='user-dropdown-content'>
+                        <div class='dropdown-content' id='user-dropdown-content'>
                             <ul>
                                 <li>Browse Events</li>
                                 <li>Manage my Events</li>

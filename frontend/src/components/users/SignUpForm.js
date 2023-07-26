@@ -151,7 +151,7 @@ export default function SignUpForm () {
                 </section>
                 <section className='split split-right' id='auth-side-photo'>
                     <div className='centered login-image'>
-                        <img src='https://i.ibb.co/Qp4jyky/Screenshot-2023-07-26-at-1-38-15-PM.png' />
+                        {/* <img src='https://i.ibb.co/Qp4jyky/Screenshot-2023-07-26-at-1-38-15-PM.png' /> */}
                     </div>
                 </section>
             </main>

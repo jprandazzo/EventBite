@@ -1,5 +1,5 @@
 #main-navigation {
-    height: 40px;
+    height: .2em;
 }
 
 .navbar {
@@ -7,9 +7,13 @@
     list-style-type: none;
 }
 
-li span {
-    padding: 2em;
-    margin: 1em;
+li {
+    height: 5.1em;
+}
+
+li:hover {
+    cursor: pointer;
+    background: #F8F7FA;
 }
 
 .nav-left {
@@ -17,28 +21,132 @@ li span {
     position: relative;
 }
 
-.nav-right {
-    float: right;
+.nav-right:hover {
+    background: #F8F7FA;
 }
 
 #eblogo-nav img {
-    width: 140px;
-    height: auto;
+    width: 9em;
+    max-height: 4.5em;
     position: relative;
     top: 0;
-    left: -1.6em;
+    left: -2.7em;
     z-index: 12;
 }
 
-li:hover {
-    cursor: pointer;
+#search-events {
+    width: 50em;
+    height: 2em;
+    position: relative;
+    top: .8em;
+    left: -6.8em;
+    padding: 1.2em 24em 1.2em 2em;
+    font-size: 14px;
+    font-weight: 410;
+    background: #F8F7FA;
+    color: #A9A8B3;
 }
 
-.user-dropdown:hover .user-dropdown-content {
-    cursor: pointer;
-    display: block;
+#search-events a{
+    color: #A9A8B3;
 }
 
-.user-dropdown-content {
+#magnifying-glass {
+    width: 24px;
+    height: 24px;
+    fill: #a9a8b3;
+    position: relative;
+    top: .5em;
+    left: -1em;
+}
+
+.nav-right {
+    float: right;
+    font-family: 'Roboto' !important;
+    font-size: 14px !important;
+    font-weight: 410;
+    color: #38364F;
+}
+
+.nav-right span {
+    position: relative;
+    top: 2.4em;
+    height: 5.1em;
+    padding: 1em 1.3em 2em .7em;
+    margin-left: 1em;
+    margin-right: .5em;
+    margin-bottom: none;
+}
+
+#create-event a {
+    color: #3E64FF !important;
+}
+
+.help-organize {
+    margin-right: -.3em;
+    position: relative;
+    bottom: 1em;
+    height: 5.1em;
+}
+
+#chevron-down {
+    width: 24px;
+    height: 24px;
+    fill: #a9a8b3;
+    position: relative;
+    top: .6em;
+    left: .3em;
+}
+
+#login a {
+    text-decoration: none;
+    color: #38364F;
+    font-size: 14px !important;
+    font-weight: 410;
+}
+
+#login a:hover {
+    text-decoration: none;
+    background: #F8F7FA !important;
+}
+
+#signup a {
+    text-decoration: none;
+    color: #38364F;
+    /* font-size: 13px !important; */
+    font-weight: 410 !important;
+}
+
+#signup a:hover {
+    text-decoration: none;
+    background: #F8F7FA !important;
+}
+
+.dropdown-content {
     display: none;
+}
+
+.dropdown:hover .dropdown-content {
+    height: auto;
+    width: 18em;
+    display: block;
+    position: absolute;
+    right: -.5em;
+    top: 3.7em;
+    z-index: 1;
+
+    cursor: pointer;
+
+    background: white;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(107, 107, 107);
+
+}
+
+.dropdown-content:hover li {
+    max-height: 3.3em;
+    padding: 0em 1em .5em 1em;
+    margin: none;
+    color: rgb(30, 30, 30);
 }

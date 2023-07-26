@@ -40,10 +40,12 @@ main {
     left: -1em;
 }
 
-.login-image img {
-    object-fit: contain;
-    height: auto;
-    width: auto;
+.login-image {
+    background-image: url('https://i.ibb.co/Qp4jyky/Screenshot-2023-07-26-at-1-38-15-PM.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 912px;
+    width: 925px;
 }
 
 h1 {

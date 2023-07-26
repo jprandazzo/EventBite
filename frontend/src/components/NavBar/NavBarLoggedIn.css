@@ -1,5 +1,6 @@
 #main-navigation {
     height: 40px;
+    margin-bottom: 2.3em;
 }
 
 .navbar {
@@ -34,11 +35,11 @@ li:hover {
     cursor: pointer;
 }
 
-.user-dropdown:hover .user-dropdown-content {
+.dropdown:hover .dropdown-content {
     cursor: pointer;
     display: block;
 }
 
-.user-dropdown-content {
+.dropdown-content {
     display: none;
 }
