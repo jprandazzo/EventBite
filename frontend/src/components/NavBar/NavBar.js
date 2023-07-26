@@ -2,7 +2,7 @@ import * as sessionActions from '../../store/sessionReducer.js';
 // import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory, Redirect} from 'react-router-dom';
-import UserTile from './UserTile'
+import UserTile from './UserTile/UserTile.js'
 import './NavBar.css';
 
 export default function NavBar () {
@@ -40,12 +40,14 @@ export default function NavBar () {
         <nav id='main-navigation'>
             <ul className='navbar'>
                 <li className='left'> 
-                    <span>Logo</span>
+                    <span id='eblogo'>
+                    <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' />
+                    </span>
                 </li>
                 <li className='left'> 
-                    <span>Search Events</span>
+                    <span id='search'>Search Events</span>
                 </li>
-                <li className='right'> 
+                <li className='right'>
                     <UserTile user={user}/>
                 </li>
                 <li className='right'> 

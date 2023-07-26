@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import * as sessionActions from "../../store/sessionReducer"
@@ -9,7 +9,6 @@ export default function SignInForm () {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(sessionActions.getCurrentUser)
-    const ref = useRef(null);
     // need to set a sessionUser such that if present, redirect and do 
     // not allow user to sign up
     // const [firstName, setFirstName] = useState('')
@@ -18,57 +17,54 @@ export default function SignInForm () {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
 
-    // useEffect(() =>{
-    //     setFirstName(firstName)
-    // }, [])
-
     const focusInput = (e) => {
+        //blur anything that's currently focused
+        Array.from(document.querySelectorAll('.input-field-input'))
+            .forEach(el => {
+                el.blur()
+            })
+        
+        //whichever div is clicked, find its input and focus it
         if (e.target.className === 'auth-input-box') {
-            ref.current.focus();
 
-            e.target.classList.add('active-div');
-            let textFieldTitle = Array.from(e.target.childNodes).filter(e => e.className === 'input-field-title')[0]
-            textFieldTitle.classList.add('active-input')
-        } else if (e.target.className.includes('input-field')) {
-            let outerDiv = e.target.closest('div.auth-input-box')
-            outerDiv.classList.add('active-div')
+            let textFieldTitle = Array.from(e.target.childNodes).filter(el => el.className === 'input-field-title')[0]
+            let input = e.target.childNodes[2].childNodes[0].childNodes[0]
+            input.focus()
+        } else if (e.target.className === 'input-field-title') {
+            
+            let outerDiv = e.target.parentNode
+            let input = outerDiv.childNodes[2].childNodes[0].childNodes[0]
+            input.focus()
 
-            let textFieldTitle = Array.from(outerDiv.childNodes).filter(e => e.className === 'input-field-title')[0]
-            textFieldTitle.classList.add('active-input')
+        } else if (e.target.className === 'input-field-input') {
+            e.target.focus()
         }
-
-        //     Array.from(document.querySelectorAll('*'))
-        //         .forEach(el => {
-        //             if (el !== e.target && el.classList.contains('active')) {
-        //                 let activeClasses = Array.from(el.classList).filter(el => el.includes('active'))
-        //                 activeClasses.forEach(activeClass => el.classList.remove(activeClass))
-        //             }
-        //         })
-        // } else {
-        //     ref.current.blur();
-        //     // toggleDivFocus(e.target);
-        // }
     }
 
-    // //listens for focus on textbox
-    // document.querySelector('text-field-input')
-    //     .addEventListener("focus", changeClosestDivColor);
+    function setClosestDivsActive(e){
 
-    // function changeClosestDivColor(e){
-    //     let outerDiv = e.closest('div')
-    //     outerDiv.classList.add('active-div')
+        //add 'focus' class to both surrounding divs of the input
+        //that was focused
+        let outerDiv = e.target.closest('div')
+        outerDiv.classList.add('active-div')
 
+        let textFieldTitle = Array.from(outerDiv.childNodes).filter(el => el.className === 'input-field-title')[0]
+        textFieldTitle.classList.add('active-input')
+    }
 
-    //     let inputTitle = document.querySelector('.input-field-title')
-    //     inputTitle.classList.add('active-input')
-
-    // }
+    function setClosestDivsInactive(e) {
+        //remove 'focus' class from both surrounding divs of the input
+        //that was blurred
+        let outerDiv = e.target.closest('div')
+        outerDiv.classList.remove('active-div')
+        let textFieldTitle = Array.from(outerDiv.childNodes).filter(el => el.classList.contains('input-field-title'))[0]
+        textFieldTitle.classList.remove('active-input')
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         
         setErrors([])
-        // let user = {email, password}
         return dispatch(sessionActions.login({email, password}))
             .catch(async (res) => {
                 let data;
@@ -104,11 +100,11 @@ export default function SignInForm () {
                                 <span >
                                     <label>
                                         <input className='input-field-input'
-                                               ref={ref}
                                                type='text' 
                                                name='email'
                                                onChange={e => setEmail(e.target.value)}
-                                            //    onFocus={e => changeClosestDivColor(e.target)}
+                                               onFocus={e => setClosestDivsActive(e)}
+                                               onBlur={e => setClosestDivsInactive(e)}
                                         />
                                     </label>
                                 </span>
@@ -116,13 +112,25 @@ export default function SignInForm () {
 
                             <br />
 
-                            <label>
-                                Password
-                                <input type='password' 
-                                       name='password' 
-                                       onChange={e => setPassword(e.target.value)}
-                                />
-                            </label>
+                            <div className='auth-input-box'>
+                                <div className='input-field-title'>
+                                    Password
+                                </div>
+
+                                <br />
+
+                                <span >
+                                    <label>
+                                        <input className='input-field-input'
+                                               type='password' 
+                                               name='password'
+                                               onChange={e => setPassword(e.target.value)}
+                                               onFocus={e => setClosestDivsActive(e)}
+                                               onBlur={e => setClosestDivsInactive(e)}
+                                        />
+                                    </label>
+                                </span>
+                            </div>
 
                             <br />
 

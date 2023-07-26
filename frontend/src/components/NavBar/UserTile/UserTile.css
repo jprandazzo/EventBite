@@ -1,0 +1,13 @@
+.dropdown:hover {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    /* display: none; */
+    position: relative;
+    top: 2em;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
