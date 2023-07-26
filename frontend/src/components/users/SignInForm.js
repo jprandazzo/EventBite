@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import * as sessionActions from "../../store/sessionReducer"
 import { createUser, fetchUser, loginUser } from "../../store/usersReducer";
 import './Authentication.css';
@@ -82,7 +82,7 @@ export default function SignInForm () {
             //     else if (data) setErrors([data]);
             //     else setErrors([res.statusText]);
             // })
-            // .then(() =>{history.push('/')});
+            .then(() =>{history.push('/')});
     };
     return(
         <>
@@ -90,7 +90,9 @@ export default function SignInForm () {
                 <section className='split split-left' id='signin'>
                     <div className='centered'>
                         <div id='eblogo-auth'>
-                            <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' />
+                            <Link to='/'>
+                                <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' />
+                            </Link>
                         </div>
                         <h1>Log in</h1>
 

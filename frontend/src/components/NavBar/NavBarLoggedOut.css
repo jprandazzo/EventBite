@@ -1,0 +1,44 @@
+#main-navigation {
+    height: 40px;
+}
+
+.navbar {
+    display: inline;
+    list-style-type: none;
+}
+
+li span {
+    padding: 2em;
+    margin: 1em;
+}
+
+.nav-left {
+    float: left;
+    position: relative;
+}
+
+.nav-right {
+    float: right;
+}
+
+#eblogo-nav img {
+    width: 140px;
+    height: auto;
+    position: relative;
+    top: 0;
+    left: -1.6em;
+    z-index: 12;
+}
+
+li:hover {
+    cursor: pointer;
+}
+
+.user-dropdown:hover .user-dropdown-content {
+    cursor: pointer;
+    display: block;
+}
+
+.user-dropdown-content {
+    display: none;
+}

@@ -1,15 +1,16 @@
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
+import { useHistory, Link } from 'react-router-dom';
 import * as sessionActions from "../../store/sessionReducer"
 import './Authentication.css';
 
 export default function SignUpForm () {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     // need to set a sessionUser such that if present, redirect and do 
     // not allow user to sign up
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([]);
@@ -60,7 +61,9 @@ export default function SignUpForm () {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // debugger
+        
+        let firstName = 'joe';
+        let lastName = 'ra';
 
         return dispatch(sessionActions.signup({email, password, firstName, lastName}))
             .catch(async (res) => {
@@ -74,7 +77,8 @@ export default function SignUpForm () {
                 if (data?.errors) setErrors(data.errors);
                 else if (data) setErrors([data]);
                 else setErrors([res.statusText]);
-            });
+            })
+            .then(() =>{history.push('/')});
     }
     return(
         <>
@@ -82,7 +86,9 @@ export default function SignUpForm () {
             <section className='split split-left' id='signin'>
                     <div className='centered'>
                         <div id='eblogo-auth'>
-                            <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' />
+                            <Link to='/'>
+                                <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' />
+                            </Link>
                         </div>
                         <h1>Log in</h1>
 
