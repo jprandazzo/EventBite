@@ -12,7 +12,7 @@ export default function SplashPage () {
     return(
         <>
             <main id='splash-main'>
-            {user ? <NavBarLoggedIn user={user} /> : <NavBarLoggedOut />}
+            {user ? <NavBarLoggedIn /> : <NavBarLoggedOut />}
             <br />
             <br />
             <div className='splash-banner'>

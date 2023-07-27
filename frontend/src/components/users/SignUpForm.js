@@ -25,16 +25,16 @@ export default function SignUpForm () {
         //whichever div is clicked, find its input and focus it
         if (e.target.className === 'auth-input-box') {
 
-            let textFieldTitle = Array.from(e.target.childNodes).filter(el => el.className === 'input-field-title')[0]
+            let textFieldTitle = Array.from(e.target.childNodes).filter(el => el.className === 'signup-signin-field-title')[0]
             let input = e.target.childNodes[2].childNodes[0].childNodes[0]
             input.focus()
-        } else if (e.target.className === 'input-field-title') {
+        } else if (e.target.className === 'signup-signin-field-title') {
             
             let outerDiv = e.target.parentNode
             let input = outerDiv.childNodes[2].childNodes[0].childNodes[0]
             input.focus()
 
-        } else if (e.target.className === 'input-field-input') {
+        } else if (e.target.className === 'signup-signin-field-input') {
             e.target.focus()
         }
     }
@@ -46,7 +46,7 @@ export default function SignUpForm () {
         let outerDiv = e.target.closest('div')
         outerDiv.classList.add('active-div')
 
-        let textFieldTitle = Array.from(outerDiv.childNodes).filter(el => el.className === 'input-field-title')[0]
+        let textFieldTitle = Array.from(outerDiv.childNodes).filter(el => el.className === 'signup-signin-field-title')[0]
         textFieldTitle.classList.add('active-input')
     }
 
@@ -55,7 +55,7 @@ export default function SignUpForm () {
         //that was blurred
         let outerDiv = e.target.closest('div')
         outerDiv.classList.remove('active-div')
-        let textFieldTitle = Array.from(outerDiv.childNodes).filter(el => el.classList.contains('input-field-title'))[0]
+        let textFieldTitle = Array.from(outerDiv.childNodes).filter(el => el.classList.contains('signup-signin-field-title'))[0]
         textFieldTitle.classList.remove('active-input')
     }
 
@@ -90,11 +90,11 @@ export default function SignUpForm () {
                                 <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' />
                             </Link>
                         </div>
-                        <h1>Log in</h1>
+                        <h1 id='create-account'>Create an account</h1>
 
                         <form>
                             <div className='auth-input-box'>
-                                <div className='input-field-title'>
+                                <div className='signup-signin-field-title'>
                                     Email address
                                 </div>
 
@@ -102,7 +102,7 @@ export default function SignUpForm () {
 
                                 <span >
                                     <label>
-                                        <input className='input-field-input'
+                                        <input className='signup-signin-field-input'
                                                type='text' 
                                                name='email'
                                                onChange={e => setEmail(e.target.value)}
@@ -116,7 +116,7 @@ export default function SignUpForm () {
                             <br />
 
                             <div className='auth-input-box'>
-                                <div className='input-field-title'>
+                                <div className='signup-signin-field-title'>
                                     Password
                                 </div>
 
@@ -124,7 +124,7 @@ export default function SignUpForm () {
 
                                 <span >
                                     <label>
-                                        <input className='input-field-input'
+                                        <input className='signup-signin-field-input'
                                                type='password' 
                                                name='password'
                                                onChange={e => setPassword(e.target.value)}
@@ -147,6 +147,9 @@ export default function SignUpForm () {
                                 Sign up
                             </button>
                         </form>
+                        <div className='signup-signin-switch'>
+                            <Link to='/signin'>Log in</Link>
+                        </div>
                     </div>
                 </section>
                 <section className='split split-right' id='auth-side-photo'>

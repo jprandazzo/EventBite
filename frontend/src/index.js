@@ -8,14 +8,12 @@ import { BrowserRouter, useLocation } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import configureStore from './store';
 import * as sessionActions from './store/sessionReducer'
-import { csrfFetch } from './store/csrf';
 import { createUser, loginUser, logoutUser } from './store/usersReducer'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
-  window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
   window.store = store;
 }

@@ -1,4 +1,4 @@
-import './EventsSearch.css'
+import './SearchEvents.css'
 
 export default function EventsSearch () {
     return (

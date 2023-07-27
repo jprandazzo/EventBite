@@ -1,10 +1,14 @@
 class Api::EventsController < ApplicationController
     # before_action :require_logged_in
 
-    wrap_parameters :event, include: Event.attribute_names
+    wrap_parameters :event, include: Event.attribute_names + ['organizerName', 'eventType', 'eventCategory', 'venueName', 'organizerId']
 
     def create
+        debugger
         @event = Event.new(event_params)
+        debugger
+        @event.timestamp_start = DateTime.new(2023,01,01)
+        @event.timestamp_end = DateTime.new(2023,01,02)
         @event.organizer_id = current_user.id
 
         if @event.save
@@ -12,6 +16,7 @@ class Api::EventsController < ApplicationController
         else
             render json: {errors: @event.errors.full_messages},
             status: :unprocessable_entity
+            debugger
         end
 
     end
@@ -32,7 +37,8 @@ class Api::EventsController < ApplicationController
         if @event.organizer_id == current_user
             @event.address=params[:address]
             @event.capacity=params[:capacity]
-            @event.category=params[:category]
+            @event.event_type=params[:event_type]
+            @event.event_category=params[:event_category]
             @event.organizer_name=params[:organizer_name]
             @event.timestamp_start=params[:timestamp_start]
             @event.title=params[:title]
@@ -52,7 +58,7 @@ class Api::EventsController < ApplicationController
 
     private
     def event_params
-        params.require(:event).permit(:address, :capacity, :category, :organizer_name, :timestamp_start, :timestamp_end, :title, :type, :venue_name)
+        params.require(:event).permit(:address, :capacity, :event_category, :organizer_name, :title, :event_type, :venue_name, :organizer_id)
     end
 end
 

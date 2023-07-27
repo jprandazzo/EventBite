@@ -5,13 +5,13 @@
 #  id              :bigint           not null, primary key
 #  address         :string
 #  capacity        :integer          not null
-#  category        :string
+#  event_category  :string
+#  event_type      :string
 #  organizer_name  :string
 #  tickets_sold    :integer          default(0), not null
 #  timestamp_end   :datetime         not null
 #  timestamp_start :datetime         not null
 #  title           :string           not null
-#  type            :string
 #  venue_name      :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -31,7 +31,7 @@ class Event < ApplicationRecord
 
     belongs_to :organizer, class_name: :User, foreign_key: :organizer_id
 
-    enum :type, %w(
+    enum :event_type, %w(
                 attraction 
                 camp_trip_retreat 
                 concert_performance 
@@ -41,9 +41,9 @@ class Event < ApplicationRecord
                 festival_fair 
                 party_social_gathering 
                 type_other 
-                ).map(&:to_sym)
+                )
 
-    enum :category, %w(
+    enum :event_category, %w(
                     auto_boat_air 
                     business_professional 
                     charity_causes 
@@ -55,5 +55,5 @@ class Event < ApplicationRecord
                     category_other 
                     seasonal_holiday 
                     travel_outdoor
-                    ).map(&:to_sym)
+                    )
 end

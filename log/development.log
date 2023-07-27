@@ -9291,3 +9291,1513 @@ Processing by Api::EventsController#index as */*
 Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.3ms | Allocations: 1929)
 
 
+Started GET "/api/events/" for ::1 at 2023-07-27 13:35:21 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 4.2ms | Allocations: 2794)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.9ms | Allocations: 219)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    Event.all.each {|event| json.set! event.id, jason.extract! event, :id, :title}
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 384ms (Views: 4.7ms | ActiveRecord: 0.0ms | Allocations: 282322)
+
+
+Started GET "/api/events/" for ::1 at 2023-07-27 13:35:39 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (2.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:7
+  Rendered api/events/index.json.jbuilder (Duration: 5.3ms | Allocations: 1191)
+Completed 200 OK in 9ms (Views: 6.2ms | ActiveRecord: 2.2ms | Allocations: 2220)
+
+
+Started GET "/api/users/1" for ::1 at 2023-07-27 13:36:29 -0400
+Processing by Api::UsersController#show as */*
+  Parameters: {"formats"=>:json, "id"=>"1"}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (1.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mActiveStorage::Blob Load (1.8ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+[36m  S3 Storage (69.8ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230727%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230727T173629Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=4e30b013689e33127d7e04afa03662541b7f7a5291a80d96311844b4f1500c43)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 160.8ms | Allocations: 173499)
+Completed 200 OK in 179ms (Views: 154.8ms | ActiveRecord: 11.5ms | Allocations: 181920)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:36:43 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:7
+  Rendered api/events/index.json.jbuilder (Duration: 2.4ms | Allocations: 771)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.3ms | Allocations: 1054)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:37:06 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 1.8ms | Allocations: 2253)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.2ms | Allocations: 149)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    Event.all.each {|event| json.set! event.id, json.extract! event, :id, :title}
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 9ms (Views: 2.9ms | ActiveRecord: 0.0ms | Allocations: 4278)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:37:13 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 2.1ms | Allocations: 2250)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.8ms | Allocations: 149)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    Event.all.each {|event| json.set! event.id, {json.extract! event, :id, :title}}
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 9ms (Views: 2.1ms | ActiveRecord: 0.0ms | Allocations: 4279)
+
+
+Started GET "/api/users/1" for ::1 at 2023-07-27 13:37:24 -0400
+Processing by Api::UsersController#show as */*
+  Parameters: {"formats"=>:json, "id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+[36m  S3 Storage (3.2ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230727%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230727T173724Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=6ca87b81188353243ab164337497f70fa66816572685c6aa75042caab5874b32)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 11.2ms | Allocations: 3282)
+Completed 200 OK in 16ms (Views: 13.0ms | ActiveRecord: 0.8ms | Allocations: 4435)
+
+
+Started GET "/api/users/1" for ::1 at 2023-07-27 13:38:28 -0400
+Processing by Api::UsersController#show as */*
+  Parameters: {"formats"=>:json, "id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+[36m  S3 Storage (2.1ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230727%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230727T173828Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=13836e0b89d4508e1f705a688762285feaa975d8621eeaab80a28f2a5cd8befa)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 9.9ms | Allocations: 3279)
+Completed 200 OK in 15ms (Views: 12.1ms | ActiveRecord: 0.9ms | Allocations: 4813)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:38:32 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:8
+  Rendered api/events/index.json.jbuilder (Duration: 6.1ms | Allocations: 4730)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.4ms | Allocations: 158)
+
+ActionView::Template::Error - undefined method `id' for nil:NilClass:
+	app/views/api/events/index.json.jbuilder:8
+	app/views/api/events/index.json.jbuilder:8
+	app/views/api/events/index.json.jbuilder:6
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 40ms (Views: 30.5ms | ActiveRecord: 0.3ms | Allocations: 6390)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:39:18 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:8
+  Rendered api/events/index.json.jbuilder (Duration: 5.0ms | Allocations: 4676)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.7ms | Allocations: 157)
+
+ActionView::Template::Error - undefined method `id' for nil:NilClass:
+	app/views/api/events/index.json.jbuilder:10
+	app/views/api/events/index.json.jbuilder:8
+	app/views/api/events/index.json.jbuilder:6
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 11ms (Views: 2.2ms | ActiveRecord: 0.3ms | Allocations: 6734)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:39:23 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:8
+  Rendered api/events/index.json.jbuilder (Duration: 13683.8ms | Allocations: 93600)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.5ms | Allocations: 173)
+
+ActionView::Template::Error - undefined method `id' for nil:NilClass:
+	app/views/api/events/index.json.jbuilder:11
+	app/views/api/events/index.json.jbuilder:8
+	app/views/api/events/index.json.jbuilder:6
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 13690ms (Views: 2.3ms | ActiveRecord: 0.3ms | Allocations: 95741)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:39:41 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:8
+  Rendered api/events/index.json.jbuilder (Duration: 8.5ms | Allocations: 5626)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.5ms | Allocations: 165)
+
+ActionView::Template::Error - undefined method `id' for 1:Integer
+
+    attributes.each{ |key| _set_value key, _format_keys(object.public_send(key)) }
+                                                              ^^^^^^^^^^^^
+Did you mean?  i:
+	app/views/api/events/index.json.jbuilder:11
+	app/views/api/events/index.json.jbuilder:11
+	app/views/api/events/index.json.jbuilder:8
+	app/views/api/events/index.json.jbuilder:6
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 14ms (Views: 2.0ms | ActiveRecord: 0.2ms | Allocations: 7738)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:40:02 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:8
+  Rendered api/events/index.json.jbuilder (Duration: 5.3ms | Allocations: 5921)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.7ms | Allocations: 165)
+
+ActionView::Template::Error - undefined method `id' for "1":String
+
+    attributes.each{ |key| _set_value key, _format_keys(object.public_send(key)) }
+                                                              ^^^^^^^^^^^^:
+	app/views/api/events/index.json.jbuilder:11
+	app/views/api/events/index.json.jbuilder:11
+	app/views/api/events/index.json.jbuilder:8
+	app/views/api/events/index.json.jbuilder:6
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 11ms (Views: 2.4ms | ActiveRecord: 0.3ms | Allocations: 8033)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:40:48 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 1.0ms | Allocations: 2255)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.1ms | Allocations: 149)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    # Event.all.each {|event| json.set! event.id, {id: event.id, title: event.title}}
+    Event.all.each do |event| 
+        id = event.id
+        # debugger
+        json.set! json.id, json.extract! id, :id, :title
+    end
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 7ms (Views: 2.6ms | ActiveRecord: 0.0ms | Allocations: 4284)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:40:55 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 1.3ms | Allocations: 2255)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.9ms | Allocations: 149)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    # Event.all.each {|event| json.set! event.id, {id: event.id, title: event.title}}
+    Event.all.each do |event| 
+        id = event.id.to_s
+        # debugger
+        json.set! json.id, json.extract! id, :id, :title
+    end
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 8ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 4284)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:41:05 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 1.0ms | Allocations: 2256)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.6ms | Allocations: 149)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    # Event.all.each {|event| json.set! event.id, {id: event.id, title: event.title}}
+    Event.all.each do |event| 
+        id = event.id.to_s
+        # debugger
+        json.set! id, json.extract! id, :id, :title
+    end
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 6ms (Views: 2.1ms | ActiveRecord: 0.0ms | Allocations: 4285)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:41:12 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 1.1ms | Allocations: 2255)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.5ms | Allocations: 149)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    # Event.all.each {|event| json.set! event.id, {id: event.id, title: event.title}}
+    Event.all.each do |event| 
+        id = event.id.to_s
+        # debugger
+        json.set! id, {json.extract! id, :id, :title}
+    end
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 6ms (Views: 1.6ms | ActiveRecord: 0.0ms | Allocations: 4284)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:41:24 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 1.4ms | Allocations: 2255)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.6ms | Allocations: 149)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    # Event.all.each {|event| json.set! event.id, {id: event.id, title: event.title}}
+    Event.all.each do |event| 
+        id = event.id.to_s
+        # debugger
+        json.set! id, {json.extract! event, :id, :title}
+    end
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 8ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 4284)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:42:22 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 1.0ms | Allocations: 2255)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.5ms | Allocations: 149)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    Event.all.each {|event| json.set! event.id, {id: event.id, title: event.title}}
+    # Event.all.each do |event| 
+    #     id = event.id.to_s
+    #     # debugger
+    #     json.set! id, {json.extract! event, :id, :title}
+    end
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 7ms (Views: 3.1ms | ActiveRecord: 0.0ms | Allocations: 4284)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:42:23 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 1.1ms | Allocations: 2225)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 63)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    Event.all.each {|event| json.set! event.id, {id: event.id, title: event.title}}
+    # Event.all.each do |event| 
+    #     id = event.id.to_s
+    #     # debugger
+    #     json.set! id, {json.extract! event, :id, :title}
+    end
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 3ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 3198)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:42:53 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:7
+  Rendered api/events/index.json.jbuilder (Duration: 2.7ms | Allocations: 916)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.3ms | Allocations: 1901)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:43:49 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:10
+  Rendered api/events/index.json.jbuilder (Duration: 2.4ms | Allocations: 923)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.2ms | Allocations: 1933)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:43:59 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 10.9ms | Allocations: 2257)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.4ms | Allocations: 150)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    # Event.all.each do |event| 
+        # json.set! event.id, {id: event.id, title: event.title}
+    # end
+    Event.all.each do |event| 
+        id = event.id.to_s
+        # debugger
+        json.set! id, json.extract! event, :id, :title
+    end
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 18ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 4301)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:44:16 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:10
+  Rendered api/events/index.json.jbuilder (Duration: 67659.5ms | Allocations: 57028)
+Completed 200 OK in 67663ms (Views: 67662.7ms | ActiveRecord: 0.3ms | Allocations: 58071)
+
+
+Started GET "/api/users/1" for ::1 at 2023-07-27 13:45:28 -0400
+Processing by Api::UsersController#show as */*
+  Parameters: {"formats"=>:json, "id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:4
+[36m  S3 Storage (1.4ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230727%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230727T174550Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=a510581765ed8dad15ec7c40b1f30500397f40cdc9f73a5cd78191b5a221ef53)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 21576.8ms | Allocations: 30969)
+Completed 200 OK in 21582ms (Views: 21579.5ms | ActiveRecord: 0.8ms | Allocations: 32507)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:45:56 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:10
+  Rendered api/events/index.json.jbuilder (Duration: 3.1ms | Allocations: 936)
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.3ms | Allocations: 1947)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:46:22 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 1.1ms | Allocations: 2258)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.4ms | Allocations: 149)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    # Event.all.each do |event| 
+        # json.set! event.id, {id: event.id, title: event.title}
+    # end
+    Event.all.each do |event| 
+        # id = event.id.to_s
+        # obj = json.extract! event, :id, :title
+        # debugger
+        json.set! event.id.to_s, json.extract! event, :id, :title
+    end
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 8ms (Views: 2.9ms | ActiveRecord: 0.0ms | Allocations: 4300)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:46:29 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:7
+  Rendered api/events/index.json.jbuilder (Duration: 2.4ms | Allocations: 924)
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.3ms | Allocations: 1921)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:47:19 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:17
+  Rendered api/events/index.json.jbuilder (Duration: 2.6ms | Allocations: 942)
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.2ms | Allocations: 1952)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:47:29 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:17
+  Rendered api/events/index.json.jbuilder (Duration: 3.5ms | Allocations: 851)
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.4ms | Allocations: 1860)
+
+
+
+TypeError - no implicit conversion of Symbol into String:
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:47:42 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:17
+  Rendered api/events/index.json.jbuilder (Duration: 2.7ms | Allocations: 852)
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.3ms | Allocations: 1861)
+
+
+
+TypeError - no implicit conversion of Symbol into String:
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:47:48 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:17
+  Rendered api/events/index.json.jbuilder (Duration: 3.2ms | Allocations: 942)
+Completed 200 OK in 6ms (Views: 5.8ms | ActiveRecord: 0.3ms | Allocations: 1952)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:48:39 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  Rendered api/events/index.json.jbuilder (Duration: 1.1ms | Allocations: 2262)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.4ms | Allocations: 149)
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check # :events = {}
+# Event.all.map do |event|
+#     events[event.id] = {id: event.id, title: event.title}
+# end
+
+json.events do 
+    # Event.all.each do |event| 
+    #     json.set! event.id, {id: event.id, title: event.title}
+    # end
+
+    Event.all.each do |event| 
+        json.set! event.id.to_s, json.extract! event, :id, :title
+    end
+
+    # Event.all.each do |event| 
+    #     id = event.id.to_s
+    #     obj = json.extract! event, :id, :title
+    #     json.set! id, obj
+    # end
+end
+:
+	app/controllers/api/events_controller.rb:20:in `index'
+
+Completed 500 Internal Server Error in 7ms (Views: 2.9ms | ActiveRecord: 0.0ms | Allocations: 4304)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:48:46 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:7
+  Rendered api/events/index.json.jbuilder (Duration: 2.6ms | Allocations: 928)
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.3ms | Allocations: 1925)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-27 13:49:16 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:46:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mUser Update (2.0ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-27 17:49:16.900367"], ["id", 1]]
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+Completed 200 OK in 23ms (Views: 0.3ms | ActiveRecord: 6.1ms | Allocations: 6435)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-27 13:49:22 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:33:in `find_by_credentials'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:46:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-27 17:49:22.902520"], ["id", 1]]
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:4
+[36m  S3 Storage (1.7ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230727%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230727T174930Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=bff639830928e65ddac3b4a12f58e455f98657b3e7bbdfcc2a5c6d70feb384e7)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 7324.7ms | Allocations: 30391)
+Completed 200 OK in 7541ms (Views: 7325.8ms | ActiveRecord: 2.8ms | Allocations: 35147)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-27 13:49:33 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:46:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-27 17:49:33.622063"], ["id", 1]]
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 2.1ms | Allocations: 3999)
+
+
+Started GET "/api/users/2" for ::1 at 2023-07-27 13:50:45 -0400
+Processing by Api::UsersController#show as */*
+  Parameters: {"formats"=>:json, "id"=>"2"}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  Rendered api/users/show.json.jbuilder (Duration: 3.8ms | Allocations: 2553)
+Completed 200 OK in 10ms (Views: 5.8ms | ActiveRecord: 2.5ms | Allocations: 4046)
+
+
+Started GET "/api/users/3" for ::1 at 2023-07-27 13:50:48 -0400
+Processing by Api::UsersController#show as */*
+  Parameters: {"formats"=>:json, "id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.3ms | Allocations: 122)
+
+ActiveRecord::RecordNotFound - Couldn't find User with 'id'=3:
+	app/controllers/api/users_controller.rb:23:in `show'
+
+Completed 500 Internal Server Error in 5ms (Views: 2.7ms | ActiveRecord: 0.2ms | Allocations: 2206)
+
+
+Started GET "/api/users/4" for ::1 at 2023-07-27 13:50:50 -0400
+Processing by Api::UsersController#show as */*
+  Parameters: {"formats"=>:json, "id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  Rendered api/users/show.json.jbuilder (Duration: 3.1ms | Allocations: 2230)
+Completed 200 OK in 6ms (Views: 3.8ms | ActiveRecord: 0.5ms | Allocations: 2969)
+
+
+Started GET "/api/users/5" for ::1 at 2023-07-27 13:50:52 -0400
+Processing by Api::UsersController#show as */*
+  Parameters: {"formats"=>:json, "id"=>"5"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 63)
+
+ActiveRecord::RecordNotFound - Couldn't find User with 'id'=5:
+	app/controllers/api/users_controller.rb:23:in `show'
+
+Completed 500 Internal Server Error in 3ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 1970)
+
+
+Started GET "/api/users/6" for ::1 at 2023-07-27 13:50:55 -0400
+Processing by Api::UsersController#show as */*
+  Parameters: {"formats"=>:json, "id"=>"6"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 63)
+
+ActiveRecord::RecordNotFound - Couldn't find User with 'id'=6:
+	app/controllers/api/users_controller.rb:23:in `show'
+
+Completed 500 Internal Server Error in 3ms (Views: 0.7ms | ActiveRecord: 0.1ms | Allocations: 1971)
+
+
+Started GET "/api/users/7" for ::1 at 2023-07-27 13:50:57 -0400
+Processing by Api::UsersController#show as */*
+  Parameters: {"formats"=>:json, "id"=>"7"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 63)
+
+ActiveRecord::RecordNotFound - Couldn't find User with 'id'=7:
+	app/controllers/api/users_controller.rb:23:in `show'
+
+Completed 500 Internal Server Error in 4ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 1970)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:55:27 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:7
+  Rendered api/events/index.json.jbuilder (Duration: 22.5ms | Allocations: 927)
+Completed 200 OK in 25ms (Views: 24.4ms | ActiveRecord: 0.3ms | Allocations: 1505)
+
+
+Started GET "/api/events" for ::1 at 2023-07-27 13:56:37 -0400
+Processing by Api::EventsController#index as */*
+  Parameters: {"formats"=>:json}
+  Rendering api/events/index.json.jbuilder
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/api/events/index.json.jbuilder:11
+  Rendered api/events/index.json.jbuilder (Duration: 2.9ms | Allocations: 872)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.2ms | Allocations: 1882)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 14:26:24 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 33ms (Views: 0.2ms | ActiveRecord: 15.6ms | Allocations: 3858)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 14:54:55 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 31ms (Views: 0.4ms | ActiveRecord: 12.2ms | Allocations: 3582)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 14:54:59 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 14:56:27 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 14:57:03 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.4ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 14:58:14 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 14:58:22 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-27 14:58:41 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:33:in `find_by_credentials'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:46:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-27 18:58:41.469503"], ["id", 1]]
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (2.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+[36m  S3 Storage (8.9ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230727%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230727T185841Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=10d2b9fe26bf8ac55b5f0d180ea5a59b9d877ee7c9bcf5a3e24020e8652d5ab9)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 20.3ms | Allocations: 3285)
+Completed 200 OK in 239ms (Views: 23.3ms | ActiveRecord: 6.1ms | Allocations: 8171)
+
+
+Started GET "/events/create" for 127.0.0.1 at 2023-07-27 16:06:04 -0400
+Processing by StaticPagesController#frontend_index as */*
+  Parameters: {"path"=>"events/create"}
+  Rendering public/index.html
+  Rendered public/index.html (Duration: 0.8ms | Allocations: 11)
+Completed 200 OK in 26ms (Views: 11.3ms | Allocations: 2058)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-07-27 16:32:10 -0400
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"formats"=>:json, "session"=>{}}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:46:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-27 20:32:10.650482"], ["id", 1]]
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+Completed 200 OK in 83ms (Views: 1.2ms | ActiveRecord: 21.2ms | Allocations: 7100)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 16:32:42 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 755)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 16:35:48 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 16:37:12 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 5ms (Views: 0.9ms | ActiveRecord: 0.4ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 16:40:32 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 16:44:27 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 751)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 16:50:37 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 35ms (Views: 0.8ms | ActiveRecord: 13.3ms | Allocations: 3605)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 16:51:38 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 16:51:58 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 16:52:08 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started GET "/api/session" for 127.0.0.1 at 2023-07-27 16:52:18 -0400
+Processing by Api::SessionsController#show as */*
+  Parameters: {"formats"=>:json}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 750)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-07-27 16:52:44 -0400
+Processing by Api::SessionsController#create as */*
+  Parameters: {"email"=>"joe@hi.com", "password"=>"[FILTERED]", "formats"=>:json, "session"=>{"email"=>"joe@hi.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joe@hi.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:33:in `find_by_credentials'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:46:in `block in generate_session_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "joe@hi.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "[FILTERED]"], ["updated_at", "2023-07-27 20:52:44.596153"], ["id", 1]]
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:56:in `reset_session_token!'
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (2.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_photo"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mActiveStorage::Blob Load (0.8ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+[36m  S3 Storage (7.9ms) [0m[34mGenerated URL for file at key: ox7rfllw6j0wlofbismbddvs3zcc (https://eventbite-dev.s3.amazonaws.com/ox7rfllw6j0wlofbismbddvs3zcc?response-content-disposition=inline%3B%20filename%3D%22joe.jpg%22%3B%20filename%2A%3DUTF-8%27%27joe.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TA2YUAZA5J3DFWU%2F20230727%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230727T205244Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=11ec8648be6d7c8f65478caa8ddcf0c7748be8ec6f370c2c1d86183c748704b7)[0m
+  Rendered api/users/show.json.jbuilder (Duration: 32.5ms | Allocations: 3286)
+Completed 200 OK in 254ms (Views: 37.1ms | ActiveRecord: 6.0ms | Allocations: 8046)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 17:57:21 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe ra", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"park", "address"=>"central park", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"central park", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.9ms | Allocations: 167)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 17ms (Views: 9.8ms | ActiveRecord: 0.0ms | Allocations: 3552)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 17:59:40 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe ra", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"park", "address"=>"central park", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"central park", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.3ms | Allocations: 99)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:8:in `create'
+
+Completed 500 Internal Server Error in 9710ms (Views: 1.9ms | ActiveRecord: 0.0ms | Allocations: 111627)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 17:59:59 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe ra", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"park", "address"=>"central park", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"central park", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 99)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 3ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 2951)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:01:54 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"", "organizerName"=>"", "type"=>"", "category"=>"", "venueName"=>"", "address"=>"", "capacity"=>"", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"", "type"=>"", "category"=>"", "address"=>"", "capacity"=>""}}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:13:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/events_controller.rb:13:in `create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/events_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 8624ms (Views: 0.2ms | ActiveRecord: 6.5ms | Allocations: 42848)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:05:23 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"home", "address"=>"home", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"home", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 75)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 5ms (Views: 1.3ms | ActiveRecord: 0.0ms | Allocations: 2540)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:05:27 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"home", "address"=>"home", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"home", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 63)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 4ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 2465)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:05:47 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"home", "address"=>"home", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"home", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 63)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 2465)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:05:52 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"home", "address"=>"home", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"home", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 63)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 3ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 2465)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:06:01 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"home", "address"=>"home", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"home", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 63)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 10ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 2469)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:06:04 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"home", "address"=>"home", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"home", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 63)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 3ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 2465)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:06:47 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"home", "address"=>"home", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"home", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 63)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 3ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 2465)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:06:51 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"home", "address"=>"home", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"home", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 63)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 2ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 2465)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:07:23 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"home", "address"=>"home", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"home", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 63)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 2ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 2465)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:07:35 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"home", "address"=>"home", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"home", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 63)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 2ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 2465)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:07:53 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"", "organizerName"=>"", "type"=>"", "category"=>"", "venueName"=>"", "address"=>"", "capacity"=>"", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"", "type"=>"", "category"=>"", "address"=>"", "capacity"=>""}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:13:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/events_controller.rb:13:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/events_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 4448ms (Views: 0.2ms | ActiveRecord: 10.2ms | Allocations: 35330)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:08:16 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"", "organizerName"=>"", "type"=>"", "category"=>"", "venueName"=>"", "address"=>"", "capacity"=>"", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"", "type"=>"", "category"=>"", "address"=>"", "capacity"=>""}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+Completed 422 Unprocessable Entity in 19ms (Views: 0.2ms | ActiveRecord: 3.3ms | Allocations: 11885)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:09:36 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"", "organizerName"=>"", "type"=>"", "category"=>"", "venueName"=>"", "address"=>"", "capacity"=>"", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"", "type"=>"", "category"=>"", "address"=>"", "capacity"=>""}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+Completed 422 Unprocessable Entity in 15ms (Views: 0.4ms | ActiveRecord: 1.2ms | Allocations: 4528)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:10:11 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test3", "organizerName"=>"joe", "type"=>"festival_fair", "category"=>"food_drink", "venueName"=>"home", "address"=>"home", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test3", "type"=>"festival_fair", "category"=>"food_drink", "address"=>"home", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.9ms | Allocations: 99)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'festival_fair'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 8ms (Views: 5.0ms | ActiveRecord: 0.0ms | Allocations: 2770)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:10:57 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"formats"=>:json, "event"=>{}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 68)
+
+ActionController::ParameterMissing - param is missing or the value is empty: event:
+	app/controllers/api/events_controller.rb:57:in `event_params'
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 1646)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:12:07 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"formats"=>:json, "event"=>{}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 68)
+
+ActionController::ParameterMissing - param is missing or the value is empty: event:
+	app/controllers/api/events_controller.rb:57:in `event_params'
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 3ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 1566)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:12:42 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"formats"=>:json, "event"=>{}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.3ms | Allocations: 68)
+
+ActionController::ParameterMissing - param is missing or the value is empty: event:
+	app/controllers/api/events_controller.rb:57:in `event_params'
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 3ms (Views: 1.1ms | ActiveRecord: 0.0ms | Allocations: 1566)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:12:57 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "type"=>"test", "category"=>"test", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "type"=>"test", "category"=>"test", "address"=>"test", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.1ms | Allocations: 63)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'test'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 3ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 2475)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:13:51 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "type"=>"test", "category"=>"test", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "type"=>"test", "category"=>"test", "address"=>"test", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 99)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'test'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 4ms (Views: 1.3ms | ActiveRecord: 0.0ms | Allocations: 2892)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:14:02 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "type"=>"test", "category"=>"test", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "type"=>"test", "category"=>"test", "address"=>"test", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 99)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'test'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:7:in `create'
+
+Completed 500 Internal Server Error in 3ms (Views: 1.1ms | ActiveRecord: 0.0ms | Allocations: 2954)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:14:41 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "type"=>"test", "category"=>"test", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "type"=>"test", "category"=>"test", "address"=>"test", "capacity"=>"100"}}
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 2.7ms | Allocations: 17689)
+
+ActiveRecord::SubclassNotFound - The single-table inheritance mechanism failed to locate the subclass: 'test'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Event.inheritance_column to use another column for that information.:
+	app/controllers/api/events_controller.rb:8:in `create'
+
+Completed 500 Internal Server Error in 81950ms (Views: 12.4ms | ActiveRecord: 0.0ms | Allocations: 473454)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7432779185946095205)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeEvents (20230727221700)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.6ms)[0m  [1m[35mALTER TABLE "events" ALTER COLUMN "type" TYPE event_type[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7432779185946095205)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7432779185946095205)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeEvents (20230727221700)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "events" RENAME COLUMN "type" TO "event_type"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "events" RENAME COLUMN "category" TO "event_category"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230727221700"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7432779185946095205)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:21:23 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "address"=>"test", "capacity"=>"100"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:13:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/events_controller.rb:13:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/events_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 7610ms (Views: 0.3ms | ActiveRecord: 4.2ms | Allocations: 403350)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:21:50 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "address"=>"test", "capacity"=>"100"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:13:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/events_controller.rb:13:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/events_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 26880ms (Views: 0.2ms | ActiveRecord: 3.4ms | Allocations: 43610)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:22:25 -0400
+
+SyntaxError - syntax error, unexpected '\n', expecting =>
+            debugger
+                    ^:
+  app/controllers/api/events_controller.rb:16:in `'
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:22:43 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "address"=>"test", "capacity"=>"100"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+Completed 422 Unprocessable Entity in 108321ms (Views: 0.2ms | ActiveRecord: 3.3ms | Allocations: 44627)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:24:32 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "address"=>"test", "capacity"=>"100"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+Completed 422 Unprocessable Entity in 1689ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 35876)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:24:38 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "address"=>"test", "capacity"=>"100"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+Completed 422 Unprocessable Entity in 13884ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 36315)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:25:25 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "address"=>"test", "capacity"=>"100"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/events_controller.rb:12:in `create'
+Completed 422 Unprocessable Entity in 27734ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 36278)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:25:59 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "address"=>"test", "capacity"=>"100"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:14:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/events_controller.rb:14:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/events_controller.rb:14:in `create'
+Completed 422 Unprocessable Entity in 292230ms (Views: 0.2ms | ActiveRecord: 2.9ms | Allocations: 176027)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:31:02 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "address"=>"test", "capacity"=>"100", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "organizerId"=>1}}
+[31mUnpermitted parameter: :organizer_id. Context: { controller: Api::EventsController, action: create, request: #<ActionDispatch::Request:0x000000011809d1e8>, params: {"title"=>"test", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "controller"=>"api/events", "action"=>"create", "event"=>{"title"=>"test", "address"=>"test", "capacity"=>"100", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "organizerId"=>1}} }[0m
+Completed 422 Unprocessable Entity in 97803ms (Views: 1.5ms | ActiveRecord: 0.0ms | Allocations: 574286)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:32:45 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "address"=>"test", "capacity"=>"100", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "organizerId"=>1}}
+[31mUnpermitted parameter: :organizer_id. Context: { controller: Api::EventsController, action: create, request: #<ActionDispatch::Request:0x0000000118087c80>, params: {"title"=>"test", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "controller"=>"api/events", "action"=>"create", "event"=>{"title"=>"test", "address"=>"test", "capacity"=>"100", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "organizerId"=>1}} }[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:14:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/events_controller.rb:14:in `create'
+  [1m[36mEvent Create (3.8ms)[0m  [1m[32mINSERT INTO "events" ("title", "organizer_name", "event_type", "event_category", "venue_name", "address", "timestamp_start", "timestamp_end", "capacity", "tickets_sold", "organizer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["title", "test"], ["organizer_name", "test"], ["event_type", "6"], ["event_category", "6"], ["venue_name", "test"], ["address", "test"], ["timestamp_start", "2023-01-01 00:00:00"], ["timestamp_end", "2023-01-02 00:00:00"], ["capacity", 100], ["tickets_sold", 0], ["organizer_id", 1], ["created_at", "2023-07-27 22:33:09.881708"], ["updated_at", "2023-07-27 22:33:09.881708"]]
+  ↳ app/controllers/api/events_controller.rb:14:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/events_controller.rb:14:in `create'
+  Rendering api/events/show.json.jbuilder
+  Rendered api/events/show.json.jbuilder (Duration: 40.4ms | Allocations: 8190)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 1.0ms | Allocations: 188)
+
+ActionView::Template::Error - undefined method `category' for #<Event id: 3, title: "test", organizer_name: "test", event_type: nil, event_category: nil, venue_name: "test", address: "test", timestamp_start: "2023-01-01 00:00:00.000000000 +0000", timestamp_end: "2023-01-02 00:00:00.000000000 +0000", capacity: 100, tickets_sold: 0, organizer_id: 1, created_at: "2023-07-27 22:33:09.881708000 +0000", updated_at: "2023-07-27 22:33:09.881708000 +0000">
+Did you mean?  category_other!:
+	app/views/api/events/show.json.jbuilder:2
+	app/views/api/events/show.json.jbuilder:1
+	app/controllers/api/events_controller.rb:15:in `create'
+
+Completed 500 Internal Server Error in 24024ms (Views: 2.4ms | ActiveRecord: 7.5ms | Allocations: 98494)
+
+
+Started POST "/api/events/" for 127.0.0.1 at 2023-07-27 18:34:29 -0400
+Processing by Api::EventsController#create as */*
+  Parameters: {"title"=>"test", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "address"=>"test", "capacity"=>"100", "organizerId"=>1, "formats"=>:json, "event"=>{"title"=>"test", "address"=>"test", "capacity"=>"100", "organizerName"=>"test", "eventType"=>"festival_fair", "eventCategory"=>"food_drink", "venueName"=>"test", "organizerId"=>1}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ (byebug):1:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/events_controller.rb:14:in `create'
+  [1m[36mEvent Create (1.2ms)[0m  [1m[32mINSERT INTO "events" ("title", "organizer_name", "event_type", "event_category", "venue_name", "address", "timestamp_start", "timestamp_end", "capacity", "tickets_sold", "organizer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["title", "test"], ["organizer_name", "test"], ["event_type", "6"], ["event_category", "6"], ["venue_name", "test"], ["address", "test"], ["timestamp_start", "2023-01-01 00:00:00"], ["timestamp_end", "2023-01-02 00:00:00"], ["capacity", 100], ["tickets_sold", 0], ["organizer_id", 1], ["created_at", "2023-07-27 22:34:41.350875"], ["updated_at", "2023-07-27 22:34:41.350875"]]
+  ↳ app/controllers/api/events_controller.rb:14:in `create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/events_controller.rb:14:in `create'
+  Rendering api/events/show.json.jbuilder
+  Rendered api/events/show.json.jbuilder (Duration: 35.9ms | Allocations: 7517)
+  Rendering api/errors/internal_server_error.json.jbuilder
+  Rendered api/errors/internal_server_error.json.jbuilder (Duration: 0.2ms | Allocations: 104)
+
+ActionView::Template::Error - undefined method `category' for #<Event id: 4, title: "test", organizer_name: "test", event_type: nil, event_category: nil, venue_name: "test", address: "test", timestamp_start: "2023-01-01 00:00:00.000000000 +0000", timestamp_end: "2023-01-02 00:00:00.000000000 +0000", capacity: 100, tickets_sold: 0, organizer_id: 1, created_at: "2023-07-27 22:34:41.350875000 +0000", updated_at: "2023-07-27 22:34:41.350875000 +0000">
+Did you mean?  category_other!:
+	app/views/api/events/show.json.jbuilder:2
+	app/views/api/events/show.json.jbuilder:1
+	app/controllers/api/events_controller.rb:15:in `create'
+
+Completed 500 Internal Server Error in 11780ms (Views: 0.7ms | ActiveRecord: 6.6ms | Allocations: 94329)
+
+

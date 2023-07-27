@@ -1,11 +1,7 @@
-import * as sessionActions from '/Users/joerandazzo/Documents/App Academy/aA Projects/Eventbite2/eventbite/frontend/src/store/sessionReducer.js';
-import { useDispatch } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './NavBarLoggedOut.css';
 
-export default function NavBarLoggedIn ({user}) {
-    const dispatch = useDispatch();
-    const history = useHistory();
+export default function NavBarLoggedIn ({currentUser}) {
 
     return (
         <>
@@ -14,7 +10,7 @@ export default function NavBarLoggedIn ({user}) {
                 <li className='nav-left'> 
                     <span id='eblogo-nav'>
                         <Link to='/'>
-                            <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' />
+                            <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' alt='app logo'/>
                         </Link>
                     </span>
                 </li>
@@ -42,7 +38,7 @@ export default function NavBarLoggedIn ({user}) {
 
                 <li className='nav-right'> 
                     <span id='create-event-in'>
-                        <Link to='/create/'>Create an event</Link>
+                        <Link to='/signin/'>Create an event</Link>
                     </span>
                 </li>
 
