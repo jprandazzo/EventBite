@@ -16,11 +16,11 @@ export default function SplashPage () {
             <br />
             <br />
             <div className='splash-banner'>
-                <button>
-                    <Link to='/'>
+                <Link to='/search'>
+                    <button>
                         Find your next event
-                    </Link>
-                </button>
+                    </button>
+                </Link>
             </div>
             <h2>This is the event index page</h2>
             </main>

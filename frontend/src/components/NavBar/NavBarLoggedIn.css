@@ -1,11 +1,15 @@
 #main-navigation {
-    height: 40px;
+    height: .2em;
     margin-bottom: 2.3em;
 }
 
 .navbar {
     display: inline;
     list-style-type: none;
+}
+
+li {
+    height: 5.1em;
 }
 
 li span {
@@ -23,23 +27,124 @@ li span {
 }
 
 #eblogo-nav img {
-    width: 140px;
-    height: auto;
+    width: 9em;
+    max-height: 4.5em;
     position: relative;
     top: 0;
-    left: -1.6em;
+    left: -2.7em;
     z-index: 12;
 }
 
-li:hover {
-    cursor: pointer;
+#search-events {
+    width: 50em;
+    height: 2em;
+    position: relative;
+    top: .8em;
+    left: -6.8em;
+    padding: 1.2em 24em 1.2em 2em;
+    font-size: 14px;
+    font-weight: 410;
+    background: #F8F7FA;
+    color: #A9A8B3;
 }
 
-.dropdown:hover .dropdown-content {
-    cursor: pointer;
+li:hover {
+    cursor: pointer !important;
+    background: #F8F7FA;
+}
+
+.nav-right span {
+    position: relative;
+    top: 2.4em;
+    height: 5.1em;
+    padding: 1em 1.3em 2em .7em;
+    margin-left: 1em;
+    margin-right: .5em;
+    margin-bottom: none;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: #38364F;
+    font-size: 14px !important;
+    font-weight: 410;
+}
+
+#create-event-out a {
+    color: #3E64FF !important;
+}
+
+#user-dropdown:hover .dropdown-content {
+    height: auto;
+    width: 18em;
     display: block;
+    position: absolute;
+    right: -.5em;
+    top: 3.55em;
+    z-index: 1;
+    box-shadow: 0px 0px 3px 0em lightgray;
+
+    cursor: pointer;
+
+    background: white;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(107, 107, 107);
+}
+
+#hidden {
+    display: none;
+}
+
+#user-dropdown {
+    height: 6em;
+    position: relative;
+    right: .5em;
+}
+
+#user-dropdown svg {
+    position: absolute;
+    top: .8em;
+    right: -.5em;
 }
 
 .dropdown-content {
     display: none;
 }
+
+.dropdown-content:hover li {
+    max-height: 3.3em;
+    padding: 0em 1em .5em 1em;
+    margin: none;
+    color: rgb(30, 30, 30);
+}
+
+svg {
+    height: 28px;
+    width: 28px;
+    fill: rgb(30, 30, 30);
+    position: absolute;
+
+}
+
+#plus-sign {
+    fill: #3E64FF !important;
+    position: absolute;
+    bottom: 3.2em;
+    right: 3em;
+}
+
+#heart {
+    position: absolute;
+    fill: #38364F;
+    bottom: 3.2em;
+    left: .8em;
+}
+
+#ticket {
+    position: absolute;
+    fill: #38364F;
+    bottom: 3.2em;
+    left: 1.4em;
+}
+

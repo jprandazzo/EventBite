@@ -21,10 +21,6 @@ li:hover {
     position: relative;
 }
 
-.nav-right:hover {
-    background: #F8F7FA;
-}
-
 #eblogo-nav img {
     width: 9em;
     max-height: 4.5em;
@@ -78,24 +74,37 @@ li:hover {
     margin-bottom: none;
 }
 
-#create-event a {
+#create-event-in a {
     color: #3E64FF !important;
 }
 
-.help-organize {
+.help-organize-in {
     margin-right: -.3em;
     position: relative;
-    bottom: 1em;
-    height: 5.1em;
+    bottom: .1em;
+    height: 6em;
+    /* padding-right: 2em; */
+}
+
+.help-organize-in > span {
+    position: relative;
+    top: 0em;
+    padding-right: .7em;
+}
+
+#help-in {
+    position: relative;
+    top: 0em;
+    right: .5em;
 }
 
 #chevron-down {
     width: 24px;
     height: 24px;
     fill: #a9a8b3;
-    position: relative;
-    top: .6em;
-    left: .3em;
+    position: absolute;
+    bottom: -.7em;
+    right: .5em;
 }
 
 #login a {
@@ -132,8 +141,9 @@ li:hover {
     display: block;
     position: absolute;
     right: -.5em;
-    top: 3.7em;
+    top: 5.93em;
     z-index: 1;
+    box-shadow: 0px 0px 3px 0em lightgray;
 
     cursor: pointer;
 

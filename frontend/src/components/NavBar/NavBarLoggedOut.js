@@ -18,10 +18,11 @@ export default function NavBarLoggedIn ({user}) {
                         </Link>
                     </span>
                 </li>
+
                 <li className='nav-left'> 
                     <span id='search-events'>
                         <Link to='/search'>
-                            <svg id="magnifying-glass" x="0" y="0" viewBox="0 0 24 24"><path id="magnifying-glass-chunky_svg__eds-icon--magnifying-glass-chunky_base" fill-rule="evenodd" clip-rule="evenodd" d="M10 14c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm3.5.9c-1 .7-2.2 1.1-3.5 1.1-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6c0 1.3-.4 2.5-1.1 3.4l5.1 5.1-1.5 1.5-5-5.1z"></path></svg>
+                            <svg id="magnifying-glass" x="0" y="0" viewBox="0 0 24 24"><path id="magnifying-glass-chunky_svg__eds-icon--magnifying-glass-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M10 14c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm3.5.9c-1 .7-2.2 1.1-3.5 1.1-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6c0 1.3-.4 2.5-1.1 3.4l5.1 5.1-1.5 1.5-5-5.1z"></path></svg>
                             Search events
                         </Link> 
                     </span>
@@ -40,16 +41,16 @@ export default function NavBarLoggedIn ({user}) {
                 </li>
 
                 <li className='nav-right'> 
-                    <span id='create-event'>
+                    <span id='create-event-in'>
                         <Link to='/create/'>Create an event</Link>
-                        </span>
+                    </span>
                 </li>
 
                 <li className='nav-right help-organize'> 
-                    <span class='dropdown' id='help'>
-                        Help
-                        <svg id="chevron-down" x="0" y="0" viewBox="0 0 24 24"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fill-rule="evenodd" clip-rule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg>
-                        <div class='dropdown-content' id='help-dropdown-content'>
+                    <span className='dropdown' id='help-in'>
+                        <span>Help</span>
+                        <svg id="chevron-down" x="0" y="0" viewBox="0 0 24 24"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg>
+                        <div className='dropdown-content' id='help-dropdown-content'>
                             <ul>
                                 <li>
                                     <span>
@@ -71,11 +72,11 @@ export default function NavBarLoggedIn ({user}) {
                     </span>
                 </li>
 
-                <li className='nav-right help-organize'> 
-                    <span class='dropdown' id='organize-dropdown'>
-                        Organize
-                        <svg id="chevron-down" x="0" y="0" viewBox="0 0 24 24"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fill-rule="evenodd" clip-rule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg>
-                        <div class='dropdown-content' id='organize-dropdown-content'>
+                <li className='nav-right help-organize-in'> 
+                    <span className='dropdown' id='organize-dropdown'>
+                        <span>Organize</span>
+                        <svg id="chevron-down" x="0" y="0" viewBox="0 0 24 24"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg>
+                        <div className='dropdown-content' id='organize-dropdown-content'>
                             <ul>
                                 <li>
                                     <span>
