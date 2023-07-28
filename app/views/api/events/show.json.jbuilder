@@ -5,5 +5,5 @@ json.event do
         :timestamp_start, :timestamp_end,
         :venue_name, :address, 
         :capacity, :tickets_sold,
-        :category, :type
+        :event_category, :event_type
 end

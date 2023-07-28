@@ -37,7 +37,7 @@ export default function NavBarLoggedIn ({currentUser}) {
                 </li>
 
                 <li className='nav-right'> 
-                    <span id='create-event-in'>
+                    <span id='create-event-out'>
                         <Link to='/signin/'>Create an event</Link>
                     </span>
                 </li>

@@ -1,0 +1,14 @@
+.events-index {
+    position: relative;
+    top: 5em;
+    left: 3em;
+}
+
+.events-index li {
+    position: relative;
+    left: 5em;
+    list-style-type: disc;
+    padding-bottom: none;
+    margin-bottom: none;
+    height: 2em;
+}

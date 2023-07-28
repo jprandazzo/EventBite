@@ -1,4 +1,4 @@
-import * as sessionActions from '/Users/joerandazzo/Documents/App Academy/aA Projects/Eventbite2/eventbite/frontend/src/store/sessionReducer.js';
+import * as sessionActions from '../../store/sessionReducer.js';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory, Link} from 'react-router-dom';
 import './NavBarLoggedIn.css';
@@ -106,7 +106,7 @@ export default function NavBarLoggedIn () {
                 </li>
 
                 <li className='nav-right'> 
-                    <span id='create-event-out'>
+                    <span id='create-event-in'>
                         <Link to='/events/create/'>
                         <svg id="plus-sign" x="0" y="0" viewBox="0 0 24 24"><path id="plus-chunky_svg__eds-icon--plus-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M13 11V4h-2v7H4v2h7v7h2v-7h7v-2z"></path></svg>
                             Create an event

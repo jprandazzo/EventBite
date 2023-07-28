@@ -8,6 +8,7 @@ import { BrowserRouter, useLocation } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import configureStore from './store';
 import * as sessionActions from './store/sessionReducer'
+import * as eventActions from './store/eventsReducer'
 import { createUser, loginUser, logoutUser } from './store/usersReducer'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,6 +16,7 @@ const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
   window.sessionActions = sessionActions;
+  window.eventActions = eventActions;
   window.store = store;
 }
 

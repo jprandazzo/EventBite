@@ -91,7 +91,7 @@ export default function SignInForm ({currentUser}) {
 
                         <form>
                             <div className='auth-input-box'>
-                                <div className='sign-field-title'>
+                                <div className='signup-signin-field-title'>
                                     Email address
                                 </div>
 

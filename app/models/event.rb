@@ -31,7 +31,7 @@ class Event < ApplicationRecord
 
     belongs_to :organizer, class_name: :User, foreign_key: :organizer_id
 
-    enum :event_type, %w(
+    validates :event_type, inclusion: {in: %w(
                 attraction 
                 camp_trip_retreat 
                 concert_performance 
@@ -41,9 +41,10 @@ class Event < ApplicationRecord
                 festival_fair 
                 party_social_gathering 
                 type_other 
-                )
+                ),
+            message: "Not a valid valid event type"}
 
-    enum :event_category, %w(
+    validates :event_category, inclusion: {in: %w(
                     auto_boat_air 
                     business_professional 
                     charity_causes 
@@ -55,5 +56,6 @@ class Event < ApplicationRecord
                     category_other 
                     seasonal_holiday 
                     travel_outdoor
-                    )
+                    ),
+                message: "Not a valid event category"}
 end

@@ -8,13 +8,13 @@ json.events do
         json.set! event.id, {
             id: event.id, 
             title: event.title,
-            organizerName: event.organizer_name
+            organizerName: event.organizer_name,
             venueName: event.venue_name,
             address: event.address,
             timestampStart: event.timestamp_start,
             timestampEnd: event.timestamp_end,
-            type: event.type,
-            category: event.category,
+            eventType: event.event_type,
+            eventCategory: event.event_category,
             capacity: event.capacity,
             ticketsSold: event.tickets_sold
         }

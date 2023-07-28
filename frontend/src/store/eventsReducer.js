@@ -17,11 +17,12 @@ export const getEvent = (eventId) => state => {
 
 export const fetchEvents = () => async dispatch => {
     const response = await fetch('/api/events')
-    const data = await response.json();
+    const data = await response.json()
+
 
     dispatch({
         type: RECEIVE_EVENTS,
-        events: data
+        events: data.events
     })
 }
 

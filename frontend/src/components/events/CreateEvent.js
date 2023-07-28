@@ -55,7 +55,7 @@ export default function CreateEvent () {
 
     return (
         <>
-            <NavBarLoggedIn user={current_user}></NavBarLoggedIn>
+            <NavBarLoggedIn></NavBarLoggedIn>
             <br /><br />
 
             <span id='back-to-organized-events'>

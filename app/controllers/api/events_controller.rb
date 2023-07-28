@@ -4,13 +4,11 @@ class Api::EventsController < ApplicationController
     wrap_parameters :event, include: Event.attribute_names + ['organizerName', 'eventType', 'eventCategory', 'venueName', 'organizerId']
 
     def create
-        debugger
         @event = Event.new(event_params)
-        debugger
         @event.timestamp_start = DateTime.new(2023,01,01)
         @event.timestamp_end = DateTime.new(2023,01,02)
         @event.organizer_id = current_user.id
-
+        debugger
         if @event.save
             render :show
         else
