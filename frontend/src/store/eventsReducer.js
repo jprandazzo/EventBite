@@ -19,7 +19,6 @@ export const fetchEvents = () => async dispatch => {
     const response = await fetch('/api/events')
     const data = await response.json()
 
-
     dispatch({
         type: RECEIVE_EVENTS,
         events: data.events
@@ -30,10 +29,13 @@ export const fetchEvent = (eventId) => async dispatch => {
     const response = await fetch(`/api/events/${eventId}`)
     const data = await response.json();
 
-    dispatch({
-        type: RECEIVE_EVENT,
-        event: data
-    })
+    debugger
+    if (response.ok) {
+        dispatch({
+            type: RECEIVE_EVENT,
+            event: data.event
+        })
+    }
 }
 
 export const createEvent = (event) => async dispatch => {
@@ -46,7 +48,7 @@ export const createEvent = (event) => async dispatch => {
 
     dispatch({
         type: RECEIVE_EVENT,
-        event: data
+        event: data.event
     })
 }
 
@@ -60,7 +62,7 @@ export const updateEvent = (event) => async dispatch => {
 
     dispatch({
         type: RECEIVE_EVENT,
-        event: data
+        event: data.event
     })
 }
 
@@ -86,6 +88,7 @@ const eventsReducer = (oldState = {}, action) => {
             newState = {...oldState,...action.events}
             return newState
         case RECEIVE_EVENT:
+            debugger
             newState[action.event.id] = action.event
             return newState
         case REMOVE_EVENT:

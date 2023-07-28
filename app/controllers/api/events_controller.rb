@@ -32,15 +32,22 @@ class Api::EventsController < ApplicationController
     def update
         @event=Event.find(params[:id])
 
-        if @event.organizer_id == current_user
-            @event.address=params[:address]
-            @event.capacity=params[:capacity]
-            @event.event_type=params[:event_type]
-            @event.event_category=params[:event_category]
-            @event.organizer_name=params[:organizer_name]
-            @event.timestamp_start=params[:timestamp_start]
-            @event.title=params[:title]
-            @event.venue_name=params[:venue_name]
+        if @event.organizer_id == current_user.id
+            # @event.title=params[:title]
+            # @event.organizer_name=params[:organizer_name]
+            # @event.event_type=params[:event_type]
+            # @event.event_category=params[:event_category]
+            # @event.venue_name=params[:venue_name]
+            # @event.address=params[:address]
+            # @event.timestamp_start=params[:timestamp_start]
+            # @event.timestamp_end=params[:timestamp_end]
+            # @event.capacity=params[:capacity]
+            # @event.price=params[:price]
+            # @event.description=params[:description]
+            @event.update(event_params)
+            
+            @event.save
+            render :show
             
         else
             render json: {errors: 'Must be event owner to update!'},
@@ -56,7 +63,7 @@ class Api::EventsController < ApplicationController
 
     private
     def event_params
-        params.require(:event).permit(:address, :capacity, :event_category, :organizer_name, :title, :event_type, :venue_name, :organizer_id)
+        params.require(:event).permit(:address, :capacity, :event_category, :organizer_name, :title, :event_type, :venue_name, :organizer_id, :price, :description)
     end
 end
 

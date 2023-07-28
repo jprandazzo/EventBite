@@ -1,15 +1,15 @@
-.events-index {
+.show-event-page {
     font-family: 'Neue Plak';
     position: relative;
     top: 5em;
     left: 3em;
 }
 
-.events-index b {
+.show-event-page b {
     font-weight: 600;
 }
 
-.events-index li {
+.show-event-page {
     position: relative;
     left: 5em;
     list-style-type: disc;

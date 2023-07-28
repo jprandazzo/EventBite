@@ -6,7 +6,9 @@ import SignInForm from './components/users/SignInForm';
 import SplashPage from './components/events/SplashPage';
 import SearchEvents from './components/events/SearchEvents';
 import CreateEvent from './components/events/CreateEvent';
+import EditEvent from './components/events/EditEvent';
 import AllEvents from './components/events/AllEvents';
+import ShowEvent from './components/events/ShowEvent';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import * as sessionActions from './store/sessionReducer';
 
@@ -22,7 +24,9 @@ function App() {
         <Route path="/signin"> <SignInForm currentUser={currentUser}/> </Route>
         <Route path='/all-events'> <AllEvents currentUser={currentUser}/> </Route>
         <Route path='/events/search'> <SearchEvents currentUser={currentUser}/> </Route>
-        <Route path='/events/create'> <CreateEvent currentUser={currentUser}/> </Route>
+        <Route path='/events/:eventId/edit'> <EditEvent /> </Route>
+        <Route path='/events/:eventId'><ShowEvent /></Route>
+        <Route path='/events/create'> <CreateEvent /> </Route>
         {/* <Route path='' */}
         {/* <Route path="/signin"> <SignUpForm /> </Route> */}
 

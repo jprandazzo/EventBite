@@ -16,7 +16,9 @@ json.events do
             eventType: event.event_type,
             eventCategory: event.event_category,
             capacity: event.capacity,
-            ticketsSold: event.tickets_sold
+            ticketsSold: event.tickets_sold,
+            price: event.price,
+            description: event.description
         }
     end
 

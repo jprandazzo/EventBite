@@ -5,9 +5,11 @@
 #  id              :bigint           not null, primary key
 #  address         :string
 #  capacity        :integer          not null
+#  description     :text
 #  event_category  :string
 #  event_type      :string
 #  organizer_name  :string
+#  price           :decimal(, )
 #  tickets_sold    :integer          default(0), not null
 #  timestamp_end   :datetime         not null
 #  timestamp_start :datetime         not null
@@ -27,7 +29,7 @@
 #
 class Event < ApplicationRecord
     validates :capacity, :tickets_sold, :timestamp_start, 
-        :timestamp_end, :venue_name, :organizer_id, presence: true
+        :timestamp_end, :venue_name, :organizer_id, :price, :description, presence: true
 
     belongs_to :organizer, class_name: :User, foreign_key: :organizer_id
 
