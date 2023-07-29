@@ -6,49 +6,11 @@ export const REMOVE_USER = 'users/REMOVE_USER'
 export const fetchUser = (userId) => async dispatch => {
     const response = await fetch(`/api/users/${userId}`)
     const data = await response.json();
-
+    
     dispatch({
         type: RECEIVE_USER,
-        user: data
+        user: data.user
     })
-}
-
-export const createUser = (user) => async dispatch => {
-    const response = await csrfFetch(`/api/users/`, {
-        method: 'POST',
-        body: JSON.stringify(user)
-    })
-    const data = await response.json();
-
-    sessionStorage.setItem('currentUser', JSON.stringify(data.user));
-    dispatch({
-        type: RECEIVE_USER,
-        user: data
-    })
-}
-
-export const loginUser = user => async dispatch => {
-    let res = await csrfFetch('/api/session', {
-        method: 'POST',
-        body: JSON.stringify(user)
-    });
-    let data = await res.json();
-    sessionStorage.setItem('currentUser', JSON.stringify(data.user));
-    dispatch({
-        type: RECEIVE_USER,
-        user: data
-    })
-};
-
-export const logoutUser = userId => async dispatch => {
-    let res = await csrfFetch('/api/session', {
-        method: 'DELETE'
-    });
-    sessionStorage.setItem('currentUser', null)
-    dispatch({
-        type: REMOVE_USER,
-        userId: userId
-    });
 }
 
 export const updateUser = (user) => async dispatch => {
@@ -63,6 +25,20 @@ export const updateUser = (user) => async dispatch => {
         type: RECEIVE_USER,
         user: data
     })
+}
+
+export const deleteUser = (userId) => async dispatch => {
+    const response = await csrfFetch(`/api/users/${userId}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+    })
+
+    if (response.ok) {
+        dispatch({
+            type: REMOVE_USER,
+            userId: userId
+        })
+    }
 }
 
 export default function usersReducer(state = {}, action) {

@@ -9,6 +9,7 @@ import CreateEvent from './components/events/CreateEvent';
 import EditEvent from './components/events/EditEvent';
 import AllEvents from './components/events/AllEvents';
 import ShowEvent from './components/events/ShowEvent';
+import OrganizerEventIndex from './components/users/OrganizerEventIndex';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import * as sessionActions from './store/sessionReducer';
 
@@ -19,14 +20,16 @@ function App() {
     <>
     
       <Switch>
-        <Route exact path="/"> <SplashPage currentUser={currentUser} /> </Route>
-        <Route path="/signup"> <SignUpForm currentUser={currentUser}/> </Route>
-        <Route path="/signin"> <SignInForm currentUser={currentUser}/> </Route>
-        <Route path='/all-events'> <AllEvents currentUser={currentUser}/> </Route>
-        <Route path='/events/search'> <SearchEvents currentUser={currentUser}/> </Route>
-        <Route path='/events/:eventId/edit'> <EditEvent /> </Route>
-        <Route path='/events/:eventId'><ShowEvent /></Route>
+        <Route exact path="/"> <SplashPage /> </Route>
+        <Route path='/all-events'> <AllEvents /> </Route>
+        <Route path="/signup"> <SignUpForm /> </Route>
+        <Route path="/signin"> <SignInForm /> </Route>
+        <Route path="/organizer/events"> <OrganizerEventIndex /> </Route>
         <Route path='/events/create'> <CreateEvent /> </Route>
+        <Route path='/events/:eventId/edit'> <EditEvent /> </Route>
+        <Route path='/events/search'> <SearchEvents /> </Route>
+        <Route path='/events/:eventId'><ShowEvent /></Route>
+        
         {/* <Route path='' */}
         {/* <Route path="/signin"> <SignUpForm /> </Route> */}
 

@@ -90,7 +90,7 @@ export default function SignUpForm () {
                                 <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' />
                             </Link>
                         </div>
-                        <h1 id='create-account'>Create an account</h1>
+                        <h1 id='signup-signin-h1'>Create an account</h1>
 
                         <form>
                             <div className='auth-input-box'>

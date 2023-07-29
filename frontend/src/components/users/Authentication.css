@@ -48,7 +48,7 @@ main {
     width: 925px;
 }
 
-h1 {
+#signup-signin-h1 {
     position: absolute;
     left: .1em;
     top: -3.5em;
