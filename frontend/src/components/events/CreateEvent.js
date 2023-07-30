@@ -1,5 +1,8 @@
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import Calendar from 'react-calendar';
+// import moment from 'moment';
+import moment from 'moment-timezone';
 import { useHistory, Link } from 'react-router-dom';
 import * as eventActions from "../../store/eventsReducer"
 import * as sessionActions from '../../store/sessionReducer'
@@ -17,8 +20,8 @@ export default function CreateEvent () {
     const [eventCategory, setEventCategory] = useState('')
     const [venueName, setVenueName] = useState('')
     const [address, setAddress] = useState('')
-    const [timestampStart, setTimestampStart] = useState('')
-    const [timestampEnd, setTimestampEnd] = useState('')
+    const [timestampStart, setTimestampStart] = useState(moment().add(72, 'day').startOf('hour'))
+    const [timestampEnd, setTimestampEnd] = useState(moment().add(72, 'day').add(3, 'hour').startOf('hour').tz("America/New_York")/*.format('MMMM Do YYYY h:mm a')*/)
     const [capacity, setCapacity] = useState('')
     const [errors, setErrors] = useState([]);
     const [price, setPrice] = useState(0);
@@ -32,8 +35,8 @@ export default function CreateEvent () {
             eventCategory,
             venueName,
             address,
-            // timestampStart,
-            // timestampEnd,
+            timestampStart,
+            timestampEnd,
             capacity,
             price,
             description,
@@ -54,6 +57,12 @@ export default function CreateEvent () {
             // })
             .then(() =>{history.push(`/organizer/events`)});
     };
+
+    const toggleCalendar = (e) =>{
+        debugger
+
+        e.target.childNodes[1].classList.toggle('hidden')
+    }
 
     return (
         <>
@@ -84,11 +93,34 @@ export default function CreateEvent () {
                     <label>Address
                         <input type='text' name='address' onChange={e => setAddress(e.target.value)} />
                     </label><br/>
-                    <label>Start Date/Time
-                        <input type='text' name='timestamp_start' onChange={e => setTimestampStart(e.target.value)} />
-                    </label><br/>
+                    <div className='event-start-container'>
+                        <div className='event-start-date-container'>
+                            <label>Event Starts
+                                <button className='timestamp-start timestamp-buton' onClick={(e) =>toggleCalendar(e)}>{`${moment(timestampStart).format('MM/DD/YYYY')}`}
+                                    <Calendar className='create-timestamp-start hidden' value={timestampStart} onChange={setTimestampStart} defaultValue={timestampStart} />
+                                </button>
+                            </label><br/>
+                        </div>
+                        
+                        <div className='event-start-time-container'>
+                            <label for="ice-cream-choice">{`${moment(timestampStart).format('hh:mm a')}`}
+                                <input list="event-times" name="event-start-time" />
+
+                                    <datalist id="event-times">
+                                        <option value={`${moment(timestampStart).startOf('day').format('hh:mm a')}`}/>
+                                        <option value="12:30 am"/>
+                                        <option value="Mint"/>
+                                        <option value="Strawberry"/>
+                                        <option value="Vanilla"/>
+                                    </datalist>
+                        
+                            </label>
+                        </div>
+                    </div>
+
                     <label>End Date/Time
-                        <input type='text' name='timestamp-end' onChange={e => setTimestampEnd(e.target.value)} />
+                        <button type='text' name='timestamp-end timestamp-button' onChange={e => setTimestampEnd(e.target.value)} value={timestampEnd} />
+                        <Calendar  className='create-timestamp-end' onChange={setTimestampEnd} defaultValue={timestampStart} />
                     </label><br/>
                     <label>Capacity
                         <input type='text' name='capacity' onChange={e => setCapacity(e.target.value)} />

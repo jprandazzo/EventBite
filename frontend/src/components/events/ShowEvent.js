@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import * as eventActions from '../../store/eventsReducer'
 import * as sessionActions from '../../store/sessionReducer'
 import * as orderActions from '../../store/ordersReducer'
@@ -10,6 +10,7 @@ import NotFoundErrorPage from "../errorPages/NotFoundErrorPage";
 
 export default function ShowEvent () {
     const dispatch = useDispatch();
+    const history = useHistory();
     const {eventId} = useParams();
     const currentUser = useSelector(sessionActions.getCurrentUser)
 
@@ -39,14 +40,15 @@ export default function ShowEvent () {
     //     }
     // }
 
-    const handlePurchase = (numTickets) => {
+    const handlePurchase = (eventId) => {
         const order = {
             numTickets,
             ticketholderId: currentUser.id,
-            organizerId: event.organizerId
+            eventId
         }
 
-        return dispatch(orderActions.createOrder(order));
+        return dispatch(orderActions.createOrder(order))
+        .then(history.push(`/user/${currentUser.id}`));
     }
 
     useEffect(() =>{
@@ -86,7 +88,7 @@ export default function ShowEvent () {
                        <button className='ticket-count-decrease'>-</button>
                         <div className='ticket-count-text'>{numTickets}</div>
                         <button className='ticket-count-increase' onClick={e=>{handlePlusMinusClick(e)}}>+</button>
-                        <button onClick={handlePurchase}>Get tickets</button>
+                        <button onClick={() =>handlePurchase(event.id)}>Get tickets</button>
                     </div>
     
                 </>

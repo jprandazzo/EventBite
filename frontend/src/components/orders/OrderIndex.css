@@ -1,0 +1,20 @@
+.order-index-main {
+    font-family: 'Neue Plak';
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    top: 10em;
+    height: 5em;
+}
+
+.show-user-name-tile {
+    position: absolute;
+    left: 2em;   
+    height: 10em;
+    width: 10em;
+}
+
+.show-user-name-tile-name {
+    font-size: 24px;
+}

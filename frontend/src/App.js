@@ -9,6 +9,8 @@ import CreateEvent from './components/events/CreateEvent';
 import EditEvent from './components/events/EditEvent';
 import AllEvents from './components/events/AllEvents';
 import ShowEvent from './components/events/ShowEvent';
+import OrderIndex from './components/orders/OrderIndex';
+import OrderShow from './components/orders/OrderShow';
 import OrganizerEventIndex from './components/users/OrganizerEventIndex';
 import * as sessionActions from './store/sessionReducer';
 
@@ -17,15 +19,17 @@ function App() {
     <>
     
       <Switch>
-        <Route exact path="/"> <SplashPage /> </Route>
-        <Route path='/all-events'> <AllEvents /> </Route>
-        <Route path="/signup"> <SignUpForm /> </Route>
-        <Route path="/signin"> <SignInForm /> </Route>
-        <Route path="/organizer/events"> <OrganizerEventIndex /> </Route>
-        <Route path='/events/create'> <CreateEvent /> </Route>
-        <Route path='/events/:eventId/edit'> <EditEvent /> </Route>
-        <Route path='/events/search'> <SearchEvents /> </Route>
-        <Route path='/events/:eventId'><ShowEvent /></Route>
+        <Route exact path="/" component={SplashPage} />
+        <Route path='/all-events' component={AllEvents} />
+        <Route path="/signup" component={SignUpForm} /> 
+        <Route path="/signin" component={SignInForm} />
+        <Route path="/organizer/events" component={OrganizerEventIndex} />
+        <Route path='/events/create' component={CreateEvent} /> 
+        <Route path='/events/:eventId/edit' component={EditEvent} /> 
+        <Route path='/events/search' component={SearchEvents} />
+        <Route path='/events/:eventId' component={ShowEvent} />
+        <Route path='/user/:userId' component={OrderIndex} />
+        <Route path='/orders/:orderId' component={OrderShow} />
         
         {/* <Route path='' */}
         {/* <Route path="/signin"> <SignUpForm /> </Route> */}

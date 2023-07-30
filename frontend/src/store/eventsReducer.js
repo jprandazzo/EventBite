@@ -7,7 +7,7 @@ const RECEIVE_USER_EVENTS = 'receiveUserEvents'
 
 // get events from store
 export const getEvents = (state) => {
-    return state.events ? Object.values(state.events) : []
+    return state && state.events ? Object.values(state.events) : []
 }
 
 export const getEvent = (eventId) => state => {
@@ -78,15 +78,6 @@ export const deleteEvent = (eventId) => async dispatch => {
         eventId: eventId
     })
 }
-
-// export const addUserEvents = (data) => dispatch => {
-//     dispatch({
-//         type: RECEIVE_USER_EVENTS,
-//         events: data.events
-//     })
-// }
-  
-// reducer actions
 
 const eventsReducer = (oldState = {}, action) => {
     let newState = {...oldState}
