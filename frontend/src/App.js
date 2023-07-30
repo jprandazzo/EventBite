@@ -10,12 +10,9 @@ import EditEvent from './components/events/EditEvent';
 import AllEvents from './components/events/AllEvents';
 import ShowEvent from './components/events/ShowEvent';
 import OrganizerEventIndex from './components/users/OrganizerEventIndex';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
 import * as sessionActions from './store/sessionReducer';
 
 function App() {
-  const currentUser = useSelector(sessionActions.getCurrentUser);
-
   return (
     <>
     

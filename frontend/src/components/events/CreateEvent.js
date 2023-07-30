@@ -9,7 +9,7 @@ import './CreateEvent.css'
 export default function CreateEvent () {
     const dispatch = useDispatch();
     const history = useHistory();
-    let current_user = useSelector(sessionActions.getCurrentUser)
+    let currentUser = useSelector(sessionActions.getCurrentUser)
 
     const [title, setTitle] = useState('')
     const [organizerName, setOrganizerName] = useState('')
@@ -37,7 +37,7 @@ export default function CreateEvent () {
             capacity,
             price,
             description,
-            organizerId: current_user.id
+            organizerId: currentUser.id
         }
         setErrors([])
         return dispatch(eventActions.createEvent(event))
@@ -52,7 +52,7 @@ export default function CreateEvent () {
             //     else if (data) setErrors([data]);
             //     else setErrors([res.statusText]);
             // })
-            // .then(() =>{history.push('/')});
+            .then(() =>{history.push(`/organizer/events`)});
     };
 
     return (

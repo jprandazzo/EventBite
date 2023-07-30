@@ -6,10 +6,14 @@ import NavBarLoggedIn from "../NavBar/NavBarLoggedIn";
 import './AllEvents.css'
 
 export default function AllEvents () {
+    
     const dispatch = useDispatch();
     
     useEffect(() =>{
-        dispatch(eventActions.fetchEvents())
+        let getData = setTimeout(() => {
+            dispatch(eventActions.fetchEvents());
+          }, 0)
+        return () => clearTimeout(getData)
     }, [])
 
     const allEvents = useSelector(eventActions.getEvents)

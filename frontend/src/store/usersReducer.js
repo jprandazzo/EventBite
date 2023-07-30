@@ -1,16 +1,32 @@
 import csrfFetch from "./csrf"
 
-export const RECEIVE_USER = 'users/RECEIVE_USER'
-export const REMOVE_USER = 'users/REMOVE_USER'
+export const RECEIVE_USER = 'users/receiveUser'
+export const REMOVE_USER = 'users/removeUser'
+export const RECEIVE_USER_EVENTS = 'receiveUserEvents'
+
+export const getUser = (userId) => state => {
+    return state.users ? state.users[userId] : null
+}
 
 export const fetchUser = (userId) => async dispatch => {
     const response = await fetch(`/api/users/${userId}`)
     const data = await response.json();
-    
     dispatch({
         type: RECEIVE_USER,
         user: data.user
     })
+}
+
+export const fetchUserEvents = (userId) => async dispatch => {
+    const response = await fetch(`/api/users/${userId}`);
+    const data = await response.json();
+
+    dispatch({
+        type: RECEIVE_USER_EVENTS,
+        user: data.user,
+        events: data.events
+    })
+
 }
 
 export const updateUser = (user) => async dispatch => {
@@ -48,6 +64,10 @@ export default function usersReducer(state = {}, action) {
         case RECEIVE_USER:
             newState[action.user.id] = action.user;
             return newState;
+        case RECEIVE_USER_EVENTS:
+            debugger
+            newState[action.user.id] = action.user;
+            return newState
         case REMOVE_USER:
             delete newState[action.userId];
             return newState;

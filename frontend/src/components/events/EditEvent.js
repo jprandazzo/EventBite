@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, useParams } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import * as eventActions from "../../store/eventsReducer"
 import * as sessionActions from '../../store/sessionReducer'
 import NavBarLoggedIn from "../NavBar/NavBarLoggedIn";
@@ -9,6 +8,7 @@ import NotFoundErrorPage from "../errorPages/NotFoundErrorPage";
 import './EditEvent.css'
 
 export default function EditEvent () {
+    const history = useHistory();
     const dispatch = useDispatch();
     let current_user = useSelector(sessionActions.getCurrentUser)
     
@@ -81,7 +81,7 @@ export default function EditEvent () {
             //     else if (data) setErrors([data]);
             //     else setErrors([res.statusText]);
             // })
-            // .then(() =>{history.push('/')});
+            .then(() =>{history.push(`/organizer/events`)});
     };
 
     if (!doneLoading) {

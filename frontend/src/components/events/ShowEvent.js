@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import * as eventActions from '../../store/eventsReducer'
+import * as sessionActions from '../../store/sessionReducer'
+import * as orderActions from '../../store/ordersReducer'
 import NavBarLoggedIn from "../NavBar/NavBarLoggedIn";
 import './ShowEvent.css'
 import NotFoundErrorPage from "../errorPages/NotFoundErrorPage";
@@ -9,21 +11,57 @@ import NotFoundErrorPage from "../errorPages/NotFoundErrorPage";
 export default function ShowEvent () {
     const dispatch = useDispatch();
     const {eventId} = useParams();
+    const currentUser = useSelector(sessionActions.getCurrentUser)
 
     const [doneLoading, setDoneLoading] = useState(false);
     const [event, setEvent] = useState(undefined)
+    const [numTickets, setNumTickets] = useState(0)
     
     useEffect(() =>{
-        const awaitFetch = async () => {
+        const awaitFetchBeforeLoading = async () => {
             const res = await dispatch(eventActions.fetchEvent(eventId))
             setEvent(res[0])
             setDoneLoading(res[1])
         }
-        awaitFetch()
-        // let e = dispatch(eventActions.fetchEvent(eventId))
-        // setTimeout(() =>{setEvent(e)}, 1000)
-        // setDoneLoading(false)
+        awaitFetchBeforeLoading()
     }, [])
+
+    // const handleTicketDecreaseStyling = () => {
+    //     el = document.querySelector('.ticket-count-decrease')
+
+    //     if (numTickets) {
+    //         el.classList.add('clickable-ticket-button')
+    //         el.addEventListener('click', setNumTickets(numTickets-1))
+    //     } else {
+    //         if (el.classList.includes('clickable-ticket-button')) {
+    //             el.classList.remove('clickable-ticket-button')};
+    //         el.removeEventListener('click');
+    //     }
+    // }
+
+    const handlePurchase = (numTickets) => {
+        const order = {
+            numTickets,
+            ticketholderId: currentUser.id,
+            organizerId: event.organizerId
+        }
+
+        return dispatch(orderActions.createOrder(order));
+    }
+
+    useEffect(() =>{
+        if (numTickets) {
+            document.querySelector('.ticket-count-decrease').addEventListener('click', handlePlusMinusClick)
+        }
+    }, [numTickets])
+
+    const handlePlusMinusClick = (e) =>{
+        if (e.target.innerHTML === '+') {
+            setNumTickets(numTickets+1)
+        } else {
+            setNumTickets(numTickets-1)
+        }
+    }
     
     if (!doneLoading) {
         return <></>
@@ -41,9 +79,15 @@ export default function ShowEvent () {
                             <li>Type: {event.eventType}</li>
                             <li>Category: {event.eventCategory}</li>
                             <li>{event.capacity - event.ticketsSold} tickets remaining</li>
-                            <li>Price: {event.price}</li>
+                            <li>{event.price ? event.price : 'Free'}</li>
                             <li>Description: {event.description}</li>
                     </ul>
+                    <div className='ticket-purchase-container'>
+                       <button className='ticket-count-decrease'>-</button>
+                        <div className='ticket-count-text'>{numTickets}</div>
+                        <button className='ticket-count-increase' onClick={e=>{handlePlusMinusClick(e)}}>+</button>
+                        <button onClick={handlePurchase}>Get tickets</button>
+                    </div>
     
                 </>
             )

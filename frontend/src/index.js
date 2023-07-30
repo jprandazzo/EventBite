@@ -9,6 +9,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import configureStore from './store';
 import * as sessionActions from './store/sessionReducer'
 import * as eventActions from './store/eventsReducer'
+import * as userActions from './store/usersReducer'
 import { createUser, loginUser, logoutUser } from './store/usersReducer'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,21 +18,12 @@ const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
   window.sessionActions = sessionActions;
   window.eventActions = eventActions;
+  window.userActions = userActions;
   window.store = store;
 }
 
-// let currentUser = sessionStorage.getItem('currentUser') ? JSON.parse(sessionStorage.getItem('currentUser')) : null;
-let initialState = {};
-
-// if (currentUser) {
-//   initialState = {
-//       users: {
-//       [currentUser.id]: currentUser
-//       }
-//   };
-// };
-
 const initializeApp = () => {
+  
   root.render(
     <React.StrictMode>
       <ReduxProvider store={store}>
