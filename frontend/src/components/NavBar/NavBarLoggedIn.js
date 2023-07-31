@@ -8,7 +8,7 @@ import './NavBarLoggedIn.css';
 export default function NavBarLoggedIn () {
     const dispatch = useDispatch();
     const history = useHistory();
-    const currentUserId = useSelector(sessionActions.getCurrentUser).id
+    const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
     const currentUser = useSelector(userActions.getUser(currentUserId))
     // **LOOK AT HISTORY.LOCATION**
 

@@ -1,5 +1,5 @@
 class Api::EventsController < ApplicationController
-    # before_action :require_logged_in
+    before_action :require_logged_in, except: [:index, :show]
 
     wrap_parameters :event, include: Event.attribute_names + ['organizerName', 'eventType', 'eventCategory', 'venueName', 'organizerId']
 
@@ -8,13 +8,11 @@ class Api::EventsController < ApplicationController
         @event.timestamp_start = DateTime.new(2023,01,01)
         @event.timestamp_end = DateTime.new(2023,01,02)
         @event.organizer_id = current_user.id
-        debugger
         if @event.save
             render :show
         else
             render json: {errors: @event.errors.full_messages},
             status: :unprocessable_entity
-            debugger
         end
 
     end
@@ -33,17 +31,6 @@ class Api::EventsController < ApplicationController
         @event=Event.find(params[:id])
 
         if @event.organizer_id == current_user.id
-            # @event.title=params[:title]
-            # @event.organizer_name=params[:organizer_name]
-            # @event.event_type=params[:event_type]
-            # @event.event_category=params[:event_category]
-            # @event.venue_name=params[:venue_name]
-            # @event.address=params[:address]
-            # @event.timestamp_start=params[:timestamp_start]
-            # @event.timestamp_end=params[:timestamp_end]
-            # @event.capacity=params[:capacity]
-            # @event.price=params[:price]
-            # @event.description=params[:description]
             @event.update(event_params)
             
             @event.save
@@ -57,8 +44,16 @@ class Api::EventsController < ApplicationController
 
     def destroy
         @event = Event.find(params[:id])
-        @event.destroy
-        render :index
+        debugger
+
+        if @event.organizer_id == current_user.id
+            id = @event.id
+            @event.destroy
+            render json: {event_id: id}
+        else
+            render json: {errors: 'Must be event owner to delete!'},
+            status: :unprocessable_entity
+        end
     end
 
     private
@@ -66,6 +61,3 @@ class Api::EventsController < ApplicationController
         params.require(:event).permit(:address, :capacity, :event_category, :organizer_name, :title, :event_type, :venue_name, :organizer_id, :price, :description)
     end
 end
-
-test1 = Event.new(capacity: 50, timestamp_start: DateTime.new(2024,1,1),timestamp_end: DateTime.new(2024,1,1,12), title: "test event 1", venue_name: 'online')
-test2 = Event.new(capacity: 100, timestamp_start: DateTime.new(2023,8,14,17),timestamp_end: DateTime.new(2023,8,14,23), title: "test event 2 joe bday", venue_name: 'joe\'s apt')

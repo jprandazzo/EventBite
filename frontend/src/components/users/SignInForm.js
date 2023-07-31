@@ -75,7 +75,7 @@ export default function SignInForm ({currentUser}) {
             //     else if (data) setErrors([data]);
             //     else setErrors([res.statusText]);
             // })
-            .then(() =>{history.push('/')});
+            .then(() =>{history.goBack()});
     };
     return(
         <>
@@ -144,7 +144,7 @@ export default function SignInForm ({currentUser}) {
                                 Log in
                             </button>
                         </form>
-                        <div class='signup-signin-switch'>
+                        <div className='signup-signin-switch'>
                             <Link to='/signup'>Sign up</Link>
                         </div>
                     </div>

@@ -10,13 +10,13 @@ import './SearchEvents.css'
 export default function EventsSearch () {
 
     const dispatch = useDispatch();
-    const currentUserId = useSelector(sessionActions.getCurrentUser).id
+    const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
     const currentUser = useSelector(userActions.getUser(currentUserId))
     const allEvents = useSelector(eventActions.getEvents)
 
     useEffect(() =>{
         let getData = setTimeout(() => {
-            dispatch(userActions.fetchUserEvents(currentUserId));
+            if (currentUserId) dispatch(userActions.fetchUserEvents(currentUserId));
             dispatch(eventActions.fetchEvents)
           }, 0)
         return () => clearTimeout(getData)

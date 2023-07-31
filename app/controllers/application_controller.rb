@@ -3,7 +3,6 @@ class ApplicationController < ActionController::API
     before_action :attach_authenticity_token
     
     include ActionController::RequestForgeryProtection
-    # debugger
     rescue_from StandardError, with: :unhandled_error
     rescue_from ActionController::InvalidAuthenticityToken,
         with: :invalid_authenticity_token

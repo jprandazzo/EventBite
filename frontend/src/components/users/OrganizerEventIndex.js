@@ -9,7 +9,7 @@ import "./OrganizerEventIndex.css"
 
 export default function OrganizerEventIndex () {
     const dispatch = useDispatch();
-    const currentUserId = useSelector(sessionActions.getCurrentUser).id
+    const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
     const currentUser = useSelector(userActions.getUser(currentUserId))
     const organizerEventIds = currentUser ?.organizedEvents
     const allEvents = Array.from(useSelector(eventActions.getEvents))

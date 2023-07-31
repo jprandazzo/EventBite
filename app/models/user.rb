@@ -24,10 +24,18 @@ class User < ApplicationRecord
     has_secure_password
 
     has_one_attached :profile_photo
-
-    has_many :organized_events, class_name: :Event, foreign_key: :organizer_id
+    has_many :organized_events, class_name: :Event, foreign_key: :organizer_id, inverse_of: :organizer
+    # has_many :orders, inverse_of: :ticketholder
 
     before_validation :ensure_session_token
+
+    def attending_events
+        Event.joins(:orders).where(orders: {ticketholder_id: self.id}).distinct
+    end
+
+    def orders
+        Order.where(ticketholder_id: self.id)
+    end
 
     def self.find_by_credentials(email, pw)
         user = User.find_by(email: email)

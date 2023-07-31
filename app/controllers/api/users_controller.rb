@@ -21,6 +21,9 @@ class Api::UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        @user_organized_events = Event.where(organizer_id: @user.id)
+        @user_attending_events = @user.attending_events
+        @user_orders = @user.orders
         render :show
     end
 

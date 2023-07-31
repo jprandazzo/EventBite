@@ -9,6 +9,7 @@ json.events do
             id: event.id, 
             title: event.title,
             organizerName: event.organizer_name,
+            organizerId: event.organizer_id,
             venueName: event.venue_name,
             address: event.address,
             timestampStart: event.timestamp_start,

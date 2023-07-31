@@ -33,6 +33,10 @@ class Event < ApplicationRecord
 
     belongs_to :organizer, class_name: :User, foreign_key: :organizer_id
 
+    has_many :orders
+
+    has_many :ticketholders, through: :orders
+
     validates :event_type, inclusion: {in: %w(
                 attraction 
                 camp_trip_retreat 

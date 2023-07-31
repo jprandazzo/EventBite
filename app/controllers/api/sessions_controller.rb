@@ -1,11 +1,11 @@
 class Api::SessionsController < ApplicationController
-    # before_action :require_logged_out, only: [:create]
-    # before_action :require_logged_in, only: [:destroy]
+    before_action :require_logged_out, only: [:create]
+    before_action :require_logged_in, only: [:destroy]
 
     def show
         if current_user
             @user = current_user
-            render 'api/users/show'
+            render :show
         else
             render json: {user: nil}
         end
@@ -17,7 +17,7 @@ class Api::SessionsController < ApplicationController
         @user = User.find_by_credentials(email, password)
         if @user
             login(@user)
-            render 'api/users/show'
+            render :show
         else
             render json: { errors: ['Invalid Email or Password.'] }, 
         status: :unprocessable_entity
