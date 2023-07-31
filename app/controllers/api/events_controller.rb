@@ -1,12 +1,10 @@
 class Api::EventsController < ApplicationController
     before_action :require_logged_in, except: [:index, :show]
 
-    wrap_parameters :event, include: Event.attribute_names + ['organizerName', 'eventType', 'eventCategory', 'venueName', 'organizerId']
+    wrap_parameters :event, include: Event.attribute_names + ['organizerName', 'eventType', 'eventCategory', 'venueName', 'organizerId', 'timestampStart', 'timestampEnd']
 
     def create
         @event = Event.new(event_params)
-        @event.timestamp_start = DateTime.new(2023,01,01)
-        @event.timestamp_end = DateTime.new(2023,01,02)
         @event.organizer_id = current_user.id
         if @event.save
             render :show
@@ -58,6 +56,6 @@ class Api::EventsController < ApplicationController
 
     private
     def event_params
-        params.require(:event).permit(:address, :capacity, :event_category, :organizer_name, :title, :event_type, :venue_name, :organizer_id, :price, :description)
+        params.require(:event).permit(:address, :capacity, :event_category, :organizer_name, :title, :event_type, :venue_name, :organizer_id, :price, :description, :timestamp_start, :timestamp_end)
     end
 end

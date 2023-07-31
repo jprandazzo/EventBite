@@ -51,16 +51,12 @@ class Event < ApplicationRecord
             message: "Not a valid valid event type"}
 
     validates :event_category, inclusion: {in: %w(
-                    auto_boat_air 
-                    business_professional 
-                    charity_causes 
                     community_culture 
                     fashion_beauty 
                     film_media_entertainment 
                     food_drink 
                     music 
                     category_other 
-                    seasonal_holiday 
                     travel_outdoor
                     ),
                 message: "Not a valid event category"}

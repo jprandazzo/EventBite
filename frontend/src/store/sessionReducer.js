@@ -2,6 +2,7 @@ import csrfFetch from "./csrf"
 
 const SET_CURRENT_USER = 'session/setCurrentUser'
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser'
+const RECEIVE_USER = 'receiveUser'
 
 const setCurrentUser = (user) => ({
     type: SET_CURRENT_USER,
@@ -41,6 +42,10 @@ export const login = ({ email, password }) => async dispatch => {
     
     storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user))
+    dispatch({
+        type: RECEIVE_USER,
+        user: data.user
+    })
     return response;
 };
 

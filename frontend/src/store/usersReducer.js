@@ -1,6 +1,6 @@
 import csrfFetch from "./csrf"
 
-const RECEIVE_USER = 'users/receiveUser'
+const RECEIVE_USER = 'receiveUser'
 const REMOVE_USER = 'users/removeUser'
 const RECEIVE_USER_EVENTS = 'receiveUserEvents'
 const RECEIVE_USER_ORDERS = 'receiveUserOrders';

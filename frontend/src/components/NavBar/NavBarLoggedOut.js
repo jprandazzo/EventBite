@@ -25,21 +25,15 @@ export default function NavBarLoggedIn ({currentUser}) {
                 </li>
 
                 <li className='nav-right'>
-                    <span id='signup'>
-                        <Link to='/signup'>Sign Up</Link>
-                    </span>
+                        <Link to='/signup'><span id='signup'>Sign Up</span></Link>
                 </li>
 
                 <li className='nav-right'>
-                    <span id='login'>
-                        <Link to='/signin'>Log In</Link>
-                    </span>
+                        <Link to='/signin'><span id='login' >Log In</span></Link>
                 </li>
 
                 <li className='nav-right'> 
-                    <span id='create-event-out'>
-                        <Link to='/signin/'>Create an event</Link>
-                    </span>
+                        <Link to='/signin/'><span id='create-event-out'>Create an event</span></Link>
                 </li>
 
                 <li className='nav-right help-organize'> 

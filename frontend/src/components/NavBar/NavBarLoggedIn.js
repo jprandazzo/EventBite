@@ -10,6 +10,7 @@ export default function NavBarLoggedIn () {
     const history = useHistory();
     const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
     const currentUser = useSelector(userActions.getUser(currentUserId))
+    debugger
     // **LOOK AT HISTORY.LOCATION**
 
     // const toggleDropdown = (e) => {
@@ -108,12 +109,12 @@ export default function NavBarLoggedIn () {
                 </li>
 
                 <li className='nav-right'> 
-                    <span id='create-event-in'>
-                        <Link to='/events/create/'>
-                        <svg id="plus-sign" x="0" y="0" viewBox="0 0 24 24"><path id="plus-chunky_svg__eds-icon--plus-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M13 11V4h-2v7H4v2h7v7h2v-7h7v-2z"></path></svg>
-                            Create an event
-                        </Link>
-                    </span>
+                    <Link to='/events/create/'>
+                        <span id='create-event-in'>
+                            <svg id="plus-sign" x="0" y="0" viewBox="0 0 24 24"><path id="plus-chunky_svg__eds-icon--plus-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M13 11V4h-2v7H4v2h7v7h2v-7h7v-2z"></path></svg>
+                                Create an event
+                        </span>
+                    </Link>
                 </li>
             </ul>
 

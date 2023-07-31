@@ -12,7 +12,7 @@ import './CreateEvent.css';
 export default function CreateEvent () {
     const dispatch = useDispatch();
     const history = useHistory();
-    let currentUser = useSelector(sessionActions.getCurrentUser)
+    const currentUser = useSelector(sessionActions.getCurrentUser)
 
     const [title, setTitle] = useState('')
     const [organizerName, setOrganizerName] = useState('')
@@ -20,11 +20,10 @@ export default function CreateEvent () {
     const [eventCategory, setEventCategory] = useState('')
     const [venueName, setVenueName] = useState('')
     const [address, setAddress] = useState('')
-    const [eventStartDate, setEventStartDate] = useState(moment().add(72, 'day').tz("America/New_York"))
-    // console.log(`moment=${moment(moment().add(72,'day')).format('YYYY-MM-DD')}`)
-    const [eventStartTime, setEventStartTime] = useState(moment().startOf('hour').tz("America/New_York"))
-    const [timestampStart, setTimestampStart] = useState(moment().add(72, 'day').startOf('hour').tz("America/New_York"))
-    const [timestampEnd, setTimestampEnd] = useState(moment().add(72, 'day').add(3, 'hour').startOf('hour').tz("America/New_York")/*.format('MMMM Do YYYY h:mm a')*/)
+    const [eventStartDate, setEventStartDate] = useState(moment(moment().add(72, 'day').tz("America/New_York")).format('MM/DD/YYYY'))
+    const [eventStartTime, setEventStartTime] = useState('12:00 PM')
+    const [eventEndDate, setEventEndDate] = useState(eventStartDate)
+    const [eventEndTime, setEventEndTime] = useState('3:00 PM')
     const [capacity, setCapacity] = useState('')
     const [errors, setErrors] = useState([]);
     const [price, setPrice] = useState(0);
@@ -32,9 +31,29 @@ export default function CreateEvent () {
     const [startCalActive, setStartCalActive] = useState(false);
     const [endCalActive, setEndCalActive] = useState(false);
     
-    // useEffect(() =>{
+    const eventTypes = [
+        {value: null, display: 'Type'},
+        {value: 'attraction', display: 'Attraction'},
+        {value: 'camp_trip_retreat', display: 'Camp/Trip/Retreat'},
+        {value: 'concert_performance', display: 'Concert/Performance'},
+        {value: 'conference', display: "Conference"},
+        {value: 'convention', display: 'Convention'},
+        {value: 'dinner_gala', display: 'Dinner/Gala'},
+        {value: 'festival_fair', display: 'Festival/Fair'},
+        {value: 'party_social_gathering', display: 'Party/Social Gathering'},
+        {value: 'type_other', display: "Other"}
+    ]
 
-    // }, [])
+    const eventCategories = [
+        {value: null, display: 'Category'},
+        {value: 'community_culture', display: 'Community/Culture'},
+        {value: 'fashion_beauty', display: 'Fashion/Beauty'},
+        {value: 'film_media_entertainment', display: 'Film/Media/Entertainment'},
+        {value: 'food_drink', display: 'Food/Drink'},
+        {value: 'music', display: 'Music'},
+        {value: 'category_other', display: 'Other'},
+        {value: 'travel_outdoor', display: 'Travel/Outdoor'}
+    ]
 
     const toggleCalendar = (e) =>{
         // e.stopPropagation();
@@ -48,24 +67,6 @@ export default function CreateEvent () {
             setStartCalActive(false)
             setEndCalActive(false)
         }
-        // switch (e.target.classList[0]) {
-        //     case 'timestamp-start' || 'react-calendar' || 'calendar-timestamp-start':
-        //         setStartCalActive(true)
-        //         console.log(`startCalActive=${startCalActive}`)
-        //         break;
-        //     case 'calendar-timestamp-start':
-        //         setStartCalActive(true)
-        //         break;
-        //     case 'timestamp-end':
-        //         setEndCalActive(true)
-        //         break;
-        //     case 'calendar-timestamp-end':
-        //         setEndCalActive(true)
-        //         break;
-        //     default:
-        //         setStartCalActive(false)
-        //         setEndCalActive(false)
-        // }
                 
         // }
         // if (e.target.classList.contains('timestamp-start')) {
@@ -78,11 +79,6 @@ export default function CreateEvent () {
         //     setStartCalActive(false)
         //     setEndCalActive(false)
         }
-        // debugger
-
-        // e.target.childNodes[1].classList.toggle('hidden')
-        // debugger
-    
 
     const handleCreate = () => {
         let event = {
@@ -92,8 +88,8 @@ export default function CreateEvent () {
             eventCategory,
             venueName,
             address,
-            // timestampStart,
-            // timestampEnd,
+            timestampStart: moment(`${eventStartDate} ${eventStartTime}`).tz('America/New_York').format(),
+            timestampEnd: moment(`${eventEndDate} ${eventEndTime}`).tz('America/New_York').format(),
             capacity,
             price,
             description,
@@ -117,27 +113,55 @@ export default function CreateEvent () {
 
     return (
         <>
-            <NavBarLoggedIn />
+            {currentUser ? <NavBarLoggedIn /> : <></>}
             <br /><br />
+            <hr className='create-event-hr'/>
+            <br />
+            <div id='back-to-organized-events'>
+                <Link to='/organizer/events'><span><svg id="chevron-left-chunky_svg__eds-icon--chevron-left-chunky_svg" x="0" y="0" viewBox="0 0 24 24" ><path id="chevron-left-chunky_svg__eds-icon--chevron-left-chunky_base" fill-rule="evenodd" clip-rule="evenodd" d="M13.8 7l-5 5 5 5 1.4-1.4-3.6-3.6 3.6-3.6z"></path></svg>
+                Events</span></Link>
+            </div>
 
-            <span id='back-to-organized-events'>
-                <Link to='/organizer/events'>Events</Link>
-            </span>
             <br /><br/><br/>
-            <section id='basic-info' onClick={(e) =>toggleCalendar(e)}>
-                <form><b>Create Event</b><br/>
-                    <label>Title
+            <form className='centered-create-event' onClick={(e) =>toggleCalendar(e)}>
+                <section id='basic-info'>
+                    <div>
+                        <svg id="title-edit-svg" x="0" y="0" viewBox="0 0 24 24"><path id="title-edit_svg__eds-icon--title-edit_base" fill-rule="evenodd" clip-rule="evenodd" d="M2 2v3h1V3h5v10H6v1h5v-1H9V3h5v2h1V2H2z"></path><g id="title-edit_svg__eds-icon--title-edit_lines" fill-rule="evenodd" clip-rule="evenodd"><path d="M15 9h7v1h-7zM15 13h7v1h-7zM6 17h16v1H6zM6 21h16v1H6z"></path></g></svg>
+                        <span id='basic-info-title'>Basic Info</span>
+                        <div id='basic-info-description'>
+                            Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.
+                        </div>
+                    </div>
+
+                    <label>Event Title
                         <input type='text' name='title' onChange={e => setTitle(e.target.value)} />
                     </label><br/>
-                    <label>Organizer Name
+                    <label>Organizer
                         <input type='text' name='organizer-name' onChange={e => setOrganizerName(e.target.value)} />
                     </label><br/>
-                    <label>Type
-                        <input type='text' name='type' onChange={e => setEventType(e.target.value)} />
-                    </label><br/>
-                    <label>Category
-                        <input type='text' name='category' onChange={e => setEventCategory(e.target.value)} />
-                    </label><br/>
+                    <div className='event-type-container'>
+                        <select name='event-type' id="event-type" onChange={(e) =>{setEventType(e.target.value)}} defaultValue={eventTypes[0]}>
+                            {eventTypes.map(type =>{
+                                return (
+                                    <option key={type.value} value={type.value} > 
+                                        {type.display}
+                                    </option>
+                                )
+                            })}
+                        </select>
+                    </div>
+                    <br/>
+                    <div className='event-category-container'>
+                        <select name='event-category' id="event-category" onChange={(e) =>{setEventCategory(e.target.value)}} defaultValue={eventCategories[0]}>
+                            {eventCategories.map(cat =>{
+                                return (
+                                    <option key={cat.value} value={cat.value} > 
+                                        {cat.display}
+                                    </option>
+                                )
+                            })}
+                        </select>
+                    </div>
                     <label>Venue
                         <input type='text' name='venue-name' onChange={e => setVenueName(e.target.value)} />
                     </label><br/>
@@ -148,33 +172,55 @@ export default function CreateEvent () {
                     <div className='event-start-container'>
                         <div className='event-start-date-container'>
                             <label>Event Starts
-                                <button className='timestamp-start timestamp-button' >{`${moment(timestampStart).format('MM/DD/YYYY')}`}
-                                    <Calendar className={`calendar-timestamp-start calendar ${startCalActive ? '' : 'hidden'}`} onChange={setTimestampStart} defaultValue={timestampStart} />
+                                <button className='timestamp-start timestamp-button' >{`${moment(eventStartDate).format('MM/DD/YYYY')}`}
+                                    <Calendar className={`calendar-timestamp-start calendar ${startCalActive ? '' : 'hidden'}`} onChange={setEventStartDate} defaultValue={eventStartDate} />
                                 </button>
                             </label><br/>
                         </div>
                         
                         <div className='event-start-time-container'>
-                            <label>{`${timestampStart.format('hh:mm a')}`}
-                                <input list="event-times" name="event-start-time" onChange={setEventStartTime}/>
-
-                                    <select id="event-times">
-                                        <option value={`${eventStartTime}.startOf('day').format('hh:mm a')}`}/>
-                                        <option value="12:30 am"/>
-                                        <option value="Mint"/>
-                                        <option value="Strawberry"/>
-                                        <option value="Vanilla"/>
+                            <label>Start Time
+                                    <select name='event-start-times' id="event-start-times" onChange={(e) =>{setEventStartTime(e.target.value)}} defaultValue={eventStartTime}>
+                                        {[...Array(48).keys()].map(i =>{
+                                            let time = moment(eventEndDate).startOf('day').add(30*i,'minutes').format('hh:mm A')
+                                            return (
+                                                <option key={i} value={time} > 
+                                                    {`${moment(eventStartDate).startOf('day').add(30*i,'minutes').format('hh:mm A')}`}
+                                                </option>
+                                            )
+                                        })}
                                     </select>
-                        
                             </label>
                         </div>
                     </div>
 
-                    <label>End Date/Time
-                        <button type='text' className='timestamp-end timestamp-button' /*onClick={(e) =>toggleCalendar(e)}*/>{`${moment(timestampEnd).format('MM/DD/YYYY')}`}
-                            <Calendar className={`calendar-timestamp-end calendar ${endCalActive ? '' : 'hidden'}`} onChange={setTimestampEnd} defaultValue={timestampEnd} />
-                        </button>
-                    </label><br/>
+                    <br/><br/>
+                    <div className='event-end-container'>
+                        <div className='event-end-date-container'>
+                            <label>Event Ends
+                                <button className='timestamp-end timestamp-button' >{`${moment(eventEndDate).format('MM/DD/YYYY')}`}
+                                    <Calendar className={`calendar-timestamp-end calendar ${endCalActive ? '' : 'hidden'}`} onChange={setEventEndDate} defaultValue={eventEndDate} />
+                                </button>
+                            </label><br/>
+                        </div>
+                        
+                        <div className='event-end-time-container'>
+                            <label>End Time
+                                    <select name='event-end-times' id="event-end-times" onChange={(e) =>{setEventEndTime(e.target.value)}} defaultValue={eventEndTime}>
+                                        {[...Array(48).keys()].map(i =>{
+                                            let time = moment(eventEndDate).startOf('day').add(30*i,'minutes').format('h:mm A')
+                                            return (
+                                                <option key={i} value={time}> 
+                                                    {`${moment(eventEndDate).startOf('day').add(30*i,'minutes').format('h:mm A')}`}
+                                                </option>
+                                            )
+                                        })}
+                                    </select>
+                            </label>
+                        </div>
+                    </div>
+
+                    <br/><br/>
                     <label>Capacity
                         <input type='text' name='capacity' onChange={e => setCapacity(e.target.value)} />
                     </label>
@@ -184,9 +230,10 @@ export default function CreateEvent () {
                     <label>Description
                         <input type='text' name='description' onChange={e => setDescription(e.target.value)} />
                     </label>
-                </form>
+                </section>
+            </form>
                 <button onClick={handleCreate}>Create Event</button>
-                {/*<div>
+                {/* <div>
                     <div>
                     <svg id="title-edit-svg" x="0" y="0" viewBox="0 0 24 24"><path id="title-edit_svg__eds-icon--title-edit_base" fill-rule="evenodd" clip-rule="evenodd" d="M2 2v3h1V3h5v10H6v1h5v-1H9V3h5v2h1V2H2z"></path><g id="title-edit_svg__eds-icon--title-edit_lines" fill-rule="evenodd" clip-rule="evenodd"><path d="M15 9h7v1h-7zM15 13h7v1h-7zM6 17h16v1H6zM6 21h16v1H6z"></path></g></svg>
                     </div>
@@ -217,7 +264,6 @@ export default function CreateEvent () {
                         </span>
                     </div>
                 </form> */}
-            </section>
             
         </>
     )

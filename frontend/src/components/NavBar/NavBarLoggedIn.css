@@ -1,6 +1,7 @@
 #main-navigation {
     height: .2em;
     margin-bottom: 2.3em;
+    font-family: 'Neue Plak'
 }
 
 .navbar {
@@ -49,6 +50,7 @@ li span {
 }
 
 #search-events a{
+    text-decoration: none;
     color: #A9A8B3 !important;
 }
 
@@ -74,7 +76,7 @@ li:hover {
     font-weight: 410;
 }
 
-#create-event-in a {
+#create-event-in {
     color: #3E64FF !important;
 }
 

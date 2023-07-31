@@ -11,11 +11,44 @@ section {
     color: black;
 }
 
-a {
+.create-event-hr {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  opacity: .3;
+  position: relative;
+  bottom: .6em;
+}
+
+#back-to-organized-events a {
     color: #3E64FF !important;
-    text-decoration: none;
+    text-decoration: none !important;
     font-family: 'Neue Plak';
     font-weight: 500;
+    font-size: 14px;
+    /* width: 1000px; */
+    /* border: 1px solid grey; */
+    height: 50px;
+    position: relative;
+    left: 33.5em;
+    bottom: 2em;
+}
+
+#chevron-left-chunky_svg__eds-icon--chevron-left-chunky_svg {
+  fill: #3E64FF !important;
+  transform: scale(.9);
+  position: absolute;
+  right: 3em;
+  top: -.6em;
+}
+
+.centered-create-event {
+  position: relative;
+  left: 25%;
+  /* transform: translate(-50%, -50%); */
+  /* text-align: center; */
 }
 
 .timestamp-start {
@@ -31,7 +64,7 @@ a {
 .event-start-time-container {
     cursor: pointer;
     position: relative;
-    /* top: 1em; */
+    width: 10em;
     left: 5em;
     background-color: white;
     border: 1px solid #A9A8B3;
