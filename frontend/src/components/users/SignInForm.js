@@ -17,7 +17,7 @@ export default function SignInForm ({currentUser}) {
 
     const focusInput = (e) => {
         //blur anything that's currently focused
-        Array.from(document.querySelectorAll('.input-field-input'))
+        Array.from(document.querySelectorAll('.signup-signin-field-input'))
             .forEach(el => {
                 el.blur()
             })

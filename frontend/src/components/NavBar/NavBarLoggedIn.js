@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory, Link} from 'react-router-dom';
+import { useEffect } from 'react';
 import * as sessionActions from '../../store/sessionReducer.js';
 import * as eventActions from'../../store/eventsReducer';
 import * as userActions from '../../store/usersReducer';
@@ -10,8 +11,14 @@ export default function NavBarLoggedIn () {
     const history = useHistory();
     const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
     const currentUser = useSelector(userActions.getUser(currentUserId))
-    debugger
     // **LOOK AT HISTORY.LOCATION**
+
+    useEffect(() =>{
+        let getData = setTimeout(() => {
+            if (currentUserId) dispatch(userActions.fetchUserEvents(currentUserId));
+          }, 0)
+        return () => clearTimeout(getData)
+    }, [])
 
     // const toggleDropdown = (e) => {
     //     let el = e.target.closest('span')
@@ -81,7 +88,7 @@ export default function NavBarLoggedIn () {
                             <ul>
                                 <li>Browse Events</li>
                                 <li>Manage my Events</li>
-                                <li><Link to={`/user/${currentUserId}`}>Tickets ({currentUser?.attendingEvents.length})</Link></li>
+                                <li><Link to={`/user/${currentUserId}`}>Tickets ({currentUser?.attendingEvents?.length})</Link></li>
                                 <li>Liked</li>
                                 <li>Following</li>
                                 <li onClick={logout}>Logout</li>

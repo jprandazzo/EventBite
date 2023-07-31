@@ -2,6 +2,7 @@ section {
     /* font-family: 'Neue Plak' !important; */
     font-weight: thin;
 }
+
 .h1-default {
     position: relative;
     top: 0px;
@@ -46,10 +47,257 @@ section {
 
 .centered-create-event {
   position: relative;
-  left: 25%;
+  left: 33.7%;
+  top: -1.3em;
+  font-family: 'Neue Plak';
   /* transform: translate(-50%, -50%); */
   /* text-align: center; */
 }
+
+#basic-info-description-box {
+  position: relative;
+}
+
+#basic-info-description-box svg {
+  position: absolute;
+  left: -4.5em;
+  top: .5em;
+  fill: rgb(213, 211, 211);
+  transform: scale(1.7)
+}
+
+.active-div {
+  box-shadow: 0 0 0 .5px #1b31db !important;
+  /* border: 2px solid #1b31db !important; */
+}
+
+#basic-info-h2 {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: .2em;
+}
+
+#basic-info-p-container {
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 1.3em;
+  color: #38364F;
+  width: 38em;
+}
+
+.create-event-title-box {
+  position: relative;
+  width: 45em;
+  height: 3.1em;
+  border: 1px solid #dbdae2;
+  box-sizing: border-box;
+  padding: 5px !important;
+  border-radius: 2px;
+  margin-top: 1em;
+}
+
+.create-event-title-box:hover {
+  border: 1px solid #bab8c7;
+  cursor: text;
+}
+
+.create-event-field-text {
+  position: absolute;
+  box-sizing: content-box;
+  float: left;
+  z-index: 1;
+  left: 1em;
+  top: .6em;
+  font-size: .8em;
+  font-weight: 500;
+  /* COLOR WHEN ERROR: color: #c6162e; */
+  color: #6F7386;
+  transition: none;
+}
+
+.create-event-title-input-box {
+  width: 40em;
+}
+
+.create-event-field-input {
+  width: 40em;
+}
+
+.create-event-field-input:focus {
+  top: -1.9em !important;
+  left: .35em !important;
+}
+
+.active-field {
+  top: .55em;
+  left: .95em;
+  color: #1b31db;
+}
+
+.create-event-field-input-box {
+  display: block;
+  width: 40em;
+  position: relative;
+  top: 1.6em;
+}
+
+.create-event-field-input {
+  position: absolute;
+  left: .4em;
+  bottom: .5em;
+  /* width: 365px; */
+  border: 1px solid none;
+  color: black;
+}
+
+.create-event-field-input::placeholder {
+  color: rgb(169, 168, 168);
+}
+
+.create-event-organizer-box {
+  position: relative;
+  width: 45em;
+  height: 3.1em;
+  border: 1px solid #dbdae2;
+  box-sizing: border-box;
+  border-radius: 2px;
+  /* padding: 1em; */
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.create-event-field-organizer-input {
+  position: absolute;
+  left: .8em;
+  bottom: .1em;
+  /* width: 365px; */
+  border: 1px solid none;
+  color: black;
+}
+
+.create-event-field-organizer-input::placeholder {
+  color: rgb(169, 168, 168);
+}
+
+.create-event-field-organizer-input:focus {
+  top: -1.45em !important;
+  left: .75em !important;
+}
+
+input {
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+.create-event-button {
+  height: 45px;
+  width: 365px;
+  font-size: 13px;
+  font-weight: 550;
+  background: #d1420a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: filter 700ms;
+}
+
+.create-event-button:hover {
+  cursor: pointer;
+  filter: brightness(1.15);
+}
+
+
+#event-type-dropdown {
+  position: absolute;
+  width: 18em;
+  height: 3.6em;
+
+  border: 1px solid #dbdae2;
+  box-sizing: border-box;
+  padding: 10px !important;
+  border-radius: 2px;
+  margin-top: 1em;
+}
+
+#event-category-dropdown {
+  position: absolute;
+  width: 18em;
+  height: 3.6em;
+  top: 16.6em;
+  left: 19em;
+  border: 1px solid #dbdae2;
+  box-sizing: border-box;
+  padding: 10px !important;
+  border-radius: 2px;
+  margin-top: 1em;
+}
+
+.location-description-box {
+  position: relative;
+  top: 5em;
+}
+
+#location-h2 {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: .2em;
+}
+
+#location-p-container {
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 1.3em;
+  color: #38364F;
+  width: 38em;
+}
+
+#map_svg {
+  position: absolute;
+  left: -4.5em;
+  top: .5em;
+  fill: rgb(213, 211, 211);
+  transform: scale(1.7)
+}
+
+.venue-address-box {
+  position: relative;
+  top: 8em;
+}
+
+
+
+
+
+#date-and-time {
+  position: relative;
+  top: 10em;
+}
+
+#capacity-price-description {
+  position: relative;
+  top: 10em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .timestamp-start {
     cursor: pointer;

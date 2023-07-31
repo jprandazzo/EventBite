@@ -1,7 +1,9 @@
 #main-navigation {
     height: .2em;
     margin-bottom: 2.3em;
-    font-family: 'Neue Plak'
+    font-family: 'Neue Plak';
+    position: sticky;
+    top: 0;
 }
 
 .navbar {

@@ -7,10 +7,7 @@ json.user do
         @user_organized_events ? @user_organized_events.order(:timestamp_start).map(&:id) : nil
     json.attending_events 
         @user_attending_events ? @user.attending_events.map(&:id) : nil
-    json.orders 
-        if @user_orders
-            @user_orders.order(:created_at).map(&:id).reverse!
-        end
+    json.orders @user_orders ? @user_orders.order(:created_at).map(&:id).reverse! : nil
 end
 
 json.events do
