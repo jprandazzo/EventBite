@@ -2,7 +2,7 @@ a {
     text-decoration: none;
 }
 
-#main-navigation {
+#main-navigation-in {
     height: 5.5em;
     font-family: 'Neue Plak';
     display: block;
@@ -16,7 +16,7 @@ a {
 
 .navbar-container {
     width: 100%;
-    height: 5.5em;
+    height: 5em;
     background-color: white;
     position: sticky;
     opacity: 1;
@@ -30,7 +30,7 @@ a {
 }
 
 .navbar-ul li {
-    height: 5.5em;
+    height: 5em;
 }
 
 .nav-left {
@@ -57,7 +57,7 @@ a {
 
 #search-events {
     width: 12em;
-    height: 2em;
+    height: 2.6em;
     position: relative;
     top: .8em;
     left: 2em;
@@ -92,99 +92,178 @@ a {
     cursor: pointer !important;
 }
 
-.nav-right span {
+.nav-right div {
     position: relative;
-    top: 2.4em;
-    height: 4.5em;
-    padding: 1em 1.3em 2em .7em;
-    margin-left: 1em;
-    margin-right: .5em;
+    height: 4.6em;
+    /* margin-left: 1em;
+    margin-right: .5em; */
     margin-bottom: none;
 }
 
 .nav-right a {
     text-decoration: none;
     color: #38364F;
-    font-size: 14px !important;
+    font-size: 13px !important;
     font-weight: 410;
+}
+
+.nav-right div:hover {
+    text-decoration: none;
+    background: #F8F7FA;
 }
 
 #create-event-in {
     color: #3E64FF !important;
+    width: 10em;
 }
 
-#user-dropdown:hover .dropdown-content {
-    height: auto;
-    width: 18em;
-    display: block;
+#create-event-in-text {
     position: absolute;
-    right: -.5em;
-    top: 3.55em;
-    z-index: 1;
-    box-shadow: 0px 0px 3px 0em lightgray;
+    width: 8em;
+    top: 2.5em;
+    height: 2em;
+    left: 1.2em;
+}
 
-    cursor: pointer;
+#plus-sign {
+    fill: #3E64FF !important;
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    z-index: 2;
+    /* bottom: 3.2em; */
+    right: 3.8em;
+}
 
-    background: white;
-    font-size: 15px;
-    font-weight: 400;
-    color: rgb(107, 107, 107);
+#nav-in-favorites {
+    width: 6em;
+}
+
+#nav-in-favorites-text {
+    position: absolute;
+    top: 2.5em;
+    left: 1.5em;
+    height: 1em;
+}
+
+#heart-svg {
+    height: 28px;
+    width: 28px;
+    position: absolute;
+    left: 1.4em;
+    fill: #38364F;
+}
+
+
+
+#nav-in-tickets {
+    width: 6em;
+}
+
+#nav-in-tickets-text {
+    position: absolute;
+    top: 2.5em;
+    left: 1.5em;
+}
+
+#ticket-svg {
+    height: 28px;
+    width: 28px;
+    position: absolute;
+    left: 1.9em;
+    z-index: 2;
+    fill: #38364F;
+}
+
+#user-in-dropdown {
+    position: relative;
+    height: 4.6em;
+    width: 12em;
+}
+
+#user-in-dropdown-email {
+    position: absolute;
+    font-size: 13px;
+    font-weight: 500;
+    top: 1.8em;
+    height: 2em;
+    right: 2.5em;
+    z-index: 2;
+}
+
+#user-icon-svg-circle-container {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    background: #F8F7FA;
+    top: .6em;
+    left: 1.5em;
+    border-radius: 50%
+}
+
+#user-icon-svg {
+    position: absolute;
+    top: .3em;
+    left: .5em;
+    height: 28px;
+    width: 28px;
+    fill: #38364F;
+}
+
+#user-in-chevron-down {
+    position: absolute;
+    right: .3em;
+    top: 1em;
+    height: 28px;
+    width: 28px;
+    fill: #a9a8b3;
+    transform: scale(.8);
 }
 
 #hidden {
     display: none;
 }
 
-#user-dropdown {
-    height: 6em;
-    position: relative;
-    right: .5em;
-}
-
-#user-dropdown svg {
+#user-in-dropdown:hover .dropdown-content {
+    display: block;
     position: absolute;
-    top: .8em;
+    top: 5em;
+    height: auto;
+    width: 16em;
     right: -.5em;
+    z-index: 1;
+    box-shadow: 0px 0px 3px 0em lightgray;
+    cursor: pointer;
+    background: white !important;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgb(107, 107, 107);
+}
+.dropdown-content a{
+    color: rgb(107, 107, 107);
 }
 
-.dropdown-content {
-    display: none;
+.dropdown-content:hover li:hover {
+    /* height: 3.3em; */
+    /* position: relative; */
+    background: #F8F7FA;
 }
 
-.dropdown-content:hover li {
-    max-height: 3.3em;
-    padding: 0em 1em .5em 1em;
-    margin: none;
-    color: rgb(30, 30, 30);
+.dropdown-content:hover li:hover .dropdown-content-text-box{
+    color: rgb(30, 30, 30) !important;
+}
+
+.dropdown-content-text-box {
+    position: absolute;
+    top: 1.5em;
+    left: 2em;
+    height: 1em !important;
+    width: 12em;
 }
 
 svg {
     height: 28px;
     width: 28px;
-    fill: rgb(30, 30, 30);
-    position: absolute;
-
-}
-
-#plus-sign {
-    fill: #3E64FF !important;
-    position: absolute;
-    bottom: 3.2em;
-    right: 3em;
-}
-
-#heart {
-    position: absolute;
-    fill: #38364F;
-    bottom: 3.2em;
-    left: .8em;
-}
-
-#ticket {
-    position: absolute;
-    fill: #38364F;
-    bottom: 3.2em;
-    left: 1.4em;
 }
 
 .navbar-in-fullscreen-hr {
@@ -197,6 +276,6 @@ svg {
     position: relative;
     z-index: 10;
     bottom: 1em;
-    left: -5em;
+    left: 15em;
     margin: none;
   }

@@ -198,7 +198,7 @@ export default function CreateEvent () {
                                 <input className='create-event-field-organizer-input'
                                     type='text' 
                                     name='title'
-                                    placeholder="Fake names are fine"
+                                    placeholder="Fake names are fine. Avoid giving out details that could help slayers track us."
                                     onChange={e => setTitle(e.target.value)}
                                     onFocus={e => setClosestDivsActive(e)}
                                     onBlur={e => setClosestDivsInactive(e)}
@@ -239,7 +239,7 @@ export default function CreateEvent () {
                         <h2 id='location-h2'>Location</h2>
                         <div id='location-p-container'>
                             <p>
-                                Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.
+                                Pick a prime spot to amass the largest number of fools you can. The more the bloodier!
                             </p>
                         </div>
                     </div>
@@ -264,14 +264,23 @@ export default function CreateEvent () {
                 <hr className='create-event-section-division-hr' id='location-date-division-hr'/>
                 
                 <section id='date-and-time'>
-                <svg id="calendar_svg__eds-icon--calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar_svg__eds-icon--calendar_base" fill-rule="evenodd" clip-rule="evenodd" d="M17 4V2h-1v2H8V2H7v2H2v18h20V4h-5zm4 17H3V9h18v12zM3 8V5h4v1h1V5h8v1h1V5h4v3H3z"></path><g id="calendar_svg__eds-icon--calendar_squares" fill-rule="evenodd" clip-rule="evenodd"><path d="M15 16h2v2h-2zM11 16h2v2h-2zM7 16h2v2H7zM15 12h2v2h-2zM11 12h2v2h-2zM7 12h2v2H7z"></path></g></svg>
+                <div className='datetime-description-box'>
+                    <svg id="calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar_svg__eds-icon--calendar_base" fill-rule="evenodd" clip-rule="evenodd" d="M17 4V2h-1v2H8V2H7v2H2v18h20V4h-5zm4 17H3V9h18v12zM3 8V5h4v1h1V5h8v1h1V5h4v3H3z"></path><g id="calendar_svg__eds-icon--calendar_squares" fill-rule="evenodd" clip-rule="evenodd"><path d="M15 16h2v2h-2zM11 16h2v2h-2zM7 16h2v2H7zM15 12h2v2h-2zM11 12h2v2h-2zM7 12h2v2H7z"></path></g></svg>
+                        <h2 id='location-h2'>Date and time</h2>
+                        <div id='location-p-container'>
+                            <p>
+                                Choose a day and time to gather your unsuspecting victims together. Nighttime is usually best, unless you're indoors of course.
+                            </p>
+                        </div>
+                    </div>
+                
                     <div className='event-start-container'>
                         <div className='event-start-date-container'>
-                            <label>Event Starts
-                                <button className='timestamp-start timestamp-button' >{`${moment(eventStartDate).format('MM/DD/YYYY')}`}
-                                    <Calendar className={`calendar-timestamp-start calendar ${startCalActive ? '' : 'hidden'}`} onChange={setEventStartDate} defaultValue={eventStartDate} />
-                                </button>
-                            </label><br/>
+                            <button className='timestamp-start timestamp-button' >{`${moment(eventStartDate).format('MM/DD/YYYY')}`}
+                                <label><div className='event-datetime-text'>Event Starts</div>
+                                        <Calendar className={`calendar-timestamp-start calendar ${startCalActive ? '' : 'hidden'}`} onChange={setEventStartDate} defaultValue={eventStartDate} />
+                                </label><br/>
+                            </button>
                         </div>
                         
                         <div className='event-start-time-container'>

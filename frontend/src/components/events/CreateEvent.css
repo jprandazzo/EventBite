@@ -47,6 +47,8 @@ section {
 }
 
 #chevron-left-chunky_svg__eds-icon--chevron-left-chunky_svg {
+  height: 28px;
+  width: 28px;
   fill: #3E64FF !important;
   transform: scale(.9);
   position: absolute;
@@ -69,6 +71,8 @@ section {
 
 #basic-info-description-box svg {
   position: absolute;
+  height: 28px;
+  width: 28px;
   left: -4.5em;
   top: .5em;
   fill: rgb(213, 211, 211);
@@ -171,7 +175,7 @@ section {
   position: absolute;
   left: .8em;
   bottom: .1em;
-  /* width: 365px; */
+  width: 40em;
   border: 1px solid none;
   color: black;
 }
@@ -256,6 +260,8 @@ input:focus {
 }
 
 #map_svg {
+  height: 28px;
+  width: 28px;
   position: absolute;
   left: -4.5em;
   top: .5em;
@@ -292,12 +298,51 @@ input:focus {
   top: 10em;
 }
 
+#calendar_svg {
+  height: 28px;
+  width: 28px;
+  position: absolute;
+  left: -4.5em;
+  top: .5em;
+  fill: rgb(213, 211, 211);
+  transform: scale(1.7)
+}
+
+.event-start-container {
+  position: absolute;
+  width: 18em;
+  height: 3.6em;
+
+  border: 1px solid #dbdae2;
+  box-sizing: border-box;
+  padding: 10px !important;
+  border-radius: 2px;
+  margin-top: 1em;
+}
+
+.timestamp-button {
+  cursor: pointer;
+}
+
+.event-datetime-text {
+  position: absolute;
+  box-sizing: content-box;
+  float: left;
+  z-index: 1;
+  left: 1em;
+  top: .6em;
+  font-size: .8em;
+  font-weight: 500;
+  /* COLOR WHEN ERROR: color: #c6162e; */
+  color: #6F7386;
+  transition: none;
+}
+
+
 #capacity-price-description {
   position: relative;
   top: 10em;
 }
-
-
 
 
 
