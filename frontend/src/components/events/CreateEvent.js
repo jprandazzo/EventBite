@@ -145,7 +145,7 @@ export default function CreateEvent () {
         <>
             {currentUser ? <NavBarLoggedIn /> : <></>}
             <br /><br />
-            <hr className='create-event-hr'/>
+            
             <br />
             <div id='back-to-organized-events'>
                 <Link to='/organizer/events'><span><svg id="chevron-left-chunky_svg__eds-icon--chevron-left-chunky_svg" x="0" y="0" viewBox="0 0 24 24" ><path id="chevron-left-chunky_svg__eds-icon--chevron-left-chunky_base" fill-rule="evenodd" clip-rule="evenodd" d="M13.8 7l-5 5 5 5 1.4-1.4-3.6-3.6 3.6-3.6z"></path></svg>
@@ -165,7 +165,7 @@ export default function CreateEvent () {
                         </div>
                     </div>
 
-                    <div className='create-event-title-box'>
+                    <div className='create-event-field-box'>
                         <div className='create-event-field-text'>
                             Event Title <text style={{ color: 'red' }}>*</text>
                         </div>
@@ -177,7 +177,7 @@ export default function CreateEvent () {
                                 <input className='create-event-field-input'
                                     type='text' 
                                     name='title'
-                                    placeholder="Be deceptive and misleading. Don\'t arouse suspicion."
+                                    placeholder="Be deceptive and misleading. Don't arouse suspicion."
                                     onChange={e => setTitle(e.target.value)}
                                     onFocus={e => setClosestDivsActive(e)}
                                     onBlur={e => setClosestDivsInactive(e)}
@@ -231,6 +231,8 @@ export default function CreateEvent () {
                     </div>
                 </section>
 
+                <hr className='create-event-section-division-hr' id='basic-info-location-division-hr'/>
+
                 <section id='Location-box'>
                     <div className='location-description-box'>
                         <svg id="map_svg" x="0" y="0" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M20 3c-1.1 0-2 .9-2 2H2v16h17.8c1.1 0 2.1-.9 2.1-2V5c.1-1.1-.8-2-1.9-2zm-.2 17H3V6h15v13h1c0-.6.4-1 1-1 .5 0 .9.4 1 .9-.1.6-.6 1.1-1.2 1.1zm1.2-2.7c-.3-.2-.6-.3-1-.3s-.7.1-1 .3V5c0-.6.4-1 1-1s1 .4 1 1v12.3z"></path><path id="map_svg__eds-icon--map_cross" fill-rule="evenodd" clip-rule="evenodd" d="M8.8 12.7l.7-.7-1.1-1 1.1-1-.7-.7-1.1 1-1-1-.7.7 1 1-1 1 .7.7 1-1z"></path><path id="map_svg__eds-icon--map_dash_3_" fill-rule="evenodd" clip-rule="evenodd" d="M12 10h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash_2_" fill-rule="evenodd" clip-rule="evenodd" d="M15 12h1v2h-1z"></path><path id="map_svg__eds-icon--map_dash_1_" fill-rule="evenodd" clip-rule="evenodd" d="M12 15h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash" fill-rule="evenodd" clip-rule="evenodd" d="M8 15h2v1H8z"></path></svg>
@@ -241,17 +243,28 @@ export default function CreateEvent () {
                             </p>
                         </div>
                     </div>
-                    <div className='venue-address-box'>
-                    <label>Venue
-                        <input type='text' name='venue-name' onChange={e => setVenueName(e.target.value)} />
-                    </label><br/>
-                    <label>Address
-                        <input type='text' name='address' onChange={e => setAddress(e.target.value)} />
-                    </label><br/>
+                    <div className='create-event-field-box' id='create-event-venue-box'>
+                        <span className='create-event-field-input-box' id='create-event-venue-input-box'>
+                            <label>
+                                <input className='create-event-field-input'
+                                    id='create-event-venue-input'
+                                    type='text' 
+                                    name='venue-name'
+                                    placeholder="Open air venues are best - no invitation inside needed. Make sure to check the weather forecast."
+                                    onChange={e => {setVenueName(e.target.value);setAddress(e.target.value)}}
+                                    onFocus={e => setClosestDivsActive(e)}
+                                    onBlur={e => setClosestDivsInactive(e)}
+                                />
+                                <svg id="magnifying-glass-venue" x="0" y="0" viewBox="0 0 24 24"><path id="magnifying-glass-chunky_svg__eds-icon--magnifying-glass-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M10 14c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm3.5.9c-1 .7-2.2 1.1-3.5 1.1-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6c0 1.3-.4 2.5-1.1 3.4l5.1 5.1-1.5 1.5-5-5.1z"></path></svg>
+                            </label>
+                        </span>
                     </div>
                 </section>
+
+                <hr className='create-event-section-division-hr' id='location-date-division-hr'/>
                 
                 <section id='date-and-time'>
+                <svg id="calendar_svg__eds-icon--calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar_svg__eds-icon--calendar_base" fill-rule="evenodd" clip-rule="evenodd" d="M17 4V2h-1v2H8V2H7v2H2v18h20V4h-5zm4 17H3V9h18v12zM3 8V5h4v1h1V5h8v1h1V5h4v3H3z"></path><g id="calendar_svg__eds-icon--calendar_squares" fill-rule="evenodd" clip-rule="evenodd"><path d="M15 16h2v2h-2zM11 16h2v2h-2zM7 16h2v2H7zM15 12h2v2h-2zM11 12h2v2h-2zM7 12h2v2H7z"></path></g></svg>
                     <div className='event-start-container'>
                         <div className='event-start-date-container'>
                             <label>Event Starts
@@ -317,8 +330,10 @@ export default function CreateEvent () {
                     </label>
                 </section>
             </form>
-                <button className='create-event-button' onClick={handleCreate}>Create Event</button>
-            
+        <div className='event-create-button-box'>
+            <hr id='create-event-bottom-fullscreen-hr' />
+            <button className='create-event-button' onClick={handleCreate}>Create Event</button>
+        </div>
         </>
     )
 }
