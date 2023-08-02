@@ -1,0 +1,23 @@
+.likes-main {
+    border: 1px solid black;
+    width: 58em;
+    height: 20em;
+    position: relative;
+    left: 16em;
+    top: 5.5em;
+}
+
+.likes-title {
+    font-size: 50px;
+    font-weight: 700;
+    color: #1E0A3B;
+}
+
+.events-container {
+    position: absolute;
+    left: 1em;
+    top: 6em;
+    border: 1px solid black;
+    height: 10em;
+    width: 57em;
+}

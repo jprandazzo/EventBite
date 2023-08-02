@@ -37,19 +37,6 @@ export default function ShowEvent () {
         setActiveHeart(currentUser ? currentUser.likedEvents.includes(parseInt(eventId)) : false)
     }, [currentUser])
 
-    // const handleTicketDecreaseStyling = () => {
-    //     el = document.querySelector('.ticket-count-decrease')
-
-    //     if (numTickets) {
-    //         el.classList.add('clickable-ticket-button')
-    //         el.addEventListener('click', setNumTickets(numTickets-1))
-    //     } else {
-    //         if (el.classList.includes('clickable-ticket-button')) {
-    //             el.classList.remove('clickable-ticket-button')};
-    //         el.removeEventListener('click');
-    //     }
-    // }
-
     const handlePurchase = (eventId) => {
 
         if (!currentUser) {
@@ -92,7 +79,6 @@ export default function ShowEvent () {
         if (event) {
             return (
                 <>
-                <script src="https://kit.fontawesome.com/12ab2d7ded.js" crossorigin="anonymous"></script>
                     {currentUser ? <NavBarLoggedIn /> : <NavBarLoggedOut />}
                     <main>
                         <div className='show-event-photo-container'>

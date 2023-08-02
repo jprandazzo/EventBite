@@ -24,6 +24,7 @@ export const fetchEvents = () => async dispatch => {
         type: RECEIVE_EVENTS,
         events: data.events
     })
+    return [data.events, true]
 }
 
 export const fetchEvent = (eventId) => async dispatch => {

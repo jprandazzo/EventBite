@@ -12,7 +12,7 @@ import ShowEvent from './components/events/ShowEvent';
 import OrderIndex from './components/orders/OrderIndex';
 import OrderShow from './components/orders/OrderShow';
 import OrganizerEventIndex from './components/users/OrganizerEventIndex';
-import * as sessionActions from './store/sessionReducer';
+import LikedEvents from './components/likes/LikedEvents';
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
         <Route path='/events/:eventId/edit' component={EditEvent} /> 
         <Route path='/events/search' component={SearchEvents} />
         <Route path='/events/:eventId' component={ShowEvent} />
+        <Route path='/users/:userId/favorites' component={LikedEvents}/>
         <Route path='/user/:userId' component={OrderIndex} />
         <Route path='/orders/:orderId' component={OrderShow} />
         
