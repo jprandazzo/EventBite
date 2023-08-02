@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :show, :destroy]
     resources :events, only: [:create, :index, :show, :destroy, :update]
     resources :orders, only: [:create, :destroy, :show]
+    resources :likes, only: [:create, :destroy]
   end
 
   get "*path", to: "static_pages#frontend_index"

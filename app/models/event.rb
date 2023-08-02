@@ -34,8 +34,9 @@ class Event < ApplicationRecord
     belongs_to :organizer, class_name: :User, foreign_key: :organizer_id
 
     has_many :orders, dependent: :destroy
-
     has_many :ticketholders, through: :orders
+    has_many :likes, dependent: :destroy
+    has_many :likers, through: :likes, source: :liker
 
     validates :event_type, inclusion: {in: %w(
                 attraction 

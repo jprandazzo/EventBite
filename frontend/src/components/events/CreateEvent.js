@@ -189,7 +189,7 @@ export default function CreateEvent () {
 
                     <div className='create-event-field-box'>
                         <div className='create-event-field-text'>
-                            Event Title <plaintext style={{ color: 'red' }}>*</plaintext>
+                            Event Title <b style={{ color: 'red' }}>*</b>
                         </div>
 
                         <br />

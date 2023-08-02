@@ -17,7 +17,7 @@ import * as sessionActions from './store/sessionReducer';
 function App() {
   return (
     <>
-    
+
       <Switch>
         <Route exact path="/" component={SplashPage} />
         <Route path='/all-events' component={AllEvents} />

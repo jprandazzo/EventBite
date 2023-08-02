@@ -24,8 +24,9 @@ class User < ApplicationRecord
     has_secure_password
 
     has_one_attached :profile_photo
-    has_many :organized_events, class_name: :Event, foreign_key: :organizer_id, inverse_of: :organizer
-    # has_many :orders, inverse_of: :ticketholder
+    has_many :organized_events, class_name: :Event, foreign_key: :organizer_id, inverse_of: :organizer, dependent: :destroy
+    has_many :likes, class_name: :Like, foreign_key: :liker_id, dependent: :destroy
+    has_many :liked_events, through: :likes, source: :event
 
     before_validation :ensure_session_token
 

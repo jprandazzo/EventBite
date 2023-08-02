@@ -6,6 +6,7 @@ json.user do
     json.organized_events Event.all.where(organizer_id: @user.id).order(:timestamp_start).map(&:id)
     json.attending_events @user.attending_events.map(&:id)
     json.orders @user_orders.order(:created_at).map(&:id).reverse!
+    json.liked_events @user.liked_events.map(&:id)
 end
 
 json.events do
@@ -44,6 +45,24 @@ json.events do
             description: event.description
         }
     end
+
+    @user.liked_events do |event|
+        json.set! event.id, {
+            id: event.id, 
+            title: event.title,
+            organizerName: event.organizer_name,
+            venueName: event.venue_name,
+            address: event.address,
+            timestampStart: event.timestamp_start,
+            timestampEnd: event.timestamp_end,
+            eventType: event.event_type,
+            eventCategory: event.event_category,
+            capacity: event.capacity,
+            ticketsSold: event.tickets_sold,
+            price: event.price.to_i,
+            description: event.description
+        }
+    end
 end
 
 json.orders do
@@ -54,6 +73,16 @@ json.orders do
             ticketholderId: order.ticketholder_id,
             numTickets: order.num_tickets,
             createdAt: order.created_at
+        }
+    end
+end
+
+json.likes do 
+    @user.likes do |like|
+        json.set! like.id, {
+            id: like.id,
+            eventId: like.event_id,
+            likerId: @user.id
         }
     end
 end

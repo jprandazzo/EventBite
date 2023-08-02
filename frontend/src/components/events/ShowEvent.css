@@ -1,8 +1,5 @@
-.show-event-page {
+.main {
     font-family: 'Neue Plak';
-    position: relative;
-    top: 5em;
-    left: 3em;
 }
 
 .show-event-page b {
@@ -16,4 +13,341 @@
     padding-bottom: none;
     margin-bottom: none;
     height: 2em;
+}
+
+.show-event-photo-container {
+    width: 80%;
+    height: 24em;
+    position: relative;
+    z-index: -1;
+    margin: 0 10% 0 10%;
+    top: 0em;
+    transform: scale(1.15,1.15);
+}
+
+.show-event-photo-container svg {
+    position: absolute;
+    width: 100%;
+    height: 24em;
+}
+
+.show-event-photo-container svg g {
+    width: 100%;
+    height: 24em;
+}
+
+.show-event-photo {
+    position: absolute;
+    z-index: 1;
+    height: 26em;
+    width: 70%;
+    margin: 0 15% 0 15%;
+    border: dashed 1px black;
+}
+
+.centered {
+    position: relative;
+    height: 40em;
+    width: 65%;
+    margin: 0% 15% 0% 0%;
+    top: 28em;
+}
+
+.show-event-basic-details-1 {
+    position: relative;
+    width: 100%;
+    height: 9em;
+}
+
+.show-event-date-1 {
+    position: absolute;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.show-event-title-1 {
+    position: absolute;
+    top: .4em;
+    font-size: 50px;
+    font-weight: 600;
+    color: #1E0A3B;
+}
+
+.show-event-organizer {
+    position: absolute;
+    top: 7em;
+    left: 1em;
+    color: grey;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* .show-event-type {
+    position: absolute;
+    top: 10em;
+    height: 2em;
+    width: 2em;
+    font-size: 14px;
+    color: grey;
+}
+
+.show-event-category {
+    position: absolute;
+    top: 2em;
+    font-size: 14px;
+    color: grey;
+} */
+
+.show-event-heart-like {
+    height: 38px;
+    width: 38px;
+    position: absolute;
+    right: 1em;
+    border-radius: 50%;
+    transition: background-color 300ms ease-in-out;
+}
+
+.show-event-heart-like:hover {
+    cursor:pointer;
+    background-color: #F8F7FA;
+}
+
+.show-event-heart-like svg {
+    position: absolute;
+    top: .4em;
+    left: .4em;
+    fill: grey;
+}
+#fa-heart-empty {
+    height: 28px;
+    width: 28px;
+    fill: grey;
+}
+
+#fa-heart-filled {
+    fill: #D1420A;
+}
+
+.active-heart path {
+    fill: #D1420A !important;
+    background-color: #D1420A !important;
+}
+
+.ticket-purchase-container {
+    height: 12em;
+    width: 24em;
+    position: relative;
+    top: 1em;
+    left: 48em;
+    border: 1px solid #e2e2e2;
+    border-radius: 15px;
+}
+
+.ticket-price-count-container {
+    position: absolute;
+    top: 1em;
+    width: 80%;
+    height: 6em;
+    margin: 0 10% 0 10%;
+    border: 2px solid blue;
+    border-radius: 10px;
+}
+
+.ticket-price-container {
+    position: absolute;
+    left: 1em;
+    text-align: left;
+    font-weight: 500;
+    line-height: 3em;
+}
+
+.ticket-count-decrease {
+    position: absolute;
+    right: 6.5em;
+    top: .5em;
+    height: 2.5em;
+    width: 2.5em;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+}
+
+.ticket-count-increase {
+    position: absolute;
+    right: .5em;
+    top: .3em;
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 10px;
+    border: none;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.clickable-count {
+    cursor:pointer;
+    background-color: #3659E3;
+    color: white;
+    transition: background-color 300ms ease-in-out;
+}
+
+.clickable-count:hover {
+    background-color: #2c4ac1;
+}
+
+.unclickable-count {
+    color: grey;
+}
+
+.ticket-count-increase:hover {
+    cursor:pointer;
+    background-color: #2c4ac1;
+}
+
+.ticket-count-text {
+    position: absolute;
+    top: .6em;
+    right: 2.5em;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.ticket-purchase-button {
+    position: relative;
+    height: 45px;
+    width: 24em;
+    margin: 0 10% 0 10%;
+    top: 9.75em;
+    font-size: 13px;
+    font-weight: 550;
+    background: #d1420a !important;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: filter 700ms;
+}
+  
+.ticket-purchase-button:hover {
+    cursor: pointer;
+    filter: brightness(1.15);
+}
+
+.show-event-when-where-container {
+    position: relative;
+    top: -11em;
+    height: 11.8em;
+    position: relative;
+    width: 45em;
+}
+
+.show-event-when-where {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1E0A3B;
+    position: absolute;
+    left: 0em;
+}
+
+.show-event-timestamp-container {
+    position: absolute;
+    left: 0em;
+    top: 3em;
+    height: 7em;
+    width: 19em;
+}
+
+.show-event-svg-container {
+    position: absolute;
+    left: 0em;
+    background-color: #EFEFEF;
+    border-radius: 10px;
+    padding: .3em;
+}
+
+.show-event-svg {
+    fill: #0924E9;
+    transform: scale(.6);
+}
+
+.vl {
+    position: absolute;
+    top: 2em;
+    left: 22em;
+    border-left: 1px solid #e2e2e2;
+    height: 2.5em;
+}
+
+.show-event-location-container {
+    position: absolute;
+    top: 3em;
+    height: 7em;
+    width: 18em;
+    right: 2em;
+}
+
+.show-event-date-location-header {
+    position: absolute;
+    left: 3em;
+    top: .3em;
+    font-size: 18px;
+    font-weight: 500;
+    color: #1E0A3B;
+}
+
+.show-event-date-location-detail {
+    position: absolute;
+    top: 3em;
+    left: 4.2em;
+    width: 16em;
+    color: grey;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.show-event-about {
+    position: relative;
+    width: 45em;
+    height: 20em;
+}
+
+.about-event-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1E0A3B;
+    position: absolute;
+    left: 0em;
+}
+
+.event-length {
+    position: absolute;
+    left: 0em;
+    top: 2em;
+    background: #efefef;
+    border-radius: 10px;
+    padding: .3em;
+    height: 2em;
+    width: 2em;
+}
+
+#clock-svg {
+    position: absolute;
+    left: .5em;
+    transform: scale(.6);
+    fill: #0924E9;
+}
+
+.event-length-in-hours {
+    position: absolute;
+    left: 3em;
+    top: 1em;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1E0A3B;
+    width: 7em;
+}
+
+.event-description {
+    position: absolute;
+    top: 8em;
+    color: #1E0A3B;
 }
