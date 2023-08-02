@@ -768,7 +768,7 @@ input:focus {
 
 .create-event-discard-button:hover {
   cursor: pointer;
-  filter: brightness(1.15);
+  filter: brightness(.9);
 }
 
 .create-event-button:hover {

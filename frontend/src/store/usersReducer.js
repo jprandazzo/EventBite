@@ -38,10 +38,9 @@ export const updateUser = (user) => async dispatch => {
         body: JSON.stringify(user)
     })
     const data = await response.json();
-
     dispatch({
         type: RECEIVE_USER,
-        user: data
+        user: data.user
     })
 }
 

@@ -12,12 +12,14 @@ import * as sessionActions from './store/sessionReducer'
 import * as eventActions from './store/eventsReducer'
 import * as userActions from './store/usersReducer'
 import { createUser, loginUser, logoutUser } from './store/usersReducer'; 
+import moment from 'moment-timezone';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
   window.sessionActions = sessionActions;
+  window.moment = moment;
   window.eventActions = eventActions;
   window.userActions = userActions;
   window.store = store;

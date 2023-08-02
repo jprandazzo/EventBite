@@ -2,19 +2,6 @@
     font-family: 'Neue Plak';
 }
 
-.show-event-page b {
-    font-weight: 600;
-}
-
-.show-event-page {
-    position: relative;
-    left: 5em;
-    list-style-type: disc;
-    padding-bottom: none;
-    margin-bottom: none;
-    height: 2em;
-}
-
 .show-event-photo-container {
     width: 80%;
     height: 24em;
@@ -45,12 +32,12 @@
     border: dashed 1px black;
 }
 
-.centered {
+.show-event-centered {
     position: relative;
+    top: 10em;
     height: 40em;
-    width: 65%;
-    margin: 0% 15% 0% 0%;
-    top: 28em;
+    width: 64%;
+    margin: 0% 18% 0% 18%;
 }
 
 .show-event-basic-details-1 {
@@ -338,7 +325,7 @@
 
 .event-length-in-hours {
     position: absolute;
-    left: 3em;
+    left: 4em;
     top: 1em;
     font-size: 13px;
     font-weight: 500;

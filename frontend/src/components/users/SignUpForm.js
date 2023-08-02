@@ -84,7 +84,7 @@ export default function SignUpForm () {
         <>
             <main onClick={e => focusInput(e)}>
             <section className='split split-left' id='signin'>
-                    <div className='centered'>
+                    <div className='auth-centered'>
                         <div id='eblogo-auth'>
                             <Link to='/'>
                                 <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' />
@@ -153,7 +153,7 @@ export default function SignUpForm () {
                     </div>
                 </section>
                 <section className='split split-right' id='auth-side-photo'>
-                    <div className='centered login-image'>
+                    <div className='auth-centered login-image'>
                         {/* <img src='https://i.ibb.co/Qp4jyky/Screenshot-2023-07-26-at-1-38-15-PM.png' /> */}
                     </div>
                 </section>

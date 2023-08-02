@@ -33,6 +33,10 @@ export default function ShowEvent () {
         awaitFetchBeforeLoading()
     }, [])
 
+    useEffect(() =>{
+        setActiveHeart(currentUser ? currentUser.likedEvents.includes(parseInt(eventId)) : false)
+    }, [currentUser])
+
     // const handleTicketDecreaseStyling = () => {
     //     el = document.querySelector('.ticket-count-decrease')
 
@@ -62,12 +66,6 @@ export default function ShowEvent () {
         }
     }
 
-    useEffect(() =>{
-        if (numTickets) {
-            document.querySelector('.ticket-count-decrease').addEventListener('click', handlePlusMinusClick)
-        }
-    }, [numTickets])
-
     const handlePlusMinusClick = (e) =>{
         if (e.target.innerHTML === '+') {
             setNumTickets(numTickets+1)
@@ -77,17 +75,15 @@ export default function ShowEvent () {
     }
 
     const heartIcon = () => {
-        if (activeHeart) {
+        if (!activeHeart) {
             return (<svg id='fa-heart-empty' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"> {/*<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->*/}<path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg>)
         } else return (<svg id='fa-heart-filled' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">{/*<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->*/}<path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>)
     }
 
     const heartReact = () =>{ 
         setActiveHeart(!activeHeart)
-
-        // return (
-        //     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
-        // )
+        currentUser['currentPageId'] = eventId    
+        dispatch(userActions.updateUser(currentUser)) 
     }
     
     if (!doneLoading) {
@@ -106,7 +102,7 @@ export default function ShowEvent () {
                             </div>
                         </div>
 
-                        <div className='centered show-event-details-container'>
+                        <div className='show-event-centered show-event-details-container'>
 
                             <div className='show-event-basic-details-1'>
                                 <div className='show-event-date-1'>
@@ -120,7 +116,7 @@ export default function ShowEvent () {
                                 <div className='show-event-category'>{event.category}</div> */}
                                 <div className='show-event-heart-like' onClick={heartReact}>
                                     {/* <svg id="heart-chunky_svg" x="0" y="0" viewBox="0 0 24 24" ><path id="heart-chunky_svg__eds-icon--heart-chunky_base" fillRule="nonzero" clipRule="evenodd" d="M18.8 6.2C18.1 5.4 17 5 16 5c-1 0-2 .4-2.8 1.2L12 7.4l-1.2-1.2C10 5.4 9 5 8 5c-1 0-2 .4-2.8 1.2-1.5 1.6-1.5 4.2 0 5.8l6.8 7 6.8-7c1.6-1.6 1.6-4.2 0-5.8zm-1.4 4.4L12 16.1l-5.4-5.5c-.8-.8-.8-2.2 0-3C7 7.2 7.5 7 8 7c.5 0 1 .2 1.4.6l2.6 2.7 2.7-2.7c.3-.4.8-.6 1.3-.6s1 .2 1.4.6c.8.8.8 2.2 0 3z" fill='#D1420A'></path></svg> */}
-                                    {heartIcon}
+                                    {heartIcon()}
                                 </div>
                             </div>
                         
@@ -164,7 +160,7 @@ export default function ShowEvent () {
                                 <div className='event-length'>
                                     <svg id='clock-svg' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">{/*<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->*/}<path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
                                     <div className='event-length-in-hours'>
-                                        {moment.duration(moment(event.timestampStart).diff(moment(event.timestampEnd))).asHours()} hours
+                                        {moment.duration(moment(event.timestampEnd).diff(moment(event.timestampStart))).asHours()} hours
                                     </div>
                                 </div>
                                 

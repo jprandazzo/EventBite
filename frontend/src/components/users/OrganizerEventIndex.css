@@ -253,6 +253,9 @@
 
 .edit-delete-dropdown {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 0em;
     left: 0em;
     z-index: 2;
@@ -260,9 +263,13 @@
     height: 42px;
     width: 42px;
     transition: background-color 300ms ease-in-out;
+    /* text-align: center;
+    vertical-align: center; */
 }
 
 .edit-delete-dropdown svg {
+    /* position: relative;
+    top: .3em; */
     cursor:pointer;
 }
 

@@ -8,7 +8,7 @@ class Api::LikesController < ApplicationController
 
         if @like.valid?
             @like.save
-            render :show
+            render 'api/users/show'
         else
             render json [@like.errors.full_messages],
             status: :unprocessable_entity
@@ -20,7 +20,7 @@ class Api::LikesController < ApplicationController
         id = @like.id
         if @like.liker_id == params[:liker_id]
             @like.destroy
-            render :destroy
+            render 'api/users/show'
         else
             render json [@like.errors.full_messages],
             status: :unprocessable_entity
