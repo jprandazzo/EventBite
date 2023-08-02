@@ -61,7 +61,7 @@ export const updateEvent = (event) => async dispatch => {
         body: JSON.stringify(event)
     })
     const data = await response.json();
-
+    debugger
     dispatch({
         type: RECEIVE_EVENT,
         event: data.event

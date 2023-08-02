@@ -21,15 +21,7 @@ json.events do
             price: event.price,
             description: event.description
         }
+        json.tix_sold event.orders.count
     end
 
-    # Event.all.each do |event| 
-    #     json.set! event.id.to_s {json.extract! event, :id, :title}
-    # end
-
-    # Event.all.each do |event| 
-    #     id = event.id.to_s
-    #     obj = json.extract! event, :id, :title
-    #     json.set! id, obj
-    # end
 end

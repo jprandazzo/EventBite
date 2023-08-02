@@ -7,6 +7,7 @@ import { restoreSession } from './store/sessionReducer.js';
 import { BrowserRouter, useLocation } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import configureStore from './store';
+// import Grid from '@react-css/grid';
 import * as sessionActions from './store/sessionReducer'
 import * as eventActions from './store/eventsReducer'
 import * as userActions from './store/usersReducer'

@@ -20,7 +20,6 @@ class Api::SessionsController < ApplicationController
             @user_organized_events = Event.where(organizer_id: @user.id)
             @user_attending_events = @user.attending_events
             @user_orders = @user.orders
-            debugger
             render :show
         else
             render json: { errors: ['Invalid Email or Password.'] }, 

@@ -21,10 +21,11 @@
     left: 19.5em;
     padding: 1.1em 1.5em;
     background: #d1420a;
-    font-family: 'Roboto';
-    font-weight: 500;
+    font-family: 'Neue Plak';
+    font-size: 14px;
+    font-weight: 600;
     border: none;
-    border-radius: 3px;
+    border-radius: 4px;
     color: white;
 }
 

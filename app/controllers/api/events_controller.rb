@@ -26,11 +26,10 @@ class Api::EventsController < ApplicationController
     end
 
     def update
-        @event=Event.find(params[:id])
-
+        @event=Event.find(params[:event_id])
+        debugger
         if @event.organizer_id == current_user.id
             @event.update(event_params)
-            
             @event.save
             render :show
             
@@ -45,9 +44,8 @@ class Api::EventsController < ApplicationController
         debugger
 
         if @event.organizer_id == current_user.id
-            id = @event.id
             @event.destroy
-            render json: {event_id: id}
+            render json: {event_id: params[:id]}
         else
             render json: {errors: 'Must be event owner to delete!'},
             status: :unprocessable_entity
@@ -56,6 +54,6 @@ class Api::EventsController < ApplicationController
 
     private
     def event_params
-        params.require(:event).permit(:address, :capacity, :event_category, :organizer_name, :title, :event_type, :venue_name, :organizer_id, :price, :description, :timestamp_start, :timestamp_end)
+        params.require(:event).permit(:event_id, :address, :capacity, :event_category, :organizer_name, :title, :event_type, :venue_name, :organizer_id, :price, :description, :timestamp_start, :timestamp_end)
     end
 end

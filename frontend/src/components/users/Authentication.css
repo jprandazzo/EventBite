@@ -54,6 +54,7 @@ main {
     top: -3.5em;
     font-size: 52px;
     font-weight: 700;
+    text-align: left;
 }
 
 #create-account {

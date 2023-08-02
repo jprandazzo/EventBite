@@ -9,4 +9,5 @@ json.event do
         :price, :capacity, :tickets_sold,
         :event_category, :event_type,
         :description
+    json.tix_sold @event.orders.count
 end

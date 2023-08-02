@@ -28,7 +28,7 @@ export const fetchUserEvents = (userId) => async dispatch => {
         events: data.events,
         orders: data.orders
     })
-
+    return data
 }
 
 export const updateUser = (user) => async dispatch => {

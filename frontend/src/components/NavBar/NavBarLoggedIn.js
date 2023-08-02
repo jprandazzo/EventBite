@@ -74,7 +74,7 @@ export default function NavBarLoggedIn () {
                         <Link to='/search'>
                             <div id='search-events'>
                                 <svg id="magnifying-glass" x="0" y="0" viewBox="0 0 24 24"><path id="magnifying-glass-chunky_svg__eds-icon--magnifying-glass-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M10 14c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm3.5.9c-1 .7-2.2 1.1-3.5 1.1-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6c0 1.3-.4 2.5-1.1 3.4l5.1 5.1-1.5 1.5-5-5.1z"></path></svg>
-                                <div id='search-text'><text>Search events</text></div>
+                                <div id='search-text'>Search events</div>
                             </div>
                         </Link> 
                     </li>
@@ -85,22 +85,22 @@ export default function NavBarLoggedIn () {
                             <svg id="user-in-chevron-down" x="0" y="0" viewBox="0 0 24 24"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg>
                             <div className='dropdown-content hidden' id='user-in-dropdown-content'>
                                 <ul>
-                                    <li><Link to='/all-events'><div className='dropdown-content-text-box'>Browse Events</div></Link></li>
-                                    <li><Link to='/organizer/events'><div className='dropdown-content-text-box'>Manage my Events</div></Link></li>
-                                    <li><Link to={`/user/${currentUserId}`}><div className='dropdown-content-text-box'>Tickets ({currentUser?.attendingEvents?.length})</div></Link></li>
+                                    <li onClick={()=>history.push('/all-events')}><div className='dropdown-content-text-box'>Browse Events</div></li>
+                                    <li onClick={()=>history.push('/organizer/events')}><div className='dropdown-content-text-box'>Manage my Events</div></li>
+                                    <li onClick={()=>history.push(`/user/${currentUser?.id}`)}><div className='dropdown-content-text-box'>Tickets ({currentUser?.attendingEvents?.length})</div></li>
                                     {/* <li><div className='dropdown-content-text-box'>Liked</div></li>
                                     <li><div className='dropdown-content-text-box'>Following</div></li> */}
                                     <li onClick={logout}><div className='dropdown-content-text-box'>Logout</div></li>
                                 </ul>
                             </div>
                             <div id='user-icon-svg-circle-container'>
-                                <svg id="user-icon-svg" x="0" y="0" viewBox="0 0 24 24"><path id="user-chunky_svg__eds-icon--user-chunky_base" fill-rule="evenodd" clip-rule="evenodd" d="M12 18c-1.2 0-2.4-.3-3.5-.7.6-1.3 2-2.2 3.5-2.2s2.9.9 3.5 2.2c-1.1.4-2.3.7-3.5.7zm6.5-2.9c-.4.4-.8.8-1.3 1.1a5.989 5.989 0 00-10.6 0c-.5-.3-.9-.7-1.3-1.1L4 16.5c2.1 2.3 5 3.5 8 3.5s5.9-1.3 8-3.5l-1.5-1.4z"></path><path id="user-chunky_svg__eds-icon--user-chunky_circle" fill-rule="evenodd" clip-rule="evenodd" d="M12 4C9.7 4 7.8 5.9 7.8 8.2s1.9 4.2 4.2 4.2 4.2-1.9 4.2-4.2S14.3 4 12 4zm0 6.4c-1.2 0-2.2-1-2.2-2.2C9.8 7 10.8 6 12 6s2.2 1 2.2 2.2c0 1.2-1 2.2-2.2 2.2z"></path></svg>
+                                <svg id="user-icon-svg" x="0" y="0" viewBox="0 0 24 24"><path id="user-chunky_svg__eds-icon--user-chunky_base" fillRule="evenodd" clip-rule="evenodd" d="M12 18c-1.2 0-2.4-.3-3.5-.7.6-1.3 2-2.2 3.5-2.2s2.9.9 3.5 2.2c-1.1.4-2.3.7-3.5.7zm6.5-2.9c-.4.4-.8.8-1.3 1.1a5.989 5.989 0 00-10.6 0c-.5-.3-.9-.7-1.3-1.1L4 16.5c2.1 2.3 5 3.5 8 3.5s5.9-1.3 8-3.5l-1.5-1.4z"></path><path id="user-chunky_svg__eds-icon--user-chunky_circle" fillRule="evenodd" clip-rule="evenodd" d="M12 4C9.7 4 7.8 5.9 7.8 8.2s1.9 4.2 4.2 4.2 4.2-1.9 4.2-4.2S14.3 4 12 4zm0 6.4c-1.2 0-2.2-1-2.2-2.2C9.8 7 10.8 6 12 6s2.2 1 2.2 2.2c0 1.2-1 2.2-2.2 2.2z"></path></svg>
                             </div>
                         </div>
                     </li>
 
                     <li className='nav-right'> 
-                        <Link to={`/users/${currentUser?.id}`}>
+                        <Link to={`/user/${currentUser?.id}`}>
                             <div id='nav-in-tickets'>    
                                 <svg id='ticket-svg' viewBox="0 0 24 24"><path d="M10 13v-2h4v2zm6 5V6h-.4C15 7.4 13.8 8.4 12 8.4S9 7.4 8.4 6H8v12h.4c.6-1.4 1.8-2.4 3.6-2.4s3 1 3.6 2.4zM14 4h4v16h-4s0-2.4-2-2.4-2 2.4-2 2.4H6V4h4s0 2.4 2 2.4S14 4 14 4z"></path></svg>
                                 <div id='nav-in-tickets-text'>Tickets</div>

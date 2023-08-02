@@ -25,6 +25,7 @@ json.events do
             price: event.price.to_i,
             description: event.description
         }
+        json.tix_sold event.orders.count
     end
     @user_attending_events.each do |event| 
         json.set! event.id, {

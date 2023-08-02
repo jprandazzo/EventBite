@@ -31,7 +31,7 @@ export default function SplashPage () {
             <br />
             <div className='splash-banner'>
                 <Link to='/search'>
-                    <button>
+                    <button id='event-search-button'>
                         Find your next event
                     </button>
                 </Link>

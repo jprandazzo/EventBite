@@ -56,24 +56,22 @@ export default function CreateEvent () {
 
     const focusInput = (e) => {
         //blur anything that's currently focused
-        Array.from(document.querySelectorAll('.create-event-input'))
+        Array.from(document.querySelectorAll('.create-event-field-input'))
             .forEach(el => {
                 el.blur()
             })
         
         //whichever div is clicked, find its input and focus it
-        if (e.target.className === 'create-event-title-box') {
-
-            let textFieldTitle = Array.from(e.target.childNodes)[0]
-            let input = e.target.childNodes[2].childNodes[0].childNodes[0]
+        if (e.target.className === 'create-event-field-box') {
+            let input = e.target.querySelector('.create-event-field-input')
             input.focus()
         } else if (e.target.className === 'create-event-field-text') {
-            
+
             let outerDiv = e.target.parentNode
-            let input = outerDiv.childNodes[2].childNodes[0].childNodes[0]
+            let input = outerDiv.querySelector('.create-event-field-input')
             input.focus()
 
-        } else if (e.target.className === 'create-event-input') {
+        } else if (e.target.className === 'create-event-field-input') {
             e.target.focus()
         }
     }
@@ -81,11 +79,26 @@ export default function CreateEvent () {
     function setClosestDivsActive(e){
         //add 'focus' class to both surrounding divs of the input
         //that was focused
-        let outerDiv = e.target.closest('div')
-        outerDiv.classList.add('active-div')
+        if (Array.from(document.querySelector('.event-start-date-button').querySelectorAll('*')).includes(e.target)
+            || Array.from(document.querySelector('.event-end-date-button').querySelectorAll('*')).includes(e.target)
+            ) {
+            return;
+        }
 
-        let textFieldTitle = Array.from(outerDiv.childNodes)[0]
-        textFieldTitle.classList.add('active-field')
+        if (e.target.closest('div').classList.contains('create-event-field-text')) {
+            let outerDiv = e.target.closest('div').parentNode
+            outerDiv.classList.add('active-div')
+
+            let textFieldTitle = outerDiv.querySelector('.create-event-field-text')
+            textFieldTitle.classList.add('active-field')
+        } else if (e.target.closest('div').classList.contains('create-event-field-box')) {
+            let outerDiv = e.target.closest('div')
+            outerDiv.classList.add('active-div')
+
+            let textFieldTitle = outerDiv.querySelector('.create-event-field-text')
+            textFieldTitle?.classList.add('active-field')
+        }
+
     }
 
     function setClosestDivsInactive(e) {
@@ -99,10 +112,17 @@ export default function CreateEvent () {
 
     const toggleCalendar = (e) =>{
         e.preventDefault();
+        // debugger
 
-        if (e.target.classList.contains('timestamp-start') || e.target.classList.contains('calendar-timestamp-start')) {
+        if ((e.target === document.querySelector('.event-start-date-button') || Array.from(document.querySelector('.event-start-date-button').querySelectorAll('*')).includes(e.target))
+            && !(e.target.classList.contains("event-date-value") 
+            || e.target.classList.contains('react-calendar__tile')
+            || e.target.parentNode.classList.contains('react-calendar__tile'))) {
             setStartCalActive(true)
-        } else if (e.target.classList.contains('timestamp-end') || e.target.classList.contains('calendar-timestamp-end')) {
+        } else if ((e.target === document.querySelector('.event-end-date-button') || Array.from(document.querySelector('.event-end-date-button').querySelectorAll('*')).includes(e.target))
+            && !(e.target.classList.contains("event-date-value") 
+            || e.target.classList.contains('react-calendar__tile')
+            || e.target.parentNode.classList.contains('react-calendar__tile'))) {
             setEndCalActive(true)
         } else {
             setStartCalActive(false)
@@ -118,13 +138,15 @@ export default function CreateEvent () {
             eventCategory,
             venueName,
             address,
-            timestampStart: moment(`${eventStartDate} ${eventStartTime}`).tz('America/New_York').format(),
-            timestampEnd: moment(`${eventEndDate} ${eventEndTime}`).tz('America/New_York').format(),
+            timestampStart: moment(`${eventStartDate.toString().slice(0,15)} ${eventStartTime}`).tz('America/New_York').format(),
+            timestampEnd: moment(`${eventEndDate.toString().slice(0,15)} ${eventEndTime}`).tz('America/New_York').format(),
             capacity,
             price,
             description,
             organizerId: currentUser.id
         }
+
+        debugger
         setErrors([])
         return dispatch(eventActions.createEvent(event))
             // .catch(async (res) => {
@@ -148,7 +170,7 @@ export default function CreateEvent () {
             
             <br />
             <div id='back-to-organized-events'>
-                <Link to='/organizer/events'><span><svg id="chevron-left-chunky_svg__eds-icon--chevron-left-chunky_svg" x="0" y="0" viewBox="0 0 24 24" ><path id="chevron-left-chunky_svg__eds-icon--chevron-left-chunky_base" fill-rule="evenodd" clip-rule="evenodd" d="M13.8 7l-5 5 5 5 1.4-1.4-3.6-3.6 3.6-3.6z"></path></svg>
+                <Link to='/organizer/events'><span><svg id="chevron-left-chunky_svg__eds-icon--chevron-left-chunky_svg" x="0" y="0" viewBox="0 0 24 24" ><path id="chevron-left-chunky_svg__eds-icon--chevron-left-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M13.8 7l-5 5 5 5 1.4-1.4-3.6-3.6 3.6-3.6z"></path></svg>
                 Events</span></Link>
             </div>
 
@@ -156,7 +178,7 @@ export default function CreateEvent () {
             <form className='centered-create-event' onClick={(e) =>{toggleCalendar(e); focusInput(e)}}>
                 <section id='basic-info'>
                     <div id='basic-info-description-box'>
-                        <svg id="title-edit-svg" x="0" y="0" viewBox="0 0 24 24"><path id="title-edit_svg__eds-icon--title-edit_base" fill-rule="evenodd" clip-rule="evenodd" d="M2 2v3h1V3h5v10H6v1h5v-1H9V3h5v2h1V2H2z"></path><g id="title-edit_svg__eds-icon--title-edit_lines" fill-rule="evenodd" clip-rule="evenodd"><path d="M15 9h7v1h-7zM15 13h7v1h-7zM6 17h16v1H6zM6 21h16v1H6z"></path></g></svg>
+                        <svg id="title-edit-svg" x="0" y="0" viewBox="0 0 24 24"><path id="title-edit_svg__eds-icon--title-edit_base" fillRule="evenodd" clipRule="evenodd" d="M2 2v3h1V3h5v10H6v1h5v-1H9V3h5v2h1V2H2z"></path><g id="title-edit_svg__eds-icon--title-edit_lines" fillRule="evenodd" clip-rule="evenodd"><path d="M15 9h7v1h-7zM15 13h7v1h-7zM6 17h16v1H6zM6 21h16v1H6z"></path></g></svg>
                         <h2 id='basic-info-h2'>Basic Info</h2>
                         <div id='basic-info-p-container'>
                             <p>
@@ -167,7 +189,7 @@ export default function CreateEvent () {
 
                     <div className='create-event-field-box'>
                         <div className='create-event-field-text'>
-                            Event Title <text style={{ color: 'red' }}>*</text>
+                            Event Title <plaintext style={{ color: 'red' }}>*</plaintext>
                         </div>
 
                         <br />
@@ -186,7 +208,7 @@ export default function CreateEvent () {
                         </span>
                     </div>
                     
-                    <div className='create-event-organizer-box'>
+                    <div className='create-event-field-box'>
                         <div className='create-event-field-text'>
                             Organizer
                         </div>
@@ -195,11 +217,11 @@ export default function CreateEvent () {
 
                         <span className='create-event-field-input-box'>
                             <label>
-                                <input className='create-event-field-organizer-input'
+                                <input className='create-event-field-input'
                                     type='text' 
                                     name='title'
                                     placeholder="Fake names are fine. Avoid giving out details that could help slayers track us."
-                                    onChange={e => setTitle(e.target.value)}
+                                    onChange={e => setOrganizerName(e.target.value)}
                                     onFocus={e => setClosestDivsActive(e)}
                                     onBlur={e => setClosestDivsInactive(e)}
                                 />
@@ -235,7 +257,7 @@ export default function CreateEvent () {
 
                 <section id='Location-box'>
                     <div className='location-description-box'>
-                        <svg id="map_svg" x="0" y="0" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M20 3c-1.1 0-2 .9-2 2H2v16h17.8c1.1 0 2.1-.9 2.1-2V5c.1-1.1-.8-2-1.9-2zm-.2 17H3V6h15v13h1c0-.6.4-1 1-1 .5 0 .9.4 1 .9-.1.6-.6 1.1-1.2 1.1zm1.2-2.7c-.3-.2-.6-.3-1-.3s-.7.1-1 .3V5c0-.6.4-1 1-1s1 .4 1 1v12.3z"></path><path id="map_svg__eds-icon--map_cross" fill-rule="evenodd" clip-rule="evenodd" d="M8.8 12.7l.7-.7-1.1-1 1.1-1-.7-.7-1.1 1-1-1-.7.7 1 1-1 1 .7.7 1-1z"></path><path id="map_svg__eds-icon--map_dash_3_" fill-rule="evenodd" clip-rule="evenodd" d="M12 10h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash_2_" fill-rule="evenodd" clip-rule="evenodd" d="M15 12h1v2h-1z"></path><path id="map_svg__eds-icon--map_dash_1_" fill-rule="evenodd" clip-rule="evenodd" d="M12 15h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash" fill-rule="evenodd" clip-rule="evenodd" d="M8 15h2v1H8z"></path></svg>
+                        <svg id="map_svg" x="0" y="0" viewBox="0 0 24 24"><path fillRule="evenodd" clip-rule="evenodd" d="M20 3c-1.1 0-2 .9-2 2H2v16h17.8c1.1 0 2.1-.9 2.1-2V5c.1-1.1-.8-2-1.9-2zm-.2 17H3V6h15v13h1c0-.6.4-1 1-1 .5 0 .9.4 1 .9-.1.6-.6 1.1-1.2 1.1zm1.2-2.7c-.3-.2-.6-.3-1-.3s-.7.1-1 .3V5c0-.6.4-1 1-1s1 .4 1 1v12.3z"></path><path id="map_svg__eds-icon--map_cross" fillRule="evenodd" clip-rule="evenodd" d="M8.8 12.7l.7-.7-1.1-1 1.1-1-.7-.7-1.1 1-1-1-.7.7 1 1-1 1 .7.7 1-1z"></path><path id="map_svg__eds-icon--map_dash_3_" fillRule="evenodd" clip-rule="evenodd" d="M12 10h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash_2_" fillRule="evenodd" clip-rule="evenodd" d="M15 12h1v2h-1z"></path><path id="map_svg__eds-icon--map_dash_1_" fillRule="evenodd" clip-rule="evenodd" d="M12 15h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash" fillRule="evenodd" clip-rule="evenodd" d="M8 15h2v1H8z"></path></svg>
                         <h2 id='location-h2'>Location</h2>
                         <div id='location-p-container'>
                             <p>
@@ -264,8 +286,8 @@ export default function CreateEvent () {
                 <hr className='create-event-section-division-hr' id='location-date-division-hr'/>
                 
                 <section id='date-and-time'>
-                <div className='datetime-description-box'>
-                    <svg id="calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar_svg__eds-icon--calendar_base" fill-rule="evenodd" clip-rule="evenodd" d="M17 4V2h-1v2H8V2H7v2H2v18h20V4h-5zm4 17H3V9h18v12zM3 8V5h4v1h1V5h8v1h1V5h4v3H3z"></path><g id="calendar_svg__eds-icon--calendar_squares" fill-rule="evenodd" clip-rule="evenodd"><path d="M15 16h2v2h-2zM11 16h2v2h-2zM7 16h2v2H7zM15 12h2v2h-2zM11 12h2v2h-2zM7 12h2v2H7z"></path></g></svg>
+                    <div className='datetime-description-box'>
+                        <svg id="calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar_svg__eds-icon--calendar_base" fillRule="evenodd" clip-rule="evenodd" d="M17 4V2h-1v2H8V2H7v2H2v18h20V4h-5zm4 17H3V9h18v12zM3 8V5h4v1h1V5h8v1h1V5h4v3H3z"></path><g id="calendar_svg__eds-icon--calendar_squares" fillRule="evenodd" clip-rule="evenodd"><path d="M15 16h2v2h-2zM11 16h2v2h-2zM7 16h2v2H7zM15 12h2v2h-2zM11 12h2v2h-2zM7 12h2v2H7z"></path></g></svg>
                         <h2 id='location-h2'>Date and time</h2>
                         <div id='location-p-container'>
                             <p>
@@ -273,21 +295,27 @@ export default function CreateEvent () {
                             </p>
                         </div>
                     </div>
-                
-                    <div className='event-start-container'>
-                        <div className='event-start-date-container'>
-                            <button className='timestamp-start timestamp-button' >{`${moment(eventStartDate).format('MM/DD/YYYY')}`}
-                                <label><div className='event-datetime-text'>Event Starts</div>
-                                        <Calendar className={`calendar-timestamp-start calendar ${startCalActive ? '' : 'hidden'}`} onChange={setEventStartDate} defaultValue={eventStartDate} />
-                                </label><br/>
-                            </button>
+                    
+                    <div className='event-start-box'>
+                        <div className='event-start-date-button timestamp-button'>
+                            <svg id="small_calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar-chunky_svg__eds-icon--calendar-chunky_base" d="M16.9 6.5v-2h-2v2h-6v-2h-2v2h-2v13h14v-13h-2zm0 11h-10v-7h10v7z"></path></svg>
+                            <div className='event-date-text event-date-text' id='event-start-date-text'>Event Starts</div>
+                            <div className='event-date-value event-date-value' id='event-start-date-value'>{`${moment(eventStartDate).format('MM/DD/YYYY')}`}</div>
+                            <div className='calendar-box' id='event-start-date-box'>
+                                <Calendar className={`calendar-timestamp-start calendar ${startCalActive ? '' : 'hidden'}`} onChange={setEventStartDate} defaultValue={eventStartDate} />
+                            </div>
+                            <br/>
                         </div>
-                        
-                        <div className='event-start-time-container'>
-                            <label>Start Time
-                                    <select name='event-start-times' id="event-start-times" onChange={(e) =>{setEventStartTime(e.target.value)}} defaultValue={eventStartTime}>
+
+                        <div className='event-start-time-button timestamp-button' onClick={(e) =>{
+                                    document.querySelector('.event-start-times-dropdown').classList.toggle('hidden');
+                                    document.querySelector('.event-start-times-dropdown').setAttribute('size', 12)}}>
+                            <div className='event-time-text' id='event-start-time-text'>Start Time</div>
+                            <div className='event-time-value' id='event-start-time-value'>{eventStartTime}</div>
+                            <label>
+                                    <select className='event-start-times-dropdown hidden' name='event-start-times' id="event-start-times" onChange={(e) =>{setEventStartTime(e.target.value)}} defaultValue={eventStartTime}>
                                         {[...Array(48).keys()].map(i =>{
-                                            let time = moment(eventEndDate).startOf('day').add(30*i,'minutes').format('hh:mm A')
+                                            let time = moment(eventStartDate).startOf('day').add(30*i,'minutes').format('hh:mm A')
                                             return (
                                                 <option key={i} value={time} > 
                                                     {`${moment(eventStartDate).startOf('day').add(30*i,'minutes').format('hh:mm A')}`}
@@ -296,51 +324,105 @@ export default function CreateEvent () {
                                         })}
                                     </select>
                             </label>
-                        </div>
+                        </div>        
                     </div>
 
-                    <br/><br/>
-
                     <div className='event-end-container'>
-                        <div className='event-end-date-container'>
-                            <label>Event Ends
-                                <button className='timestamp-end timestamp-button' >{`${moment(eventEndDate).format('MM/DD/YYYY')}`}
-                                    <Calendar className={`calendar-timestamp-end calendar ${endCalActive ? '' : 'hidden'}`} onChange={setEventEndDate} defaultValue={eventEndDate} />
-                                </button>
-                            </label><br/>
+                        <div className='event-end-date-button timestamp-button'
+                            >
+                            <svg id="small_calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar-chunky_svg__eds-icon--calendar-chunky_base" d="M16.9 6.5v-2h-2v2h-6v-2h-2v2h-2v13h14v-13h-2zm0 11h-10v-7h10v7z"></path></svg>
+                            <div className='event-date-text' id='event-end-date-text'>Event Ends</div>
+                            <div className='event-date-value' id='event-end-date-value'>{`${moment(eventEndDate).format('MM/DD/YYYY')}`}</div>
+                            <div className='calendar-box' id='event-end-date-box'>
+                                <Calendar className={`calendar-timestamp-end calendar ${endCalActive ? '' : 'hidden'}`} onChange={setEventEndDate} defaultValue={eventEndDate} />
+                            </div>
+                            <br/>
                         </div>
                         
-                        <div className='event-end-time-container'>
-                            <label>End Time
-                                    <select name='event-end-times' id="event-end-times" onChange={(e) =>{setEventEndTime(e.target.value)}} defaultValue={eventEndTime}>
+                        <div className='event-end-time-button timestamp-button' onClick={(e) =>{
+                                    document.querySelector('.event-end-times-dropdown').classList.toggle('hidden');
+                                    document.querySelector('.event-end-times-dropdown').setAttribute('size', 12)}}>
+                            <div className='event-time-text' id='event-end-time-text'>Start Time</div>
+                            <div className='event-time-value' id='event-end-time-value'>{eventEndTime}</div>
+                            <label>
+                                    <select className='event-end-times-dropdown hidden' name='event-end-times' id="event-end-times" onChange={(e) =>{setEventEndTime(e.target.value)}} defaultValue={eventEndTime}>
                                         {[...Array(48).keys()].map(i =>{
-                                            let time = moment(eventEndDate).startOf('day').add(30*i,'minutes').format('h:mm A')
+                                            let time = moment(eventEndDate).startOf('day').add(30*i,'minutes').format('hh:mm A')
                                             return (
-                                                <option key={i} value={time}> 
-                                                    {`${moment(eventEndDate).startOf('day').add(30*i,'minutes').format('h:mm A')}`}
+                                                <option key={i} value={time} > 
+                                                    {`${moment(eventEndDate).startOf('day').add(30*i,'minutes').format('hh:mm A')}`}
                                                 </option>
                                             )
                                         })}
                                     </select>
                             </label>
+                            <br/>
                         </div>
                     </div>
                 </section>
-                <section id='capacity-price-description'>
+                <br/><br/><br/>
+                <hr className='create-event-section-division-hr' id='date-misc-division-hr'/>
+
+                <section id='misc-description'>
+                    <div className='misc-description-box'>
+                        <svg id="map_svg" x="0" y="0" viewBox="0 0 24 24"><path fillRule="evenodd" clip-rule="evenodd" d="M20 3c-1.1 0-2 .9-2 2H2v16h17.8c1.1 0 2.1-.9 2.1-2V5c.1-1.1-.8-2-1.9-2zm-.2 17H3V6h15v13h1c0-.6.4-1 1-1 .5 0 .9.4 1 .9-.1.6-.6 1.1-1.2 1.1zm1.2-2.7c-.3-.2-.6-.3-1-.3s-.7.1-1 .3V5c0-.6.4-1 1-1s1 .4 1 1v12.3z"></path><path id="map_svg__eds-icon--map_cross" fillRule="evenodd" clip-rule="evenodd" d="M8.8 12.7l.7-.7-1.1-1 1.1-1-.7-.7-1.1 1-1-1-.7.7 1 1-1 1 .7.7 1-1z"></path><path id="map_svg__eds-icon--map_dash_3_" fillRule="evenodd" clip-rule="evenodd" d="M12 10h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash_2_" fillRule="evenodd" clip-rule="evenodd" d="M15 12h1v2h-1z"></path><path id="map_svg__eds-icon--map_dash_1_" fillRule="evenodd" clip-rule="evenodd" d="M12 15h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash" fillRule="evenodd" clip-rule="evenodd" d="M8 15h2v1H8z"></path></svg>
+                        <h2 id='location-h2'>Miscellaneous details</h2>
+                        <div id='location-p-container'>
+                            <p>
+                            Fill in your event with even more misleading details!
+                            </p>
+                        </div>
+                    </div>
                     <br/><br/>
-                    <label>Capacity
-                        <input type='text' name='capacity' onChange={e => setCapacity(e.target.value)} />
-                    </label>
-                    <label>Price
-                        <input type='text' name='price' onChange={e => setPrice(e.target.value)} />
-                    </label>
-                    <label>Description
-                        <input type='text' name='description' onChange={e => setDescription(e.target.value)} />
-                    </label>
+                    <div className='create-event-field-box' id='create-event-capacity-box' onClick={(e) =>{focusInput(e)}}>
+                        <div className='create-event-field-text' id='event-capacity-text'>Capacity</div>
+                        <span className='create-event-field-input-box' id='create-event-capacity-input-box'>
+                            <label>
+                                <input className='create-event-field-input'
+                                    id='create-event-capacity-input'
+                                    type='text' 
+                                    placeholder="How many victims do you plan to invite? Be ambitious!"
+                                    onChange={e => {setCapacity(e.target.value)}}
+                                    onFocus={e => setClosestDivsActive(e)}
+                                    onBlur={e => setClosestDivsInactive(e)}
+                                />
+                            </label>
+                        </span>
+                    </div>
+                    <div className='create-event-field-box' id='create-event-price-box' onClick={(e) =>{focusInput(e)}}>
+                        <div className='create-event-field-text' id='event-price-text'><p>Price<br/>$</p></div>
+                        <span className='create-event-field-input-box' id='create-event-price-input-box'>
+                            <label>
+                                <input className='create-event-field-input'
+                                    id='create-event-price-input'
+                                    type='text' 
+                                    placeholder="Why not charge people while you feast on them? Kill two bats with one stone."
+                                    onChange={e => {setPrice(e.target.value)}}
+                                    onFocus={e => setClosestDivsActive(e)}
+                                    onBlur={e => setClosestDivsInactive(e)}
+                                />
+                            </label>
+                        </span>
+                    </div>
+                    <div className='create-event-field-box' id='create-event-description-box' onClick={(e) =>{focusInput(e)}}>
+                        <div className='create-event-field-text' id='event-description-text'>Description</div>
+                        <span className='create-event-field-input-box' id='create-event-description-input-box'>
+                            <textarea className='create-event-field-input'
+                                id='create-event-description-input'
+                                placeholder="Give a fake event description to entice the humans to attend. Be descriptive. Be misleading. Humans are gullible."
+                                onChange={e => {setDescription(e.target.value)}}
+                                onFocus={e => setClosestDivsActive(e)}
+                                onBlur={e => setClosestDivsInactive(e)}
+                            />
+                        </span>
+                    </div>
                 </section>
+
+                <div className='whitespace' />
             </form>
-        <div className='event-create-button-box'>
+        <div className='create-event-button-box'>
             <hr id='create-event-bottom-fullscreen-hr' />
+            <button className='create-event-discard-button' onClick={()=>history.goBack()}>Discard</button>
             <button className='create-event-button' onClick={handleCreate}>Create Event</button>
         </div>
         </>
