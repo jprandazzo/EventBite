@@ -8,6 +8,7 @@ export const getSearchResults = (state) => {
 }
 
 export const fetchSearchResults = (query) => async dispatch =>{
+    debugger
     const response = await csrfFetch(`/api/events/search?string=${query.string}&price=${query.price}&category=${query.category}`);
     const data = await response.json();
     dispatch(receiveSearchResults(data));

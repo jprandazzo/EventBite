@@ -25,7 +25,7 @@ class Api::EventsController < ApplicationController
         date = params[:date]
 
         @events = Event.all
-        if string 
+        if string != 'null'
             @events = @events.where(
                 'title ILIKE ?
                 OR description ILIKE ?

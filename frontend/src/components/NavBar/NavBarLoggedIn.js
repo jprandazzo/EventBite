@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import {useHistory, Link} from 'react-router-dom';
+import {useHistory, Link, useLocation} from 'react-router-dom';
 import { useEffect } from 'react';
 import * as sessionActions from '../../store/sessionReducer.js';
 import * as eventActions from'../../store/eventsReducer';
@@ -11,7 +11,7 @@ export default function NavBarLoggedIn () {
     const history = useHistory();
     const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
     const currentUser = useSelector(userActions.getUser(currentUserId))
-    // **LOOK AT HISTORY.LOCATION**
+    const location = useLocation();
 
     useEffect(() =>{
         let getData = setTimeout(() => {
@@ -40,6 +40,22 @@ export default function NavBarLoggedIn () {
     //     dropdown.classList.add('hidden')
     // }
 
+    const searchBar = () => {
+        debugger
+        if (location.pathname === '/search'){
+            return(<></>)
+        } else return(
+        <li className={'nav-left'}> 
+            <Link to='/search'>
+                <div id='nav-search-events'>
+                    <svg id="magnifying-glass" x="0" y="0" viewBox="0 0 24 24"><path id="magnifying-glass-chunky_svg__eds-icon--magnifying-glass-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M10 14c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm3.5.9c-1 .7-2.2 1.1-3.5 1.1-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6c0 1.3-.4 2.5-1.1 3.4l5.1 5.1-1.5 1.5-5-5.1z"></path></svg>
+                    <div id='search-text'>Search events</div>
+                </div>
+            </Link> 
+        </li>
+        )
+    }
+
     const logout = (e) => {
         e.preventDefault();
 
@@ -59,6 +75,7 @@ export default function NavBarLoggedIn () {
         
     }
 
+
     return (
         <>
         <nav id='main-navigation-in'>
@@ -70,29 +87,7 @@ export default function NavBarLoggedIn () {
                         </Link>
                     </li>
 
-
-                                                    {/* let location = useLocation();
-
-                                useEffect(()=>{
-                                let navSearchBar = document.querySelector('#nav-search-events')
-                                if (navSearchBar) {
-                                    debugger
-                                    if (location.pathname === '/search') {
-                                    debugger
-                                    navSearchBar.style.display = 'none !important';
-                                    debugger
-                                    } else navSearchBar.style.display = 'block';
-                                }
-                                debugger
-                                }, [location]) */}
-                    <li className='nav-left'> 
-                        <Link to='/search'>
-                            <div id='nav-search-events'>
-                                <svg id="magnifying-glass" x="0" y="0" viewBox="0 0 24 24"><path id="magnifying-glass-chunky_svg__eds-icon--magnifying-glass-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M10 14c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm3.5.9c-1 .7-2.2 1.1-3.5 1.1-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6c0 1.3-.4 2.5-1.1 3.4l5.1 5.1-1.5 1.5-5-5.1z"></path></svg>
-                                <div id='search-text'>Search events</div>
-                            </div>
-                        </Link> 
-                    </li>
+                    {searchBar()}
 
                     <li className='nav-right user-dropdown'>
                         <div className='dropdown' id='user-in-dropdown' /*onClick={e =>toggleDropdown(e)} onMouseOver={e => showDropdown(e)} onBlur={e =>hideDropdown(e)} */ >

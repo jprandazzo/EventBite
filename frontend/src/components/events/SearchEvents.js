@@ -26,9 +26,10 @@ export default function EventsSearch () {
     const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
     const currentUser = useSelector(userActions.getUser(currentUserId))
     const allEvents = useSelector(eventActions.getEvents)
-    const [queryString, setQueryString] = useState('')
-    const [queryPrice, setQueryPrice] = useState()
-    const [queryCategory, setQueryCategory] = useState(prevCategory ? prevCategory : '')
+    const [queryString, setQueryString] = useState(prevString ? prevString : '')
+    const [queryPrice, setQueryPrice] = useState(prevPrice ? prevPrice : null)
+    const [queryCategory, setQueryCategory] = useState()
+    const [timer, setTimer] = useState(0);
 
     const searchResults = useSelector(searchActions.getSearchResults)
 
@@ -38,18 +39,19 @@ export default function EventsSearch () {
             if (currentUserId) dispatch(userActions.fetchUserEvents(currentUserId));
           }, 0)
         return () => clearTimeout(getData)
-
     }, [])
 
-    useEffect(() =>{
-        if (prevString || prevPrice || prevCategory) {
-            dispatch(searchActions.fetchSearchResults({
-                string: prevString,
-                price: prevPrice,
-                category: prevCategory
-            }))
-        }
-    }, [location])
+    // useEffect(() =>{
+    //     debugger
+    //     if (prevString || prevPrice || prevCategory) {
+    //         debugger
+    //         dispatch(searchActions.fetchSearchResults({
+    //             string: prevString,
+    //             price: prevPrice,
+    //             category: prevCategory
+    //         }))
+    //     }
+    // }, [location])
 
     const heartIcon = (e) => {
         if (currentUser) {
@@ -81,7 +83,6 @@ export default function EventsSearch () {
         } else {
             return(
             searchResults.map((ev,i)=>{
-                debugger
                 return(
                     <Link to={`/events/${ev.id}`} className='search-event-tile-link' target='_blank'>
                     <div className='search-event-tile' id={`search-event-tile-${i}`}>
@@ -107,44 +108,35 @@ export default function EventsSearch () {
     }
 
     useEffect(()=>{
-        console.log(queryPrice);
-        handleSubmit();
-
+        history.push(`/search?${queryString ? `string=${queryString}` : ''}${queryPrice ? `&price=${queryPrice}` : ''}${queryCategory ? `&category=${queryCategory}` : ''}`)
+        clearTimeout(timer);
+        setTimer(setTimeout(()=>{
+            debugger
+            dispatch(searchActions.fetchSearchResults({
+                string: queryString,
+                price: queryPrice,
+                category: queryCategory
+            }))
+        }, 500))
     }, [queryString, queryPrice, queryCategory])
 
-    const handleSetPrice = (e) =>{
-        // e.preventDefault();
-
-        // useEffect(() => {
-        //     const timer = setTimeout(() => {
-        //         setQueryPrice(e.target.value);
-        //     }, 0);
-        //     return () => clearTimeout(timer);
-        //   }, []);
-
-        // async function someFunction() {
-            // setTimeout(() => {
-                setQueryPrice(e.target.value);
-            // }, 1000);
-        // }
-
-        // someFunction()
-        
-        // console.log(queryPrice)
-        // debugger
-        // handleSubmit();
-    }
-
-    const handleSubmit = (e) => {
-
-        if (e) e.preventDefault()
+    useEffect(()=>{
         dispatch(searchActions.fetchSearchResults({
             string: queryString,
             price: queryPrice,
             category: queryCategory
         }))
+    }, [queryPrice, queryCategory])
 
-        history.push(`/search?${queryString ? `string=${queryString}` : ''}${queryPrice ? `&price=${queryPrice}` : ''}${queryCategory ? `&category=${queryCategory}` : ''}`)
+    // const handleSetPrice = (e) =>{
+    //     setQueryPrice(e.target.value);
+    // }
+
+    const setSearchText = (e) => {
+        e.preventDefault()
+
+        setQueryString(e.target.value);
+        
     }
 
     if (!allEvents) {
@@ -157,8 +149,8 @@ export default function EventsSearch () {
             <div id='search-input-section-container'>
                 <div id='search-page-magnifying-glass'><svg id="magnifying-glass" x="0" y="0" viewBox="0 0 24 24"><path id="magnifying-glass-chunky_svg__eds-icon--magnifying-glass-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M10 14c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm3.5.9c-1 .7-2.2 1.1-3.5 1.1-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6c0 1.3-.4 2.5-1.1 3.4l5.1 5.1-1.5 1.5-5-5.1z"></path></svg></div>
                 <div id='search-input-box'>
-                    <form onSubmit={searchText=>handleSubmit(searchText)}>
-                        <input type='text' id='search-page-input' placeholder='Where will you find your next victim?' value={queryString} onChange={str=>setQueryString(str.target.value)}/>
+                    <form >
+                        <input type='text' id='search-page-input' placeholder='Where will you find your next victim?' value={queryString} onChange={setSearchText}/>
                         <input type='submit' style={{display: 'none'}} />
                     </form>
                 </div>
@@ -196,14 +188,12 @@ export default function EventsSearch () {
                         </div>
                         <div className='search-radio-button'>
                             <div className='search-radio-button-label'>
-                                <button type='radio' name='price' value='free' onClick={(event)=>handleSetPrice(event)}>
+                                <input type='radio' name='price' value='free' onClick={(event)=>setQueryPrice(event.target.value)} />
                                 Free
-                                </button>
                             </div>
                             <div className='search-radio-button-label'>
-                                <button type='radio' name='price' value='paid' onClick={(event)=>handleSetPrice(event)}>
+                                <input type='radio' name='price' value='paid' onClick={(event)=>setQueryPrice(event.target.value)} />
                                 Paid
-                                </button>
                             </div>
                         </div>
                     </div>

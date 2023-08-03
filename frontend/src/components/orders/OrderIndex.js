@@ -25,10 +25,16 @@ export default function OrderIndex () {
         return () => clearTimeout(getData)
     }, [])
 
-    const pluralizeOrders = () =>{
-        if (currentUser && currentUser.orders.length === 1) {
-            return 'order'
-        } else return 'orders'
+    const pluralizeOrders = (orders) =>{
+        if (currentUser && orders.length === 1) {
+            return '1 order'
+        } else return `${orders.length} orders`
+    }
+
+    const pluralizeLikes = (likes) =>{
+        if (currentUser && likes.length === 1) {
+            return '1 like'
+        } else return `${likes.length} like`
     }
 
     const focusInput = (e) => {
@@ -70,40 +76,49 @@ export default function OrderIndex () {
     if (currentUser) {return (
         <>
             <NavBarLoggedIn />
-            <main className='order-index-main'>
-                
-                <div className='show-user-name-tile'>
-                    <p>Pic placeholder</p>
-                    <h1 className='show-user-name-tile-name'>{`${currentUser?.firstName} ${currentUser.lastName}`}</h1>
-                    <p>{currentUser?.orders.length} {pluralizeOrders()}</p>
+            <main id='order-index-main'>
+            <section id='order-index-centered'>
+                <div id='order-index-name-tile'>
+                    <div id='order-index-user-photo'>Pic</div>
+                    <div id='order-index-name-tile-name'>{`${currentUser?.firstName} ${currentUser.lastName}`}</div>
+                    <div className='order-index-orders-likes' id='order-index-orders-count'>{currentUser ? pluralizeOrders(currentUser.orders) : ''}</div>
+                    <div id='order-index-likes-dot'>·</div>
+                    <div className='order-index-orders-likes' id='order-index-likes-count'>{currentUser ? pluralizeLikes(currentUser.likedEvents) : ''}</div>
                 </div>
-                <div className='order-index-orders'>
-                    <h2>Orders</h2>
+
+                <div id='order-index-container'>
+                    <div id='orders-title-box'>Orders</div>
                     {orders.map((order, i) =>{
                         const event = events.filter(event => event.id === order.eventId)[0]
                         return(
                             <>
-                            {/* <Link to={`/events/${ev.id}`} className='search-event-tile-link' target='_blank'>
+                            {/* 
                                 <div className='search-event-tile' id={`search-event-tile-${i}`}>
-                                    <div className='search-event-tile-photo'>photo-placeholder</div>
-                                    <div className='search-event-heart-like' onClick={(e)=>heartReact(e,ev)}>{heartIcon(ev)}</div>
-                                    <div className='search-event-tile-title'>{ev.title}</div>
-                                    <div className='search-event-tile-timestanp'>{moment(ev.timestampStart).format('ddd, MMM d · h:MM A')}</div>
+                                    
+                                    
+                                    
+                                    
                                     <div className='search-event-tile-location'>{ev.address}</div>
                                     <div className='search-event-tile-price'>{ev.price ? `$${Number(ev.price).toFixed(2)}` : 'Free'}</div>
-                                </div> 
-                            </Link> */}
-                                <p>order #{order.id}</p>
-                                <p>ordered on {order.createdAt}</p>
-                                <p>{event.title}</p>
-                                <p>{event.date}</p>
-                                <p>{`$${event.price * order.numTickets}` || 'Free order'}</p>
+                                </div>  */}
+                    <div className='order-index-event-tile'>
+                        <Link to={`/orders/${order.id}`} className='order-index-tile-photo' target='_blank'><div className='order-index-tile-photo'>photo-placeholder</div></Link>
+                        <div className='order-tile-date-small'>
+                            <div className='order-tile-date-month'>{moment(event.timestampStart).format('MMM')}</div>
+                            <div className='order-tile-date-day'>{moment(event.timestampStart).format('D')}</div>
+                        </div>
+                        <Link to={`/events/${event.id}`} className='order-index-tile-link' target='_blank'><div className='order-index-tile-title'>{event.title}</div></Link>
+                        <div className='order-tile-timestamp'>{moment(event.timestampStart).format('ddd, MMM d, h:MM A')}</div>
+                        <div className='order-tile-order-price-date'>{`$${(event.price * order.numTickets).toFixed(2)} order` || 'Free order'} {`${order.id}`} placed on {moment(order.createdAt).format('ddd, MMM DD, h:MM A')}</div>
+                        <p></p>
+                    </div>
                             </>
 
                             
                         )
                     })}
                 </div>
+            </section>
             </main>
         </>
     )}

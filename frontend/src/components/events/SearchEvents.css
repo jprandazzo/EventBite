@@ -12,7 +12,7 @@
 #search-input-section-container {
     position: relative;
     width: 100%;
-    height: 5em;
+    height: 4em;
 }
 
 #search-page-magnifying-glass {
@@ -20,7 +20,7 @@
     width: 24px;
     height: 24px;
     fill: #a9a8b3;
-    top: .5em;
+    top: 0em;
     left: 1em;
     fill: #2c2b2d;
 }
@@ -28,6 +28,7 @@
 #search-input-box {
     position: absolute;
     left: 2.2em;
+    top: -.5em;
     width: 45em;
     height: 1em;
     padding: .5em 0 .5em 0;

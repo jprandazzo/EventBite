@@ -17,7 +17,11 @@ export default function OrganizerEventIndex () {
     const organizerEventIds = currentUser ?.organizedEvents
     const allEvents = Array.from(useSelector(eventActions.getEvents))
     const currentUserOrganizedEvents = organizerEventIds ? allEvents.filter(el => organizerEventIds.includes(el.id)) : null
+    debugger
+    const sortedEvents = currentUserOrganizedEvents?.sort((a,b) => moment(a.timestampStart).isAfter((b.timestampStart)) ? -1 : 1)
+    debugger
     
+    debugger
     const gridHeaderText=['Event','','','Sold','Gross','']
     const gridHeaderClasses=['event','photo','info-description','sold','gross','edit-delete']
 
@@ -52,11 +56,12 @@ export default function OrganizerEventIndex () {
     }
 
     const toggleHide = e => {
-        debugger
+        document.querySelectorAll('.edit-delete-dropdown-content').forEach(el=>el.classList.add('hidden'))
+        
         if (['svg', 'path'].includes(e.target.nodeName.toLowerCase())) {
-            debugger
-            let closest = e.target.closest('div')
-            closest.querySelector('.edit-delete-dropdown-content').classList.toggle('hidden')
+            let row = e.target.closest('.organizer-index-table-row > div').classList.value.split(' ').filter(e =>e.includes('row'))
+            let box = document.querySelector(`.edit-delete-dropdown-content.${row}`)
+            box.classList.toggle('hidden')
         }
     }
 
@@ -66,8 +71,9 @@ export default function OrganizerEventIndex () {
 
     return(
         <>
+        <main id='organizer-index-main' onClick={(e)=>toggleHide(e)}>
         <NavBarLoggedIn />
-        <main className='organizer-index-centered'>
+        <section className='organizer-index-centered' >
             <h1 className='organizer-index-h1'>Events</h1>
             
             <div className='organizer-index-search-create'> 
@@ -82,7 +88,7 @@ export default function OrganizerEventIndex () {
                 </div>
             </div>
 
-            <div className='organizer-index-table'>
+            <div className='organizer-index-table' >
                 <div className='organizer-index-table-headers'>
                     {gridHeaderText.map((e,i) =>{
                         return(
@@ -90,53 +96,51 @@ export default function OrganizerEventIndex () {
                         )
                     })}
                 </div>
-                {currentUserOrganizedEvents?.map((e,i) =>{
+                {sortedEvents?.map((e,i) =>{
                     return(
-                            <div className={`organizer-index-table-row`}>
-                                <Link to={`/events/${e.id}`}>
-                                <div className={`column-1 row-${i+2}`}>
-                                    <div className='event-grid-date-month'>{moment(e.timestampStart).format('MMM')}</div>
-                                    <div className='event-grid-date-day'>{moment(e.timestampStart).format('d')}</div>
-                                </div>
+                <div className={`organizer-index-table-row`}>
+                    <Link to={`/events/${e.id}`}>
+                    <div className={`column-1 row-${i+2}`}>
+                        <div className='event-grid-date-month'>{moment(e.timestampStart).format('MMM')}</div>
+                        <div className='event-grid-date-day'>{moment(e.timestampStart).format('D')}</div>
+                    </div>
 
-                                <div className={`column-2 row-${i+2}`}>
-                                    <div className='event-grid-photo'>photo</div>
-                                </div>
+                    <div className={`column-2 row-${i+2}`}>
+                        <div className='event-grid-photo'>photo</div>
+                    </div>
 
-                                <div className={`column-3 row-${i+2}`}>
-                                    <div className='event-grid-title'>{e.title}</div>
-                                    <div className='event-grid-venue'>{e.venueName}</div>
-                                    <div className='event-grid-date-detailed'>{`${moment(e.timestampStart).format('dddd, MMMM d, YYYY')} at ${moment(e.timestampStart).format('h:MM A')}`}</div>
-                                </div>
+                    <div className={`column-3 row-${i+2}`}>
+                        <div className='event-grid-title'>{e.title}</div>
+                        <div className='event-grid-venue'>{e.venueName}</div>
+                        <div className='event-grid-date-detailed'>{`${moment(e.timestampStart).format('dddd, MMMM d, YYYY')} at ${moment(e.timestampStart).format('h:MM A')}`}</div>
+                    </div>
 
-                                <div className={`column-4 row-${i+2}`}>
-                                    <div className='event-sold'>{`${e.tixSold ? e.tixSold : 0} / ${e.capacity}`}</div>
-                                </div>
+                    <div className={`column-4 row-${i+2}`}>
+                        <div className='event-sold'>{`${e.tixSold ? e.ticketsSold : 0} / ${e.capacity}`}</div>
+                    </div>
 
-                                <div className={`column-5 row-${i+2}`}>
-                                    <div className='event-gross'>{`$${(e.price * e.tixSold ? e.tixSold : 0).toFixed(2)}`}</div>
-                                </div>
-                                </Link>
+                    <div className={`column-5 row-${i+2}`}>
+                        <div className='event-gross'>{`$${(e.price * e.ticketsSold ? e.ticketsSold : 0).toFixed(2)}`}</div>
+                    </div>
+                    </Link>
 
-                                <div className={`column-6 row-${i+2}`}>
-                                    <div className='edit-delete-dropdown' onClick={(e)=>toggleHide(e)}>
-                                        <svg id="vertical-dots-chunky" x="0" y="0" viewBox="0 0 24 24"><path id="vertical-dots-chunky_svg__eds-icon--vertical-dots-chunky_dot_2" fillRule="evenodd" clipRule="evenodd" d="M10 18c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z"></path><circle id="vertical-dots-chunky_svg__eds-icon--vertical-dots-chunky_dot" fillRule="evenodd" clipRule="evenodd" cx="12" cy="12" r="2"></circle><circle id="vertical-dots-chunky_svg__eds-icon--vertical-dots-chunky_dot_1" fillRule="evenodd" clipRule="evenodd" cx="12" cy="6" r="2"></circle></svg>
-                                        <div className='edit-delete-dropdown-content hidden'>
-                                            <Link to={`/events/${e.id}`}><div className='ed-dropdown-content-text-box'>View</div></Link>
-                                            <Link to={`/events/${e.id}/edit`}><div className='ed-dropdown-content-text-box'>Edit</div></Link>
-                                            <div className='ed-dropdown-content-text-box' onClick={()=>handleDeleteEvent(e.id)}>Delete</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div className={`column-6 row-${i+2}`}>
+                        <div className='edit-delete-dropdown'>
+                            <svg id="vertical-dots-chunky" x="0" y="0" viewBox="0 0 24 24"><path id="vertical-dots-chunky_svg__eds-icon--vertical-dots-chunky_dot_2" fillRule="evenodd" clipRule="evenodd" d="M10 18c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z"></path><circle id="vertical-dots-chunky_svg__eds-icon--vertical-dots-chunky_dot" fillRule="evenodd" clipRule="evenodd" cx="12" cy="12" r="2"></circle><circle id="vertical-dots-chunky_svg__eds-icon--vertical-dots-chunky_dot_1" fillRule="evenodd" clipRule="evenodd" cx="12" cy="6" r="2"></circle></svg>
+                        </div>
+                    </div>
+
+                    <div className={`edit-delete-dropdown-content column-6 row-${i+2} hidden`}>
+                        <Link to={`/events/${e.id}`}><div className='edit-dropdown-content-text-box'>View</div></Link>
+                        <Link to={`/events/${e.id}/edit`}><div className='edit-dropdown-content-text-box'>Edit</div></Link>
+                        <div className='edit-dropdown-content-text-box' onClick={()=>handleDeleteEvent(e.id)}>Delete</div>
+                    </div>
+                </div>
                     )
                 })}
                 
             </div>
-
-            
-
-
+        </section>
         </main>
         </>
     )
