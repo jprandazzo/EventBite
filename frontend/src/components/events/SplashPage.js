@@ -37,7 +37,7 @@ export default function SplashPage () {
         dispatch(userActions.updateUser(currentUser)) 
     }
 
-    if (!currentUser || !allEvents) {
+    if (!allEvents) {
         return <></>
     } else return(
         <>

@@ -20,7 +20,6 @@ json.events do
             ticketsSold: event.tickets_sold,
             price: event.price,
             description: event.description,
-            tix_sold: event.orders.count
         }
     end
 

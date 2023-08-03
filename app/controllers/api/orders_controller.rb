@@ -11,6 +11,7 @@ class Api::OrdersController < ApplicationController
             debugger
             @order.save
             @event.capacity -= @order.num_tickets
+            @event.tickets_sold += @order.num_tickets
             render :show
         else
             render json: [@order.errors.full_messages],
