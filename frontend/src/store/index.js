@@ -4,12 +4,14 @@ import usersReducer from './usersReducer';
 import sessionReducer from './sessionReducer';
 import eventsReducer from './eventsReducer';
 import ordersReducer from './ordersReducer';
+import searchReducer from './searchReducer';
 
 const rootReducer = combineReducers({
   users: usersReducer,
   session: sessionReducer,
   events: eventsReducer,
-  orders: ordersReducer
+  orders: ordersReducer,
+  search: searchReducer,
 });
 
 let enhancer;

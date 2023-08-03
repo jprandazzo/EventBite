@@ -6,12 +6,11 @@ class Api::OrdersController < ApplicationController
     def create
         @order = Order.new(order_params)
         @event = Event.find(@order.event_id)
-        debugger
         if @event && @event.capacity >= @order.num_tickets
-            debugger
             @order.save
             @event.capacity -= @order.num_tickets
             @event.tickets_sold += @order.num_tickets
+            @event.save
             render :show
         else
             render json: [@order.errors.full_messages],
@@ -22,6 +21,9 @@ class Api::OrdersController < ApplicationController
     def destroy
         @order = Order.find(params[:order_id])
         if @order && @order.ticketholder_id == current_user.id
+            @event.capacity -= @order.num_tickets
+            @event.tickets_sold += @order.num_tickets
+            @event.save
             @order.destroy
             render json: [:order_id]
         else

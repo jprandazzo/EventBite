@@ -1,7 +1,4 @@
-# :events = {}
-# Event.all.map do |event|
-#     events[event.id] = {id: event.id, title: event.title}
-# end
+json.key_format! camelize: :lower
 
 json.events do 
     Event.all.each do |event| 

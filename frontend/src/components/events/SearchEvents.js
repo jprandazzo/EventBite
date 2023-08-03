@@ -1,30 +1,55 @@
 import NavBarLoggedIn from "../NavBar/NavBarLoggedIn";
 import NavBarLoggedOut from "../NavBar/NavBarLoggedOut";
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import moment from 'moment-timezone';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as sessionActions from '../../store/sessionReducer.js';
 import * as eventActions from'../../store/eventsReducer';
 import * as userActions from '../../store/usersReducer';
+import * as searchActions from '../../store/searchReducer';
 import './SplashPage.css'
 import './SearchEvents.css'
 
 export default function EventsSearch () {
 
     const dispatch = useDispatch();
+    const history = useHistory();
+    let location = useLocation();
+
+    const searchParams = new URLSearchParams(location.search);
+
+    const prevString = searchParams.get('string');
+    const prevPrice = searchParams.get('price');
+    const prevCategory = searchParams.get('category');
+
     const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
     const currentUser = useSelector(userActions.getUser(currentUserId))
     const allEvents = useSelector(eventActions.getEvents)
+    const [queryString, setQueryString] = useState('')
+    const [queryPrice, setQueryPrice] = useState()
+    const [queryCategory, setQueryCategory] = useState(prevCategory ? prevCategory : '')
+
+    const searchResults = useSelector(searchActions.getSearchResults)
 
     useEffect(() =>{
         dispatch(eventActions.fetchEvents())
         let getData = setTimeout(() => {
             if (currentUserId) dispatch(userActions.fetchUserEvents(currentUserId));
-            debugger
           }, 0)
         return () => clearTimeout(getData)
+
     }, [])
+
+    useEffect(() =>{
+        if (prevString || prevPrice || prevCategory) {
+            dispatch(searchActions.fetchSearchResults({
+                string: prevString,
+                price: prevPrice,
+                category: prevCategory
+            }))
+        }
+    }, [location])
 
     const heartIcon = (e) => {
         if (currentUser) {
@@ -36,12 +61,90 @@ export default function EventsSearch () {
         } else return (<div className='search-event-empty-heart'><svg id='fa-heart-empty' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"> {/*<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->*/}<path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg></div>)
     }
 
+    const AllEventsOrSearchResults = () => {
+        if (!(prevString || prevPrice || prevCategory)) {
+            return(
+            allEvents?.map((ev,i)=>{
+                    return(
+                        <Link to={`/events/${ev.id}`} className='search-event-tile-link' target='_blank'>
+                        <div className='search-event-tile' id={`search-event-tile-${i}`}>
+                            <div className='search-event-tile-photo'>photo-placeholder</div>
+                            <div className='search-event-heart-like' onClick={(e)=>heartReact(e,ev)}>{heartIcon(ev)}</div>
+                            <div className='search-event-tile-title'>{ev.title}</div>
+                            <div className='search-event-tile-timestanp'>{moment(ev.timestampStart).format('ddd, MMM d · h:MM A')}</div>
+                            <div className='search-event-tile-location'>{ev.address}</div>
+                            <div className='search-event-tile-price'>{ev.price ? `$${Number(ev.price).toFixed(2)}` : 'Free'}</div>
+                        </div> 
+                        </Link>
+                    )
+                }))
+        } else {
+            return(
+            searchResults.map((ev,i)=>{
+                debugger
+                return(
+                    <Link to={`/events/${ev.id}`} className='search-event-tile-link' target='_blank'>
+                    <div className='search-event-tile' id={`search-event-tile-${i}`}>
+                        <div className='search-event-tile-photo'>photo-placeholder</div>
+                        <div className='search-event-heart-like' onClick={(e)=>heartReact(e,ev)}>{heartIcon(ev)}</div>
+                        <div className='search-event-tile-title'>{ev.title}</div>
+                        <div className='search-event-tile-timestanp'>{moment(ev.timestampStart).format('ddd, MMM d · h:MM A')}</div>
+                        <div className='search-event-tile-location'>{ev.address}</div>
+                        <div className='search-event-tile-price'>{ev.price ? `$${Number(ev.price).toFixed(2)}` : 'Free'}</div>
+                    </div> 
+                    </Link>
+                )
+            }))
+        }
+    }
+
     const heartReact = (e,ev) =>{ 
         e.stopPropagation();
         e.preventDefault();
         currentUser['currentPageId'] = ev.id
           
         dispatch(userActions.updateUser(currentUser)) 
+    }
+
+    useEffect(()=>{
+        console.log(queryPrice);
+        handleSubmit();
+
+    }, [queryString, queryPrice, queryCategory])
+
+    const handleSetPrice = (e) =>{
+        // e.preventDefault();
+
+        // useEffect(() => {
+        //     const timer = setTimeout(() => {
+        //         setQueryPrice(e.target.value);
+        //     }, 0);
+        //     return () => clearTimeout(timer);
+        //   }, []);
+
+        // async function someFunction() {
+            // setTimeout(() => {
+                setQueryPrice(e.target.value);
+            // }, 1000);
+        // }
+
+        // someFunction()
+        
+        // console.log(queryPrice)
+        // debugger
+        // handleSubmit();
+    }
+
+    const handleSubmit = (e) => {
+
+        if (e) e.preventDefault()
+        dispatch(searchActions.fetchSearchResults({
+            string: queryString,
+            price: queryPrice,
+            category: queryCategory
+        }))
+
+        history.push(`/search?${queryString ? `string=${queryString}` : ''}${queryPrice ? `&price=${queryPrice}` : ''}${queryCategory ? `&category=${queryCategory}` : ''}`)
     }
 
     if (!allEvents) {
@@ -53,8 +156,13 @@ export default function EventsSearch () {
         <section className='search-split-left'>
             <div id='search-input-section-container'>
                 <div id='search-page-magnifying-glass'><svg id="magnifying-glass" x="0" y="0" viewBox="0 0 24 24"><path id="magnifying-glass-chunky_svg__eds-icon--magnifying-glass-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M10 14c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm3.5.9c-1 .7-2.2 1.1-3.5 1.1-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6c0 1.3-.4 2.5-1.1 3.4l5.1 5.1-1.5 1.5-5-5.1z"></path></svg></div>
-                <div id='search-input-box'><input id='search-page-input' placeholder='Where will you find your next victim?'/></div>
-                <button id='search-page-button'>Search</button>
+                <div id='search-input-box'>
+                    <form onSubmit={searchText=>handleSubmit(searchText)}>
+                        <input type='text' id='search-page-input' placeholder='Where will you find your next victim?' value={queryString} onChange={str=>setQueryString(str.target.value)}/>
+                        <input type='submit' style={{display: 'none'}} />
+                    </form>
+                </div>
+                {/* <button id='search-page-button' onClick={sub=>handleSubmit(sub)}>Search</button> */}
             </div>
 
             <div id='search-page-hr' />
@@ -88,47 +196,49 @@ export default function EventsSearch () {
                         </div>
                         <div className='search-radio-button'>
                             <div className='search-radio-button-label'>
-                                <input type='radio' value='Free' />
+                                <button type='radio' name='price' value='free' onClick={(event)=>handleSetPrice(event)}>
                                 Free
+                                </button>
                             </div>
                             <div className='search-radio-button-label'>
-                            <input type='radio' value='Paid' />
+                                <button type='radio' name='price' value='paid' onClick={(event)=>handleSetPrice(event)}>
                                 Paid
+                                </button>
                             </div>
                         </div>
                     </div>
 
                     <div className='search-radio-button-section'>
                     <div className='search-radio-button-title'>
-                            Date
+                            Category
                         </div>
                         <div className='search-radio-button'>
                             <div className='search-radio-button-label'>
-                                <input type='radio' value='Community/Culture' />
+                                <input type='radio' name='category' value='community_culture' />
                                 Community/Culture
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio' value='Fashion/Beauty' />
+                                <input type='radio' name='category' value='fashion_beauty' />
                                 Fashion/Beauty
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio' value='Film/Media/Entertainment' />
+                                <input type='radio'  name='category'value='film_media_entertainment' />
                                 Film/Media/Entertainment
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio' value='Food/Drink' />
+                                <input type='radio'  name='category'value='food_drink' />
                                 Food/Drink
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio' value='Music' />
+                                <input type='radio'  name='category'value='music' />
                                 Music
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio' value='Travel/Outdoor' />
+                                <input type='radio'  name='category'value='travel_outdoor' />
                                 Travel/Outdoor
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio' value='Other' />
+                                <input type='radio'  name='category' value='category_other' />
                                 Other
                             </div>
                         </div>
@@ -139,20 +249,7 @@ export default function EventsSearch () {
             
         <section id='search-events-split-middle'>
             <div className='search-event-tile-grid'>
-                {allEvents?.map((ev,i)=>{
-                    return(
-                        <Link to={`/events/${ev.id}`} className='search-event-tile-link' target='_blank'>
-                        <div className='search-event-tile' id={`search-event-tile-${i}`}>
-                            <div className='search-event-tile-photo'>photo-placeholder</div>
-                            <div className='search-event-heart-like' onClick={(e)=>heartReact(e,ev)}>{heartIcon(ev)}</div>
-                            <div className='search-event-tile-title'>{ev.title}</div>
-                            <div className='search-event-tile-timestanp'>{moment(ev.timestampStart).format('ddd, MMM d · h:MM A')}</div>
-                            <div className='search-event-tile-location'>{ev.address}</div>
-                            <div className='search-event-tile-price'>{ev.price ? `$${Number(ev.price).toFixed(2)}` : 'Free'}</div>
-                        </div> 
-                        </Link>
-                    )
-                })}
+                {AllEventsOrSearchResults()}
             </div>
         </section>
         

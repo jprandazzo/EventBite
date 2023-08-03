@@ -68,12 +68,16 @@ export default function SignUpForm () {
         return dispatch(sessionActions.signup({email, password, firstName, lastName}))
             .catch(async (res) => {
                 let data;
+                debugger
                 try {
                 // .clone() essentially allows you to read the response body twice
                 data = await res.clone().json();
+                debugger
                 } catch {
+                    debugger
                 data = await res.text(); // Will hit this case if, e.g., server is down
                 }
+                debugger
                 if (data?.errors) setErrors(data.errors);
                 else if (data) setErrors([data]);
                 else setErrors([res.statusText]);

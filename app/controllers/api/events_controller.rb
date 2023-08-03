@@ -1,5 +1,5 @@
 class Api::EventsController < ApplicationController
-    before_action :require_logged_in, except: [:index, :show]
+    before_action :require_logged_in, except: [:index, :show, :search]
 
     wrap_parameters :event, include: Event.attribute_names + ['organizerName', 'eventType', 'eventCategory', 'venueName', 'organizerId', 'timestampStart', 'timestampEnd']
 
@@ -17,6 +17,32 @@ class Api::EventsController < ApplicationController
 
     def index
         render :index
+    end
+
+    def search
+        string = params[:string]
+        price = params[:price]
+        date = params[:date]
+
+        @events = Event.all
+        if string 
+            @events = @events.where(
+                'title ILIKE ?
+                OR description ILIKE ?
+                OR address ILIKE ?
+                OR venue_name ILIKE ?',
+                "%#{string}%", "%#{string}%", "%#{string}%", "%#{string}%")
+        end
+
+        if price
+            if price == 'free'
+                @events = @events.where('price = 0', "%#{price}")
+            else
+                @events = @events.where('price>0', "%#{price}")
+            end
+        end
+        
+            render :search
     end
 
     def show

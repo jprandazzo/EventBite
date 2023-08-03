@@ -9,6 +9,8 @@ class Api::SessionsController < ApplicationController
         else
             render json: {user: nil}
         end
+
+        debugger
     end
 
     def create

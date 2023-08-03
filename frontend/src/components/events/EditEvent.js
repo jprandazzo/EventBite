@@ -18,7 +18,7 @@ export default function CreateEvent () {
 
     useEffect(() =>{
         const awaitFetchBeforeLoading = async () => {
-            const res = await dispatch(userActions.fetchUserEvents(currentUser.id));
+            const res = await dispatch(userActions.fetchUserEvents(currentUser?.id));
             setPrevEvent(res.events[eventId])
         }
         awaitFetchBeforeLoading()   

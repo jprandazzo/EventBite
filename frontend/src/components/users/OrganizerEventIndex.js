@@ -1,9 +1,9 @@
-import NavBarLoggedIn from "../NavBar/NavBarLoggedIn";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import moment from 'moment-timezone';
 import { useEffect } from "react";
-import Grid from '@react-css/grid'
+
+import NavBarLoggedIn from "../NavBar/NavBarLoggedIn";
 import * as sessionActions from '../../store/sessionReducer'
 import * as userActions from '../../store/usersReducer'
 import * as eventActions from '../../store/eventsReducer'
@@ -42,9 +42,6 @@ export default function OrganizerEventIndex () {
     function setClosestDivsActive(e){
             let outerDiv = e.target.closest('div')
             outerDiv.classList.add('active-div')
-
-            // let textFieldTitle = outerDiv.querySelector('.create-event-field-text')
-            // textFieldTitle.classList.add('active-field')
     }
 
     function setClosestDivsInactive(e) {
@@ -52,8 +49,6 @@ export default function OrganizerEventIndex () {
         //that was blurred
         let outerDiv = e.target.closest('div')
         outerDiv.classList.remove('active-div')
-        // let textFieldTitle = Array.from(outerDiv.childNodes)[0]
-        // textFieldTitle.classList.remove('active-field')
     }
 
     const toggleHide = e => {
@@ -66,7 +61,6 @@ export default function OrganizerEventIndex () {
     }
 
     const handleDeleteEvent = (eventId) =>{
-        debugger
         return dispatch(eventActions.deleteEvent(eventId))
     }
 

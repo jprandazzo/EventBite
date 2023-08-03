@@ -249,14 +249,19 @@
 .show-event-svg-container {
     position: absolute;
     left: 0em;
+    height: 1.5em;
+    width: 1.5em;
     background-color: #EFEFEF;
     border-radius: 10px;
     padding: .3em;
 }
 
 .show-event-svg {
+    position: absolute;
+    left: .65em;
+    top: .4em;
     fill: #0924E9;
-    transform: scale(.6);
+    transform: scale(1.2);
 }
 
 .vl {
@@ -321,8 +326,9 @@
 
 #clock-svg {
     position: absolute;
-    left: .5em;
-    transform: scale(.6);
+    left: .8em;
+    top: .7em;
+    transform: scale(1.2);
     fill: #0924E9;
 }
 

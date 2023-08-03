@@ -34,7 +34,7 @@ export default function ShowEvent () {
     }, [])
 
     useEffect(() =>{
-        setActiveHeart(currentUser ? currentUser.likedEvents.includes(parseInt(eventId)) : false)
+        setActiveHeart(currentUser ? currentUser.likedEvents?.includes(parseInt(eventId)) : false)
     }, [currentUser])
 
     const handlePurchase = (eventId) => {

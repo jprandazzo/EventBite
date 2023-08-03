@@ -55,7 +55,7 @@ a {
     z-index: 2;
 }
 
-#search-events {
+#nav-search-events {
     width: 12em;
     height: 2.6em;
     position: relative;
@@ -68,7 +68,7 @@ a {
     color: #A9A8B3;
 }
 
-#search-events #magnifying-glass {
+#nav-search-events #magnifying-glass {
     width: 24px;
     height: 24px;
     fill: #a9a8b3;

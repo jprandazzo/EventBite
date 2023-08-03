@@ -5,3 +5,23 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+require "open-uri";
+
+# User.destroy_all
+
+# User.create!([{
+#     demo user
+# }])
+
+# User.create!([{
+
+# }])
+
+# Event.destroy_all
+
+# event1 = Event.create!(
+#     event_info
+# )
+
+# event1.photo.attach(io: URI.open('urlstring'), filename: 'filename')
