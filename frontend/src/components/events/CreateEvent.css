@@ -276,14 +276,30 @@ input:focus {
   left: -2em;
 }
 
+.create-edit-page-magnifying-glass {
+  position: absolute;
+  height: .5em !important;
+  width: .5em !important;
+  top: -.5em;
+  left: -.5em;
+}
+
+.create-edit-page-small-calendar {
+  position: absolute;
+  height: 2.5em !important;
+  width: 2.5em !important;
+  top: .2em;
+  left: .25em;
+}
+
 #date-and-time {
   position: relative;
   top: 8em;
 }
 
 #calendar_svg {
-  height: 28px;
-  width: 28px;
+  height: 28px !important;
+  width: 28px !important;
   position: absolute;
   left: -4.5em;
   top: .5em;

@@ -6,7 +6,9 @@ class Api::OrdersController < ApplicationController
     def create
         @order = Order.new(order_params)
         @event = Event.find(@order.event_id)
+        debugger
         if @event && @event.capacity >= @order.num_tickets
+            debugger
             @order.save
             @event.capacity -= @order.num_tickets
             render :show

@@ -1,7 +1,204 @@
-.h1-default {
+#search-main {
+    font-family: 'Neue Plak'
+}
+
+.search-split-left {
+    width: 60%;
+    height: 50em;
     position: relative;
-    top: 0px;
-    padding-top: 50px;
-    height: 50px;
-    width: 500px;
+    left: 0em;
+}
+
+#search-input-section-container {
+    position: relative;
+    width: 100%;
+    height: 5em;
+}
+
+#search-page-magnifying-glass {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    fill: #a9a8b3;
+    top: .5em;
+    left: 1em;
+    fill: #2c2b2d;
+}
+
+#search-input-box {
+    position: absolute;
+    left: 2.2em;
+    width: 45em;
+    height: 1em;
+    padding: .5em 0 .5em 0;
+    font-size: 20px;
+    box-shadow: 0 0 1px #fefefe;
+}
+
+#search-input-box input {
+    position: absolute;
+    top: .2em;
+    height: 2em;
+    width: 65em;
+    padding: .5em 0 .5em 0;
+}
+
+#search-input-box input::placeholder {
+    font-size: 18px;
+    font-weight: 800px;
+}
+
+#search-page-button {
+    position: absolute;
+    right: 1em;
+    height: 45px;
+    width: 9em;
+    font-size: 13px;
+    font-weight: 550;
+    background: white;
+    color: #38364F;
+    border: 2px solid #A9A8B3;
+    border-radius: 4px;
+    transition: filter 700ms;
+    margin-right: 1em;
+  }
+  
+#search-page-button:hover {
+    cursor: pointer;
+    filter: brightness(.95);
+}
+
+#search-page-hr {
+    display: block;
+    width: 100%;
+    height: 0px;
+    border: 0;
+    border-bottom: 1.5px solid #bdbdbd;
+    opacity: .3;
+    position: relative;
+    z-index: 10;
+    bottom: 1em;
+    left: 0em;
+    margin: none;
+}
+
+#filter-and-search-container {
+    width: 100%;
+    border: 1px solid black;
+    height: 50em;
+    position: relative;
+    top: 2em;
+}
+
+#search-filters-container {
+    position: relative;
+    border: 1px solid blue;
+    width: 17em;
+    height: 50em;
+}
+
+#search-filters-title {
+    position: relative;
+    top: .5em;
+    left: .5em;
+    font-size: 28px;
+    font-weight: 600;
+    color: #38364F;
+}
+
+.search-radio-button-section {
+    position: relative;
+    top: 2em;
+    margin-bottom: 2em;
+    height: auto;
+    width: 100%;
+    color: #38364F;
+}
+
+.search-radio-button-title {
+    position: relative;
+    left: .8em;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.search-radio-button-title:hover {
+    cursor: default;
+}
+
+.search-radio-button {
+    position: relative;
+    left: .8em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: 15px;
+}
+
+.search-radio-button-label {
+    margin-top: 1em;
+}
+
+.search-radio-button input {
+    transform: scale(1.4);
+    position: relative;
+    top: .1em;
+    left: -.5em;
+}
+
+.search-radio-button input:hover {
+    cursor:pointer;
+}
+
+.search-event-tile-title {
+    top: 9.2em;
+    left: 1em;
+    color: #2c2b2d;
+    height: 2em;
+    width: 3em;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.search-event-tile-title a{
+    color: #2c2b2d;
+}
+
+.search-event-tile-timestanp {
+    top: 14.3em;
+    height: 1em;
+    width: 20em;
+    left: 1.2em;
+    font-size: 14px;
+    font-weight: 500;
+    color: #d1420a;
+}
+
+.search-event-tile-location {
+    top: 14.5em;
+    left: 1em;
+    height: 1em;
+    width: 20em;
+    font-size: 13;
+    color: grey;
+}
+
+.search-event-tile-organizer-name {
+    top: 19.3em;
+    height: 1em;
+    width: 20em;
+    left: 1.2em;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2c2b2d;
+}
+
+.search-split-right {
+    position: absolute;
+    top: 4.8em;
+    right: 0em;
+    background-image: url('https://i.ibb.co/HtCFRSZ/Screenshot-2023-08-02-at-11-53-09-PM.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 44.6em;
 }

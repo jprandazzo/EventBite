@@ -1,17 +1,17 @@
-/* #splash-main {
-    width: 170em;
-} */
+#splash-main {
+    font-family: 'Neue Plak';
+}
+
 .splash-banner {
     position: relative;
-
+    top: -3em;
     background-image: url('https://cdn.evbstatic.com/s3-build/fe/build/images/5fe808e647422b815b98b73c28ecf405-3_tablet_1067x470.webp');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 150em;
+    width: 125%;
     height: 32.6em;
     margin-top: none;
     padding-top: none;
-    border: none;
 }
 
 .splash-banner button {
@@ -32,4 +32,165 @@
 .splash-banner {
     color: white;
     text-decoration: none;
+}
+
+#splash-events-container {
+    width: 70%;
+    margin: 0 15% 0 15%;
+    height: 10em;
+}
+
+#splash-events-filter {
+    height: 2em;
+    width: 60%;
+}
+
+.splash-events-topic {
+    height: 10em;
+    width: 100%;
+    position: relative;
+    top: 3em;
+}
+
+.splash-events-topic-title {
+    font-size: 24px;
+    font-weight: 600;
+    position: relative;
+    top: -1em;
+}
+
+.splash-events-topic-title svg {
+    position: relative;
+    top: .6em;
+    height: 2em;
+    width: 2em;
+}
+
+.splash-events-tile-grid {
+    position: relative;
+    /* padding: 0 1em 0 5em; */
+    /* display: flex;
+    /* justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column; */
+}
+
+.liked-event-tile {
+    border: .1px solid #f3f3f3;
+}
+
+.splash-event-tile {
+    border: 1px solid black;
+    position: relative;
+    display: inline-block;
+    height: 20em;
+    width: 23%;
+    margin: 0 .72em 2em .72em;
+    transition: box-shadow 200ms ease-in-out
+}
+
+.splash-event-tile div {
+    position: absolute;
+}
+
+.splash-event-tile div:hover {
+    cursor: default;
+}
+
+.splash-event-tile:hover {
+    box-shadow: 0 0 10px grey;
+}
+
+.splash-event-tile-photo {
+    top: 0em;
+    border: 1px dotted black;
+    height: 8.3em;
+    width: 100%;
+}
+
+.splash-event-heart-like {
+    right: 2.5em;
+    top: 7em;
+    border: 1px solid grey;
+    height: 2.7em;
+    width: 2.7em;
+    border-radius: 50%;
+    transition: all 300ms ease-in-out;
+}
+
+.splash-event-heart-like:hover {
+    background-color: #f3f3f3;
+    cursor:pointer !important;
+}
+
+.splash-event-heart-like svg {
+    position: absolute;
+    top: .5em;
+    left: .5em;
+    fill: grey;
+    transform: scale(.7)
+}
+
+.splash-event-heart-like svg:hover {
+    transform: brightness(1.1);
+    cursor:pointer;
+}
+
+#fa-heart-empty {
+    height: 28px;
+    width: 28px;
+    fill: grey;
+}
+
+#fa-heart-filled {
+    fill: #D1420A;
+}
+
+.splash-filled-heart {
+    transform: scale(1.7);
+    top: -.3em;
+    left: -.3em;
+}
+
+.splash-event-tile-title {
+    top: 9.2em;
+    left: 1em;
+    color: #2c2b2d;
+    height: 2em;
+    width: 3em;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.splash-event-tile-title a{
+    color: #2c2b2d;
+}
+
+.splash-event-tile-timestanp {
+    top: 14.3em;
+    height: 1em;
+    width: 20em;
+    left: 1.2em;
+    font-size: 14px;
+    font-weight: 500;
+    color: #d1420a;
+}
+
+.splash-event-tile-location {
+    top: 14.5em;
+    left: 1em;
+    height: 1em;
+    width: 20em;
+    font-size: 13;
+    color: grey;
+}
+
+.splash-event-tile-organizer-name {
+    top: 19.3em;
+    height: 1em;
+    width: 20em;
+    left: 1.2em;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2c2b2d;
 }

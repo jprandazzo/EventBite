@@ -19,9 +19,9 @@ json.events do
             capacity: event.capacity,
             ticketsSold: event.tickets_sold,
             price: event.price,
-            description: event.description
+            description: event.description,
+            tix_sold: event.orders.count
         }
-        json.tix_sold event.orders.count
     end
 
 end

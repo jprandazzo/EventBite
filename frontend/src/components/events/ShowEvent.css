@@ -104,6 +104,7 @@
     top: .4em;
     left: .4em;
     fill: grey;
+    transform: scale(.9)
 }
 #fa-heart-empty {
     height: 28px;
@@ -115,9 +116,11 @@
     fill: #D1420A;
 }
 
-.active-heart path {
-    fill: #D1420A !important;
-    background-color: #D1420A !important;
+.show-event-filled-heart {
+    position: absolute;
+    transform: scale(1.7);
+    top: -.27em;
+    left: -.27em;
 }
 
 .ticket-purchase-container {

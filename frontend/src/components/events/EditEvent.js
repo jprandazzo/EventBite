@@ -312,7 +312,7 @@ export default function CreateEvent () {
                                     onFocus={e => setClosestDivsActive(e)}
                                     onBlur={e => setClosestDivsInactive(e)}
                                 />
-                                <svg id="magnifying-glass-venue" x="0" y="0" viewBox="0 0 24 24"><path id="magnifying-glass-chunky_svg__eds-icon--magnifying-glass-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M10 14c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm3.5.9c-1 .7-2.2 1.1-3.5 1.1-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6c0 1.3-.4 2.5-1.1 3.4l5.1 5.1-1.5 1.5-5-5.1z"></path></svg>
+                                <div className='create-edit-page-magnifying-glass'><svg id="magnifying-glass-venue" x="0" y="0" viewBox="0 0 24 24"><path id="magnifying-glass-chunky_svg__eds-icon--magnifying-glass-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M10 14c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm3.5.9c-1 .7-2.2 1.1-3.5 1.1-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6c0 1.3-.4 2.5-1.1 3.4l5.1 5.1-1.5 1.5-5-5.1z"></path></svg></div>
                             </label>
                         </span>
                     </div>
@@ -333,7 +333,7 @@ export default function CreateEvent () {
                     
                     <div className='event-start-box'>
                         <div className='event-start-date-button timestamp-button'>
-                            <svg id="small_calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar-chunky_svg__eds-icon--calendar-chunky_base" d="M16.9 6.5v-2h-2v2h-6v-2h-2v2h-2v13h14v-13h-2zm0 11h-10v-7h10v7z"></path></svg>
+                        <div className='create-edit-page-small-calendar'><svg id="small_calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar-chunky_svg__eds-icon--calendar-chunky_base" d="M16.9 6.5v-2h-2v2h-6v-2h-2v2h-2v13h14v-13h-2zm0 11h-10v-7h10v7z"></path></svg></div>
                             <div className='event-date-text event-date-text' id='event-start-date-text'>Event Starts</div>
                             <div className='event-date-value event-date-value' id='event-start-date-value'>{`${moment(eventStartDate).format('MM/DD/YYYY')}`}</div>
                             <div className='calendar-box' id='event-start-date-box'>
@@ -366,7 +366,7 @@ export default function CreateEvent () {
                         <div className='event-end-date-button timestamp-button'
                             /*onClick={e => setClosestDivsActive(e)}*/
                             >
-                            <svg id="small_calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar-chunky_svg__eds-icon--calendar-chunky_base" d="M16.9 6.5v-2h-2v2h-6v-2h-2v2h-2v13h14v-13h-2zm0 11h-10v-7h10v7z"></path></svg>
+                            <div className='create-edit-page-small-calendar'><svg id="small_calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar-chunky_svg__eds-icon--calendar-chunky_base" d="M16.9 6.5v-2h-2v2h-6v-2h-2v2h-2v13h14v-13h-2zm0 11h-10v-7h10v7z"></path></svg></div>
                             <div className='event-date-text' id='event-end-date-text'>Event Ends</div>
                             <div className='event-date-value' id='event-end-date-value'>{`${moment(eventEndDate).format('MM/DD/YYYY')}`}</div>
                             <div className='calendar-box' id='event-end-date-box'>

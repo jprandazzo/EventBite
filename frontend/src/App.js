@@ -26,7 +26,7 @@ function App() {
         <Route path="/organizer/events" component={OrganizerEventIndex} />
         <Route path='/events/create' component={CreateEvent} /> 
         <Route path='/events/:eventId/edit' component={EditEvent} /> 
-        <Route path='/events/search' component={SearchEvents} />
+        <Route path='/search' component={SearchEvents} />
         <Route path='/events/:eventId' component={ShowEvent} />
         <Route path='/users/:userId/favorites' component={LikedEvents}/>
         <Route path='/user/:userId' component={OrderIndex} />
