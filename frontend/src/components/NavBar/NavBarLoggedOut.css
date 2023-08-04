@@ -43,7 +43,7 @@ a {
 }
 
 #eblogo-nav {
-    background-image: url('https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png');
+    background-image: url('https://eventbite-dev.s3.amazonaws.com/eventbite+logo.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 9em;

@@ -21,4 +21,9 @@
 class Like < ApplicationRecord
     belongs_to :liker, class_name: :User, foreign_key: :liker_id
     belongs_to :event
+
+    def self.create!(params)
+        like = Like.new(liker_id: params[:liker_id], event_id: params[:event_id])
+        like.save unless Like.find_by(liker_id: like.liker_id, event_id: like.event_id)
+    end
 end

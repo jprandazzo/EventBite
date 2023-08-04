@@ -34,6 +34,7 @@ class Event < ApplicationRecord
 
     belongs_to :organizer, class_name: :User, foreign_key: :organizer_id
 
+    has_one_attached :photo
     has_many :orders, dependent: :destroy
     has_many :ticketholders, through: :orders
     has_many :likes, dependent: :destroy

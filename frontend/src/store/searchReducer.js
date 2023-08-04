@@ -8,7 +8,6 @@ export const getSearchResults = (state) => {
 }
 
 export const fetchSearchResults = (query) => async dispatch =>{
-    debugger
     const response = await csrfFetch(`/api/events/search?string=${query.string}&price=${query.price}&category=${query.category}`);
     const data = await response.json();
     dispatch(receiveSearchResults(data));
@@ -28,7 +27,6 @@ const searchReducer = (state = {}, action) => {
 
     switch (action.type) {
         case GET_SEARCH_RESULTS:
-            debugger
             return action.searchResults.events
         case CLEAR_SEARCH_RESULTS:
             return {};

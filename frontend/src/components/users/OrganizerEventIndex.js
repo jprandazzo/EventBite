@@ -54,12 +54,10 @@ export default function OrganizerEventIndex () {
 
     const toggleHide = e => {
         document.querySelectorAll('.edit-delete-dropdown-content').forEach(el=>el.classList.add('hidden'))
-        debugger
         
         if (['svg', 'path'].includes(e.target.nodeName.toLowerCase())) {
             let row = e.target.closest('.organizer-index-table-row > div')?.classList.value.split(' ').filter(e =>e.includes('row'))
             let box = document.querySelector(`.edit-delete-dropdown-content.${row}`)
-            debugger
             box.classList.toggle('hidden')
         }
     }

@@ -81,7 +81,6 @@ export default function SignUpForm () {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        debugger
         
         let firstName = 'joe';
         let lastName = 'ra';
@@ -101,7 +100,6 @@ export default function SignUpForm () {
                 else setErrors([res.statusText]);
             })
             .then(()=>{if (!errors.length) {
-                debugger
                 return history.push('/')}})
     }
     return(

@@ -112,7 +112,6 @@ export default function CreateEvent () {
 
     const toggleCalendar = (e) =>{
         e.preventDefault();
-        // debugger
 
         if ((e.target === document.querySelector('.event-start-date-button') || Array.from(document.querySelector('.event-start-date-button').querySelectorAll('*')).includes(e.target))
             && !(e.target.classList.contains("event-date-value") 
@@ -146,7 +145,6 @@ export default function CreateEvent () {
             organizerId: currentUser.id
         }
 
-        debugger
         setErrors([])
         return dispatch(eventActions.createEvent(event))
             // .catch(async (res) => {

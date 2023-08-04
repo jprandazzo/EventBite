@@ -23,7 +23,6 @@ class User < ApplicationRecord
     validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
     has_secure_password
 
-    has_one_attached :profile_photo
     has_many :organized_events, class_name: :Event, foreign_key: :organizer_id, inverse_of: :organizer, dependent: :destroy
     has_many :likes, class_name: :Like, foreign_key: :liker_id, dependent: :destroy
     has_many :liked_events, through: :likes, source: :event

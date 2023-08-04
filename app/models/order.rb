@@ -26,4 +26,15 @@ class Order < ApplicationRecord
     def organizer
         User.where(id: self.event.organizer_id)
     end
+
+    def self.create!(params)
+        order = Order.new(ticketholder_id: params[:ticketholder_id], event_id: params[:event_id], num_tickets: params[:num_tickets])
+        event = Event.find(order.event_id)
+        if event && event.capacity >= order.num_tickets
+            order.save
+            event.capacity -= order.num_tickets
+            event.tickets_sold += order.num_tickets
+            event.save
+        end
+    end
 end

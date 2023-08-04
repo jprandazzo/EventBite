@@ -39,11 +39,8 @@ export default function OrderIndex () {
 
     const toggleHide = e => {
         document.querySelectorAll('order-tile-dropdown-delete-button').forEach(button=>button.classList.add('hidden'));
-        debugger
         if (e.target.classList.contains('trigger-toggle')) {
-            debugger
             let oid = Array.from(e.target.classList)[2]?.slice(6)
-            debugger
             document.querySelector(`#delete-button-${oid}`)?.classList.toggle('hidden')
         }
     }

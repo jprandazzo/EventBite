@@ -38,7 +38,6 @@ export const updateUser = (user) => async dispatch => {
         body: JSON.stringify(user)
     })
     const data = await response.json();
-    debugger
     dispatch({
         type: RECEIVE_USER,
         user: data.user

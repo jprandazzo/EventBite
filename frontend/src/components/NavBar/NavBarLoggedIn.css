@@ -43,7 +43,7 @@ a {
 }
 
 #eblogo-nav {
-    background-image: url('https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png');
+    background-image: url('https://eventbite-dev.s3.amazonaws.com/eventbite+logo.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 9em;
@@ -98,13 +98,14 @@ a {
 }
 
 #create-event-in {
-    color: #3E64FF !important;
+    fill: #A41E14 !important;
     width: 10em;
     height: 5em;
 }
 
 #create-event-in-text {
     position: absolute;
+    color: #A41E14;
     width: 8em;
     top: 3em;
     height: 2em;
@@ -112,7 +113,7 @@ a {
 }
 
 #plus-sign {
-    fill: #3E64FF !important;
+    fill: #A41E14 !important;
     position: absolute;
     height: 28px;
     width: 28px;

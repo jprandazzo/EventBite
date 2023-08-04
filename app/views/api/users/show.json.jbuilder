@@ -5,7 +5,7 @@ json.user do
     json.firstName @user.first_name
     json.lastName @user.last_name
     json.email @user.email
-    json.img_url @user.profile_photo.url
+    # json.img_url @user.profile_photo.url
     json.organized_events Event.all.where(organizer_id: @user.id).order('timestamp_start asc').map(&:id) if Event.all.where(organizer_id: @user.id)
     json.attending_events @user.attending_events.map(&:id)
     json.orders @user_orders.order(:created_at).map(&:id).reverse! if @user_orders
@@ -30,7 +30,8 @@ json.events do
                 ticketsSold: event.tickets_sold,
                 price: event.price.to_i,
                 description: event.description,
-                tix_sold: event.orders.count
+                tix_sold: event.orders.count,
+                img_url: event.photo.url
             }
         end
     end

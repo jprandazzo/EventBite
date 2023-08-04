@@ -10,4 +10,5 @@ json.event do
         :event_category, :event_type,
         :description
     json.tix_sold @event.orders.count
+    json.img_url @event.photo.url
 end

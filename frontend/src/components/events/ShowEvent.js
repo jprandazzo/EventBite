@@ -22,7 +22,6 @@ export default function ShowEvent () {
     const [event, setEvent] = useState(undefined)
     const [numTickets, setNumTickets] = useState(0)
     const [activeHeart, setActiveHeart] = useState(false)
-    debugger
     
     useEffect(() =>{
         const awaitFetchBeforeLoading = async () => {
@@ -84,8 +83,9 @@ export default function ShowEvent () {
                     <main>
                         <div className='show-event-photo-container'>
                             <svg width='1676' height='430' viewBox='0 0 1676 430' fill-rule='evenodd'><g clip-path='url(#clip0_3405_50198)'><path fill-rule='evenodd' d='M1669.31 -124.702C1704.63 -198.281 1599.75 -278.89 1440.21 -219.509C1280.67 -160.128 1138.67 -174.472 940.588 -234.668C588.163 -341.792 438.492 -309.897 215.804 -220.763C150.423 -195.199 15.9418 -122.33 0.814447 -35.3897C-18.0424 73.26 298.334 62.7189 143.288 203.358C-11.7568 343.996 26.7216 552.457 835.628 313.658C939.215 283.079 1109.58 269.122 1259.68 366.729C1409.78 464.336 1549.16 434.834 1602.55 362.937C1716.96 208.836 1609.92 -1.08292 1669.31 -124.702Z' fill='#EDF1FC'/></g><defs><clipPath id='clip0_3405_50198'><rect width='1676' height='430' fill='white'/></clipPath></defs></svg>
+                            
                             <div className='show-event-photo'>
-
+                                <img src={event.imgUrl}/>  
                             </div>
                         </div>
 
@@ -144,7 +144,7 @@ export default function ShowEvent () {
                                 <div className='event-length'>
                                     <svg id='clock-svg' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">{/*<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->*/}<path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
                                     <div className='event-length-in-hours'>
-                                        {moment.duration(moment(event.timestampEnd).diff(moment(event.timestampStart))).asHours()} hours
+                                        {parseInt(moment.duration(moment(event.timestampEnd).add(4,'hours').diff(moment(event.timestampStart).add(4,'hours'))).asHours())} hours
                                     </div>
                                 </div>
                                 

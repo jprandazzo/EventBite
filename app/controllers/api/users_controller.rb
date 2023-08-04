@@ -17,8 +17,6 @@ class Api::UsersController < ApplicationController
             render json: {errors: @user.errors.full_messages},
             status: :unprocessable_entity
         end
-
-        # debugger
     end
 
     def show

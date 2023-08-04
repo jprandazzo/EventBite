@@ -18,7 +18,6 @@ export default function SignInForm () {
     const currentUser = useSelector(sessionActions.getCurrentUser)
 
     useEffect(()=>{
-        debugger
         if (currentUser) history.goBack()
     }, [currentUser])
     const focusInput = (e) => {
@@ -84,19 +83,13 @@ export default function SignInForm () {
                     data = await res.text();
                 }
                 if (data?.errors) {
-                    debugger
                     setErrors(data.errors)
                 }
                 else if (data) setErrors([data]);
                 else setErrors([res.statusText]);
             })
-            // .finally(()=>{if (errors.length) {
-            //     debugger
-            //     console.log(errors)
-            // } else {
-            //     debugger
-            //     return history.goBack()}})
     };
+    
     return(
         <>
             <main>
