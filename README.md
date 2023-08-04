@@ -176,10 +176,10 @@ vs mine:
 
 
 I made sure hover effects made pages looked dynamic and vibrant with color and brightness shifts, cursor-to-pointer, and box-shadows - all over a 300ms `ease-in-out` transition: 
-
+<br>
 <img width="452" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/15b53a39-7161-4326-8768-065dc75c9a99">
 
-
+<br><br>
 <img width="342" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/ba6a2980-3733-4e6f-8015-69d486e20105">
 
 
