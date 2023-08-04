@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from 'react-router-dom';
 import * as sessionActions from "../../store/sessionReducer"
 import './Authentication.css';
 
-export default function SignInForm ({currentUser}) {
+export default function SignInForm () {
     const history = useHistory();
     const dispatch = useDispatch();
     // need to set a sessionUser such that if present, redirect and do 
@@ -14,28 +14,46 @@ export default function SignInForm ({currentUser}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
+    const errorClassesArray = ['error-text', 'error-div', 'login-errors', 'email-errors', 'pw-errors']
+    const currentUser = useSelector(sessionActions.getCurrentUser)
 
+    useEffect(()=>{
+        debugger
+        if (currentUser) history.goBack()
+    }, [currentUser])
     const focusInput = (e) => {
+        e.stopPropagation()
+        const selectedEl = e.target
         //blur anything that's currently focused
-        Array.from(document.querySelectorAll('.signup-signin-field-input'))
-            .forEach(el => {
-                el.blur()
-            })
-        
+        let arr = Array.from(document.querySelectorAll('*'))
+        arr.forEach(el=> {
+            if (el.classList.contains('.signup-signin-field-input')) {    
+                if (el !== selectedEl) el.blur()
+            } else if (el.classList.contains('auth-input-box')) {    
+                if (el !== selectedEl) el.classList.remove('active-div')
+            } else if (el.classList.contains('signup-signin-field-title')) {
+                if (el !== selectedEl) el.classList.remove('active-input')
+            }
+        })
         //whichever div is clicked, find its input and focus it
-        if (e.target.className === 'auth-input-box') {
-
-            let textFieldTitle = Array.from(e.target.childNodes).filter(el => el.className === 'signup-signin-field-title')[0]
-            let input = e.target.childNodes[2].childNodes[0].childNodes[0]
+        if (selectedEl.classList.contains('auth-input-box')) {
+            e.stopPropagation()
+            if (selectedEl.classList.contains('error-div')) e.target.classList.remove('error-div')
+            let textFieldTitle = Array.from(selectedEl.childNodes).filter(el => el.classList.length && el.classList.contains('signup-signin-field-title'))[0]
+            textFieldTitle.classList.remove('error-text')
+            let input = Array.from(selectedEl.querySelectorAll('*')).filter(el=>el.classList.contains('signup-signin-field-input'))[0]
             input.focus()
-        } else if (e.target.className === 'signup-signin-field-title') {
-            
-            let outerDiv = e.target.parentNode
-            let input = outerDiv.childNodes[2].childNodes[0].childNodes[0]
+        } else if (selectedEl.classList.contains('signup-signin-field-title')) {
+            e.stopPropagation()
+            if (selectedEl.classList.contains('error-input')) selectedEl.classList.remove('error-input')
+            let outerDiv = selectedEl.parentNode
+            outerDiv.classList.remove('error-div')
+            let input = Array.from(outerDiv.querySelectorAll('*')).filter(el=>el.classList.contains('signup-signin-field-input'))[0]
             input.focus()
 
-        } else if (e.target.className === 'signup-signin-field-input') {
-            e.target.focus()
+        } else if (selectedEl.classList.contains('signup-signin-field-input')) {
+            e.stopPropagation()
+            selectedEl.focus()
         }
     }
 
@@ -43,20 +61,14 @@ export default function SignInForm ({currentUser}) {
 
         //add 'focus' class to both surrounding divs of the input
         //that was focused
+        if (errorClassesArray.forEach(e1=>{if(Array.from(e.target.classList).includes(e1)) return true})) {
+            return
+        }
         let outerDiv = e.target.closest('div')
         outerDiv.classList.add('active-div')
 
-        let textFieldTitle = Array.from(outerDiv.childNodes).filter(el => el.className === 'signup-signin-field-title')[0]
-        textFieldTitle.classList.add('active-input')
-    }
-
-    function setClosestDivsInactive(e) {
-        //remove 'focus' class from both surrounding divs of the input
-        //that was blurred
-        let outerDiv = e.target.closest('div')
-        outerDiv.classList.remove('active-div')
-        let textFieldTitle = Array.from(outerDiv.childNodes).filter(el => el.classList.contains('signup-signin-field-title'))[0]
-        textFieldTitle.classList.remove('active-input')
+        let textFieldTitle = Array.from(outerDiv.querySelectorAll('*')).filter(el => el.classList.contains('signup-signin-field-title'))[0]
+        textFieldTitle?.classList.add('active-input')
     }
 
     const handleSubmit = (e) => {
@@ -64,23 +76,31 @@ export default function SignInForm ({currentUser}) {
         
         setErrors([])
         return dispatch(sessionActions.login({email, password}))
-            // .catch(async (res) => {
-            //     let data;
-            //     try {
-            //         data = await res.clone().json();
-            //     } catch {
-            //         data = await res.text();
-            //     }
-            //     if (data?.errors) setErrors(data.errors);
-            //     else if (data) setErrors([data]);
-            //     else setErrors([res.statusText]);
-            // })
-            .then(() =>{history.goBack()});
+            .catch(async (res) => {
+                let data;
+                try {
+                    data = await res.clone().json();
+                } catch {
+                    data = await res.text();
+                }
+                if (data?.errors) {
+                    debugger
+                    setErrors(data.errors)
+                }
+                else if (data) setErrors([data]);
+                else setErrors([res.statusText]);
+            })
+            // .finally(()=>{if (errors.length) {
+            //     debugger
+            //     console.log(errors)
+            // } else {
+            //     debugger
+            //     return history.goBack()}})
     };
     return(
         <>
-            <main onClick={e => focusInput(e)}>
-                <section className='split split-left' id='signin'>
+            <main>
+                <section className='split split-left' id='signin' onClick={e => focusInput(e)}>
                     <div className='auth-centered'>
                         <div id='eblogo-auth'>
                             <Link to='/'>
@@ -90,8 +110,8 @@ export default function SignInForm ({currentUser}) {
                         <h1 id='signup-signin-h1'>Log in</h1>
 
                         <form>
-                            <div className='auth-input-box'>
-                                <div className='signup-signin-field-title'>
+                            <div className={errors.length ? `error-div auth-input-box` :`auth-input-box`}>
+                                <div className={errors.length ? 'error-text signup-signin-field-title' : 'signup-signin-field-title'}>
                                     Email address
                                 </div>
 
@@ -104,7 +124,6 @@ export default function SignInForm ({currentUser}) {
                                                name='email'
                                                onChange={e => setEmail(e.target.value)}
                                                onFocus={e => setClosestDivsActive(e)}
-                                               onBlur={e => setClosestDivsInactive(e)}
                                         />
                                     </label>
                                 </span>
@@ -112,8 +131,8 @@ export default function SignInForm ({currentUser}) {
 
                             <br />
 
-                            <div className='auth-input-box'>
-                                <div className='signup-signin-field-title'>
+                            <div className={errors.length ? `error-div auth-input-box` :`auth-input-box`}>
+                                <div className={errors.length ? 'error-text signup-signin-field-title' : 'signup-signin-field-title'}>
                                     Password
                                 </div>
 
@@ -126,7 +145,6 @@ export default function SignInForm ({currentUser}) {
                                                name='password'
                                                onChange={e => setPassword(e.target.value)}
                                                onFocus={e => setClosestDivsActive(e)}
-                                               onBlur={e => setClosestDivsInactive(e)}
                                         />
                                     </label>
                                 </span>
@@ -134,9 +152,9 @@ export default function SignInForm ({currentUser}) {
 
                             <br />
 
-                            <ul>
-                                {errors.map(error => <li key={error}>{error}</li>)}
-                            </ul>
+                            <div className='login-errors error-text'>
+                                {errors[0]}
+                            </div>
 
                             <br />
 

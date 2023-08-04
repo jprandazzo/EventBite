@@ -17,12 +17,10 @@ main {
 .split-left {
     left: 0;
     position: absolute;
-    /* background-color: #111; */
 }
 
 .split-right {
     right: 0;
-    /* background-color: red; */
 }
 
 .auth-centered {
@@ -76,7 +74,7 @@ main {
 }
 
 .active-div {
-    border: 2px solid #1b31db !important;
+    border: 2px solid #676974 !important;
 }
 
 .signup-signin-field-title {
@@ -86,21 +84,20 @@ main {
     left: 1em;
     top: .4em;
     font-size: .8em;
-    /* COLOR WHEN ERROR: color: #c6162e; */
     color: #6F7386;
     transition: none;
 }
 
 
 .active-input {
-    color: #1b31db;
+    color: #1b31db !important;
 }
 
 .signup-signin-field-input {
     position: absolute;
     left: .7em;
     bottom: .5em;
-    /* width: 365px; */
+    width: 15em;
     border: 1px solid none;
     color: black;
 }
@@ -118,7 +115,7 @@ input:focus {
     width: 365px;
     font-size: 13px;
     font-weight: 550;
-    background: #d1420a;
+    background: #8d1703;
     color: white;
     border: none;
     border-radius: 4px;
@@ -140,4 +137,39 @@ input:focus {
 
 .signup-signin-switch a {
     font-weight: 500;
+}
+.error-div {
+    border: 1px solid #c6162e;
+}
+
+.error-div:hover{
+    border: 1px solid #c6162e;
+}
+
+.error-text {
+    color: #c6162e;
+}
+
+.login-errors {
+    position: relative;
+    top: 0em;
+    left: 1.5em;
+    text-align: center;
+    font-size: 16px;
+}
+
+.email-errors {
+    position: relative;
+    top: 2.4em;
+    left: 2em;
+    text-align: left;
+    font-size: 13px;
+}
+
+.pw-errors {
+    position: relative;
+    top: 2.4em;
+    left: 2em;
+    text-align: left;
+    font-size: 13px;
 }

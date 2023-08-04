@@ -5,8 +5,7 @@
 
 #order-index-centered {
     position: relative;
-    border: 1px solid black;
-    height: 40em;
+    min-height: 50em;
     width: 72%;
     box-shadow: inset 0 0 60px #eff1f2;
     margin: 0% 14% 0% 14%;
@@ -14,7 +13,6 @@
 
 #order-index-name-tile {
     position: relative;
-    border: 1px solid black;
     top: 3.5em;
     left: 3.2em;   
     height: 8em;
@@ -23,9 +21,16 @@
 
 #order-index-user-photo {
     position: absolute;
-    border: 1px solid red;
+    box-shadow: 0 0 5px rgb(205, 205, 205);
+    border-radius: 50%;
     height: 8em;
     width: 8em;
+}
+
+#order-index-user-svg {
+    fill: #A9A8B3;
+    transform: scale(.4);
+    font-weight: 200;
 }
 
 #order-index-name-tile-name {
@@ -33,7 +38,6 @@
     top: .8em;
     z-index: 1;
     left: 5em;
-    border: 1px solid blue;
     font-size: 24px;
     height: 2em;
     width: 10em;
@@ -67,7 +71,6 @@
 
 #order-index-container {
     position: relative;
-    border: 1px solid black;
     left: 28.5em;
     top: 7em;
     width: 52em;
@@ -82,30 +85,40 @@
 
 .order-index-event-tile {
     position: relative;
-    border: 1px solid orange;
     width: 40em;
-    height: 12em;
+    height: 14em;
+    top: -1em;
+    border: .1px solid #f3f3f3;
+    transition: box-shadow 200ms ease-in-out
+}
+
+.order-index-event-tile:hover {
+    box-shadow: 0 0 4px rgb(196, 196, 196);
 }
 
 .order-index-event-tile div {
     position: relative;
 }
 
-.order-index-tile-photo {
-    border: 1px solid black;
+.order-index-tile-photo-link {
+    position: relative;
+    display: block;
+    border: 1px dotted black;
     left: 3em;
-    top: -.4em;
+    top: 1.6em;
     width: 24em;
     height: 10em;
 }
 
 .order-tile-date-small {
     position: absolute;
-    border: 1px solid blue;
     height: 2em;
     width: 2em;
-    top: -11.5em; 
+    top: -9.5em; 
     left: .3em;
+}
+.order-tile-date-small:hover {
+    cursor: default;
 }
 
 .order-tile-date-month {
@@ -127,17 +140,16 @@
 .order-index-tile-link {
     position: relative;
     display: block;
-    border: 1px solid black;
     height: 2.2em;
-    width: 7.1em;
-    top: -12em;
+    width: 11em;
+    top: -10em;
     left: 29em;
 }
 
 .order-index-tile-title {
     position: absolute;
     height: 2.2em;
-    width: 7.1em;
+    width: 11em;
     font-size: 26px;
     font-weight: 500;
     color: #1E0A3B;
@@ -145,16 +157,90 @@
 
 .order-tile-timestamp {
     position: relative;
-    border: 1px solid blue;
     height: 1em;
-    width: 5em;
-    color: grey;
+    width: 14.5em;
+    top: -13em;
+    left: 38.8em;
+    color: rgb(105, 105, 112);
+    font-size: 12px;
 }
 
 .order-tile-order-price-date {
     position: relative;
-    border: 1px solid blue;
     height: 1em;
-    width: 5em;
-    color: grey;
+    width: 14.5em;
+    top: -12em;
+    left: 38.8em;
+    color: rgb(105, 105, 112);
+    font-size: 12px;
 }
+
+.order-tile-edit-dropdown-dots {
+    position: relative;
+    border: 1px solid #e4e2e2;
+    justify-content: center;
+    align-items: center;
+    top: -5.5em;
+    left: 36em;
+    z-index: 2;
+    border-radius: 50%;
+    height: 42px;
+    width: 42px;
+    transition: background-color 300ms ease-in-out;
+}
+
+.order-tile-edit-dropdown-dots:hover {
+    cursor:pointer;
+    background-color: #ebeaeb;
+}
+
+.order-tile-vertical-dots-chunky-svg {
+    cursor:pointer;
+    fill: #656983;
+}
+
+.edit-delete-dropdown svg:hover {
+    cursor:pointer;
+}
+
+.order-tile-dropdown-delete-button {
+    position: relative;
+    top: -12em;
+    left: 25em;
+    z-index: 4;
+    height: 3em !important;
+    width: 12em;
+    padding: 1.3em 1em 0em 1em;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 0em lightgray;
+    cursor: pointer;
+    background: white !important;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(107, 107, 107);
+    transition: 300ms filter ease-in-out, 300ms background-color,
+}
+
+.order-tile-dropdown-delete-button:hover{
+    filter:brightness(.95);
+    box-shadow: 0 0 2px rgb(215, 215, 215);
+    color: white;
+    background-color: #D1420A !important;
+    cursor:pointer;
+}
+
+.delete-are-you-sure {
+    display: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.order-tile-dropdown-delete-button:hover div {
+    display: block !important;
+}
+
+.hidden {
+    display: none;
+}
+

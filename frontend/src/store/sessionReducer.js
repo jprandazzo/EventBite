@@ -1,8 +1,12 @@
 import csrfFetch from "./csrf"
+import { useHistory } from "react-router-dom"
 
 const SET_CURRENT_USER = 'session/setCurrentUser'
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser'
 const RECEIVE_USER = 'receiveUser'
+
+const RECEIVE_ERRORS = 'receiveErrors';
+const REMOVE_ERRORS = 'removeErrors';
 
 const setCurrentUser = (user) => ({
     type: SET_CURRENT_USER,
@@ -58,13 +62,14 @@ export const restoreSession = () => async dispatch => {
     return res;
 }
 
-export const logout = () => async dispatch => {
+export const logout = (history) => async dispatch => {
     const response = await csrfFetch('/api/session', {
         method: 'DELETE'
     });
+    debugger
     storeCurrentUser(null);
-    dispatch(removeCurrentUser());
-    return response;
+    dispatch(removeCurrentUser())
+    // return response
 };
 
 export const signup = user => async dispatch => {
@@ -96,6 +101,7 @@ const sessionReducer = (state = initialState, action) => {
         case SET_CURRENT_USER:
             return {...state, user: action.payload};
         case REMOVE_CURRENT_USER:
+            debugger
             return {...state, user: null};
         default:
             return state;

@@ -17,11 +17,8 @@ export default function OrganizerEventIndex () {
     const organizerEventIds = currentUser ?.organizedEvents
     const allEvents = Array.from(useSelector(eventActions.getEvents))
     const currentUserOrganizedEvents = organizerEventIds ? allEvents.filter(el => organizerEventIds.includes(el.id)) : null
-    debugger
-    const sortedEvents = currentUserOrganizedEvents?.sort((a,b) => moment(a.timestampStart).isAfter((b.timestampStart)) ? -1 : 1)
-    debugger
+    const sortedEvents = currentUserOrganizedEvents?.sort((a,b) => moment(b.timestampStart).isAfter((a.timestampStart)) ? -1 : 1)
     
-    debugger
     const gridHeaderText=['Event','','','Sold','Gross','']
     const gridHeaderClasses=['event','photo','info-description','sold','gross','edit-delete']
 
@@ -57,10 +54,12 @@ export default function OrganizerEventIndex () {
 
     const toggleHide = e => {
         document.querySelectorAll('.edit-delete-dropdown-content').forEach(el=>el.classList.add('hidden'))
+        debugger
         
         if (['svg', 'path'].includes(e.target.nodeName.toLowerCase())) {
-            let row = e.target.closest('.organizer-index-table-row > div').classList.value.split(' ').filter(e =>e.includes('row'))
+            let row = e.target.closest('.organizer-index-table-row > div')?.classList.value.split(' ').filter(e =>e.includes('row'))
             let box = document.querySelector(`.edit-delete-dropdown-content.${row}`)
+            debugger
             box.classList.toggle('hidden')
         }
     }
@@ -98,7 +97,7 @@ export default function OrganizerEventIndex () {
                 </div>
                 {sortedEvents?.map((e,i) =>{
                     return(
-                <div className={`organizer-index-table-row`}>
+                <div className={`organizer-index-table-row`} key={i}>
                     <Link to={`/events/${e.id}`}>
                     <div className={`column-1 row-${i+2}`}>
                         <div className='event-grid-date-month'>{moment(e.timestampStart).format('MMM')}</div>
@@ -116,7 +115,7 @@ export default function OrganizerEventIndex () {
                     </div>
 
                     <div className={`column-4 row-${i+2}`}>
-                        <div className='event-sold'>{`${e.tixSold ? e.ticketsSold : 0} / ${e.capacity}`}</div>
+                        <div className='event-sold'>{`${e.ticketsSold ? e.ticketsSold : 0} / ${e.capacity}`}</div>
                     </div>
 
                     <div className={`column-5 row-${i+2}`}>

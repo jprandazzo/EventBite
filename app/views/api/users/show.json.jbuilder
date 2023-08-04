@@ -6,11 +6,12 @@ json.user do
     json.lastName @user.last_name
     json.email @user.email
     json.img_url @user.profile_photo.url
-    json.organized_events Event.all.where(organizer_id: @user.id).order(:timestamp_start).map(&:id) if Event.all.where(organizer_id: @user.id)
+    json.organized_events Event.all.where(organizer_id: @user.id).order('timestamp_start asc').map(&:id) if Event.all.where(organizer_id: @user.id)
     json.attending_events @user.attending_events.map(&:id)
     json.orders @user_orders.order(:created_at).map(&:id).reverse! if @user_orders
     json.liked_events @user.liked_events.map(&:id)
 end
+
 
 json.events do
     if @user_organized_events

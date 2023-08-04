@@ -28,6 +28,7 @@
 #  fk_rails_...  (organizer_id => users.id)
 #
 class Event < ApplicationRecord
+
     validates :capacity, :tickets_sold, :timestamp_start, 
         :timestamp_end, :venue_name, :organizer_id, :price, :description, presence: true
 

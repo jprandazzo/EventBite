@@ -30,7 +30,6 @@ function App() {
         <Route path='/events/:eventId' component={ShowEvent} />
         <Route path='/users/:userId/favorites' component={LikedEvents}/>
         <Route path='/user/:userId' component={OrderIndex} />
-        <Route path='/orders/:orderId' component={OrderShow} />
         
         {/* <Route path='' */}
         {/* <Route path="/signin"> <SignUpForm /> </Route> */}

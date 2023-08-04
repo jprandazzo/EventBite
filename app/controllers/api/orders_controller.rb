@@ -19,10 +19,11 @@ class Api::OrdersController < ApplicationController
     end
 
     def destroy
-        @order = Order.find(params[:order_id])
+        @order = Order.find(params[:id])
         if @order && @order.ticketholder_id == current_user.id
-            @event.capacity -= @order.num_tickets
-            @event.tickets_sold += @order.num_tickets
+            @event = Event.find(@order.event_id)
+            @event.capacity += @order.num_tickets
+            @event.tickets_sold -= @order.num_tickets
             @event.save
             @order.destroy
             render json: [:order_id]

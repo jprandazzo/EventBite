@@ -22,6 +22,7 @@ export default function ShowEvent () {
     const [event, setEvent] = useState(undefined)
     const [numTickets, setNumTickets] = useState(0)
     const [activeHeart, setActiveHeart] = useState(false)
+    debugger
     
     useEffect(() =>{
         const awaitFetchBeforeLoading = async () => {

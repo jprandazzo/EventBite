@@ -87,7 +87,7 @@
     width: 8em;
     font-size: 15px;
     font-weight: 500;
-    background: #d1420a !important;
+    background: #8d1703 !important;
     color: white;
     border-radius: 4px;
     transition: filter 700ms;
@@ -217,7 +217,7 @@
     text-align: center;
     font-size: 15px;
     font-weight: 500;
-    color: #D1420A;
+    color: #8d1703;
 }
 
 .event-grid-date-day {
@@ -271,7 +271,6 @@
     height: 42px;
     width: 42px;
     transition: background-color 300ms ease-in-out;
-    border: 1 px solid red !important;
     /* text-align: center;
     vertical-align: center; */
 }

@@ -5,12 +5,10 @@ class Api::SessionsController < ApplicationController
     def show
         if current_user
             @user = current_user
-            render :show
+            render 'api/users/show'
         else
             render json: {user: nil}
         end
-
-        debugger
     end
 
     def create
@@ -22,9 +20,9 @@ class Api::SessionsController < ApplicationController
             @user_organized_events = Event.where(organizer_id: @user.id)
             @user_attending_events = @user.attending_events
             @user_orders = @user.orders
-            render :show
+            render 'api/users/show'
         else
-            render json: { errors: ['Invalid Email or Password.'] }, 
+            render json: { errors: ['Invalid Email or Passvord. Look in Van Helsing\'s Journal?'] }, 
         status: :unprocessable_entity
         end
     end

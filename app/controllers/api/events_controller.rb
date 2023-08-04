@@ -53,7 +53,6 @@ class Api::EventsController < ApplicationController
 
     def update
         @event=Event.find(params[:event_id])
-        debugger
         if @event.organizer_id == current_user.id
             @event.update(event_params)
             @event.save
@@ -67,7 +66,6 @@ class Api::EventsController < ApplicationController
 
     def destroy
         @event = Event.find(params[:id])
-        debugger
 
         if @event.organizer_id == current_user.id
             @event.destroy
