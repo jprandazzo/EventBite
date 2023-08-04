@@ -92,7 +92,7 @@ export default function NavBarLoggedIn () {
                             <svg id="user-in-chevron-down" x="0" y="0" viewBox="0 0 24 24"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg>
                             <div className='dropdown-content hidden' id='user-in-dropdown-content'>
                                 <ul>
-                                    <li onClick={()=>history.push('/all-events')}><div className='dropdown-content-text-box'>Browse Events</div></li>
+                                    <li onClick={()=>history.push('/search')}><div className='dropdown-content-text-box'>Browse Events</div></li>
                                     <li onClick={()=>history.push('/organizer/events')}><div className='dropdown-content-text-box'>Manage my Events</div></li>
                                     <li onClick={()=>history.push(`/user/${currentUser?.id}`)}><div className='dropdown-content-text-box'>Tickets ({currentUser?.attendingEvents?.length})</div></li>
                                     {/* <li><div className='dropdown-content-text-box'>Liked</div></li>
