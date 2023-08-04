@@ -190,7 +190,7 @@ I made sure hover effects made pages looked dynamic and vibrant with color and b
 <br>
 
 Lastly, I did decided to change up the color scheme, because I want my user to feel deliciously wicked navigating my sided as I did when I built it. 
-<br>HAPPY FEASTING!
+<br><br>HAPPY FEASTING!
 
 
 
