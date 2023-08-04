@@ -27,6 +27,7 @@ Users
 ### Redirect on login/signup
 With a successful login, the user is redirected to the previous page:
 <img width="560" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/4cf35f7c-4ded-4232-8d6f-c57df534d250">
+
 Alternatively, on successful signup, the user is redirected to the splash page:
 <img width="563" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/75f0f713-2a13-41ed-bc41-e1ea80d42831">
 
