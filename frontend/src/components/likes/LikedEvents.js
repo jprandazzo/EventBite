@@ -63,7 +63,7 @@ export default function LikedEvents () {
                                 <div className='liked-event-tile-title liked-event-tile-left'><Link to={`/events/${ev.id}`}>{ev.title.toUpperCase()}</Link></div>
                                 <div className='liked-event-tile-timestanp liked-event-tile-left'>{moment(ev.timestampStart).format('ddd, MMM d, h:MM A')}</div>
                                 <div className='liked-event-tile-location liked-event-tile-left'>{ev.address}</div>
-                                <div className='liked-event-tile-photo liked-event-tile-right'>photo-placeholder</div>
+                                <div className='liked-event-tile-photo liked-event-tile-right'><Link to={`/events/${ev.id}`}><img src={ev.imgUrl}/></Link></div>
                                 <div className='liked-event-heart-like liked-event-tile-right' onClick={(e)=>heartReact(e,ev)}>{heartIcon(ev)}</div>
                             </div> 
                         )

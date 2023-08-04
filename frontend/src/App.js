@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import SignUpForm from './components/users/SignUpForm';
 import SignInForm from './components/users/SignInForm';

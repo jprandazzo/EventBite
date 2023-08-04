@@ -140,6 +140,10 @@ i {
     cursor:pointer !important;
 }
 
+.splash-event-heart-like svg:hover{
+    opacity: 1;
+}
+
 .splash-event-heart-like svg {
     position: absolute;
     top: .5em;

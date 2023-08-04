@@ -52,7 +52,6 @@ export default function EventsSearch () {
     // }, [location])
 
     const heartIcon = (e) => {
-        debugger
         if (currentUser) {
             if (currentUser.likedEvents && currentUser.likedEvents.includes(e.id)) {
                 return(<div className='search-event-filled-heart'><svg id='fa-heart-filled' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">{/*<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->*/}<path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg></div>)
@@ -69,7 +68,7 @@ export default function EventsSearch () {
                     return(
                         <Link to={`/events/${ev.id}`} className='search-event-tile-link' target='_blank'>
                         <div className='search-event-tile' id={`search-event-tile-${i}`}>
-                            <div className='search-event-tile-photo'>photo-placeholder</div>
+                            <div className='search-event-tile-photo'><img src={ev.imgUrl}/></div>
                             <div className='search-event-heart-like' onClick={(e)=>heartReact(e,ev)}>{heartIcon(ev)}</div>
                             <div className='search-event-tile-title'>{ev.title}</div>
                             <div className='search-event-tile-timestanp'>{moment(ev.timestampStart).format('ddd, MMM d · h:MM A')}</div>
@@ -97,13 +96,10 @@ export default function EventsSearch () {
             }))
         }
     }
-    debugger
 
     const heartReact = (e,ev) =>{ 
-        debugger
         e.stopPropagation();
         e.preventDefault();
-        debugger
         if (!currentUser) history.push('/signin')
         currentUser['currentPageId'] = ev.id
           
@@ -130,9 +126,24 @@ export default function EventsSearch () {
         }))
     }, [queryPrice, queryCategory])
 
-    // const handleSetPrice = (e) =>{
-    //     setQueryPrice(e.target.value);
-    // }
+    const clearSearchQuery = () => {
+        dispatch(searchActions.fetchSearchResults({
+            string: null,
+            price: null,
+            category: null
+        }))
+
+        let elements = document.getElementsByTagName("input");
+
+        for (var i = 0; i < elements.length; i++) {
+            if (elements[i].type == "radio") {
+                elements[i].checked = false;
+            }
+        }
+
+        setQueryString('')
+        history.push('/search')
+    }
 
     const setSearchText = (e) => {
         e.preventDefault()
@@ -162,6 +173,9 @@ export default function EventsSearch () {
             <div id='search-page-hr' />
 
             <div id='filter-and-search-container'>
+                <div id='clear-search-query-button' onClick={clearSearchQuery}>
+                    <div id='search-query-inner-text'>Clear Selection</div>
+                </div>
                 <div id='search-filters-container'>
                     <div id='search-filters-title'>Filters</div>
                     <div className='search-radio-button-section'>

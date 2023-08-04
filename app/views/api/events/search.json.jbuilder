@@ -18,7 +18,7 @@ json.events do
             ticketsSold: event.tickets_sold,
             price: event.price,
             description: event.description,
-            json.img_url event.photo.url
+            imgUrl: event.photo.url
         }
     end
 

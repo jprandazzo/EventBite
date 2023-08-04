@@ -89,6 +89,14 @@ export default function SignInForm () {
                 else setErrors([res.statusText]);
             })
     };
+
+    const demoLogin = (e) => {
+        e.preventDefault()
+        return dispatch(sessionActions.login({
+            email: 'demo@demo.com',
+            password: 'password'
+        }))
+    }
     
     return(
         <>
@@ -97,7 +105,7 @@ export default function SignInForm () {
                     <div className='auth-centered'>
                         <div id='eblogo-auth'>
                             <Link to='/'>
-                                <img src='https://cdn.evbstatic.com/s3-build/prod/1322331-rc2023-07-24_16.04-5e36c7c/django/images/logos/eb_orange_on_white_1200x630.png' />
+                                <img src='https://eventbite-dev.s3.amazonaws.com/eventbite+logo.jpg' />
                             </Link>
                         </div>
                         <h1 id='signup-signin-h1'>Log in</h1>
@@ -153,6 +161,10 @@ export default function SignInForm () {
 
                             <button className='auth-button' onClick={handleSubmit}>
                                 Log in
+                            </button>
+
+                            <button className='auth-button 'id='demo-login' onClick={demoLogin}>
+                                Log in demo user
                             </button>
                         </form>
                         <div className='signup-signin-switch'>

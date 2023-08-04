@@ -103,13 +103,13 @@ export default function OrganizerEventIndex () {
                     </div>
 
                     <div className={`column-2 row-${i+2}`}>
-                        <div className='event-grid-photo'>photo</div>
+                        <div className='event-grid-photo'><img src={e.imgUrl}/></div>
                     </div>
 
                     <div className={`column-3 row-${i+2}`}>
                         <div className='event-grid-title'>{e.title}</div>
                         <div className='event-grid-venue'>{e.venueName}</div>
-                        <div className='event-grid-date-detailed'>{`${moment(e.timestampStart).format('dddd, MMMM d, YYYY')} at ${moment(e.timestampStart).format('h:MM A')}`}</div>
+                        <div className='event-grid-date-detailed'>{`${moment(e.timestampStart).format('dddd, MMMM D, YYYY')} at ${moment(e.timestampStart).format('h:MM A')}`}</div>
                     </div>
 
                     <div className={`column-4 row-${i+2}`}>

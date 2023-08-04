@@ -26,6 +26,7 @@ export default function OrderIndex () {
     }, [])
 
     const pluralizeOrders = (orders) =>{
+        if (!orders.length) return 'orders';
         if (currentUser && orders.length === 1) {
             return '1 order'
         } else return `${orders.length} orders`
@@ -34,7 +35,7 @@ export default function OrderIndex () {
     const pluralizeLikes = (likes) =>{
         if (currentUser && likes.length === 1) {
             return '1 like'
-        } else return `${likes.length} like`
+        } else return `${likes.length} likes`
     }
 
     const toggleHide = e => {
@@ -67,7 +68,7 @@ export default function OrderIndex () {
                         return(
                             <>
                     <div className='order-index-event-tile'>
-                        <Link to={`/events/${event.id}`} className='order-index-tile-photo-link' target='_blank'><div className='order-index-tile-photo'>photo-placeholder</div></Link>
+                        <Link to={`/events/${event.id}`} className='order-index-tile-photo-link' target='_blank'><div className='order-index-tile-photo'><img src={event.imgUrl}/></div></Link>
                         <div className='order-tile-date-small'>
                             <div className='order-tile-date-month'>{moment(event.timestampStart).format('MMM')}</div>
                             <div className='order-tile-date-day'>{moment(event.timestampStart).format('D')}</div>

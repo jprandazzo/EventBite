@@ -33,7 +33,7 @@ section {
 }
 
 #back-to-organized-events a {
-    color: #3E64FF !important;
+    color: #080808 !important;
     text-decoration: none !important;
     font-family: 'Neue Plak';
     font-weight: 500;
@@ -49,7 +49,7 @@ section {
 #chevron-left-chunky_svg__eds-icon--chevron-left-chunky_svg {
   height: 28px;
   width: 28px;
-  fill: #3E64FF !important;
+  fill: #080808 !important;
   transform: scale(.9);
   position: absolute;
   right: 3em;
@@ -76,7 +76,8 @@ section {
   width: 28px;
   left: -4.5em;
   top: .5em;
-  fill: rgb(213, 211, 211);
+  fill: #8d1703;
+  opacity: .4;
   transform: scale(1.7)
 }
 
@@ -248,7 +249,8 @@ input:focus {
   position: absolute;
   left: -4.5em;
   top: .5em;
-  fill: rgb(213, 211, 211);
+  fill: #8d1703;
+  opacity: .4;
   transform: scale(1.7)
 }
 
@@ -303,7 +305,8 @@ input:focus {
   position: absolute;
   left: -4.5em;
   top: .5em;
-  fill: rgb(213, 211, 211);
+  fill: #8d1703;
+  opacity: .4;
   transform: scale(1.7)
 }
 
@@ -337,7 +340,7 @@ input:focus {
 #small_calendar_svg {
   position: absolute;
   transform: scale(.9);
-  fill: #38364F;
+  fill: #650F10;
 }
 
 
@@ -755,14 +758,14 @@ input:focus {
 
 .create-event-discard-button {
   position: relative;
-  left: 85em;
+  left: 83em;
   height: 45px;
-  width: 12em;
+  width: 16em;
   font-size: 13px;
   font-weight: 550;
-  background: white;
-  color: #38364F;
-  border: 2px solid #A9A8B3;
+  background: #373737;
+  color: white;
+  border: 2px solid #373737;
   border-radius: 4px;
   transition: filter 700ms;
   margin-right: 1em;
@@ -775,7 +778,7 @@ input:focus {
   width: 16em;
   font-size: 13px;
   font-weight: 550;
-  background: #d1420a !important;
+  background: #8d1703 !important;
   color: white;
   border: none;
   border-radius: 4px;
@@ -784,7 +787,7 @@ input:focus {
 
 .create-event-discard-button:hover {
   cursor: pointer;
-  filter: brightness(.9);
+  filter: brightness(1.3);
 }
 
 .create-event-button:hover {

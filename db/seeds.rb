@@ -368,7 +368,7 @@ e13 = Event.create!({
     price: 0,
     timestamp_start: DateTime.parse('10 Feb 2023 17:00'),
     timestamp_end: DateTime.parse('10 Feb 2023 23:00'),
-    title: 'title',
+    title: 'Fashion Week the Casle Down Slay',
     venue_name: 'the great hall',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
     }).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/13.jpeg'), filename: 'park.jpeg')

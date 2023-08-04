@@ -31,7 +31,7 @@ json.events do
                 price: event.price.to_i,
                 description: event.description,
                 tix_sold: event.orders.count,
-                img_url: event.photo.url
+                imgUrl: event.photo.url
             }
         end
     end

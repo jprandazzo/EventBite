@@ -60,13 +60,13 @@
 #order-index-likes-dot {
     position: absolute;
     top: 4.4em;
-    left: 12.3em;
+    left: 12.9em;
     font-weight: 600;
 }
 
 #order-index-likes-count {
     top: 5.1em;
-    left: 15em;
+    left: 15.5em;
 }
 
 #order-index-container {
@@ -142,15 +142,15 @@
     display: block;
     height: 2.2em;
     width: 11em;
-    top: -10em;
+    top: -11.5em;
     left: 29em;
 }
 
 .order-index-tile-title {
     position: absolute;
     height: 2.2em;
-    width: 11em;
-    font-size: 26px;
+    width: 8em;
+    font-size: 22px;
     font-weight: 500;
     color: #1E0A3B;
 }
@@ -159,7 +159,7 @@
     position: relative;
     height: 1em;
     width: 14.5em;
-    top: -13em;
+    top: -8em;
     left: 38.8em;
     color: rgb(105, 105, 112);
     font-size: 12px;
@@ -169,7 +169,7 @@
     position: relative;
     height: 1em;
     width: 14.5em;
-    top: -12em;
+    top: -8em;
     left: 38.8em;
     color: rgb(105, 105, 112);
     font-size: 12px;

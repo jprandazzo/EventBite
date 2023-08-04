@@ -21,7 +21,6 @@ export const fetchUser = (userId) => async dispatch => {
 export const fetchUserEvents = (userId) => async dispatch => {
     const response = await fetch(`/api/users/${userId}`);
     const data = await response.json();
-
     dispatch({
         type: RECEIVE_USER_EVENTS,
         user: data.user,

@@ -267,7 +267,8 @@
     position: absolute;
     left: .65em;
     top: .4em;
-    fill: #0924E9;
+    fill: #8d1703;
+    opacity: .6;
     transform: scale(1.2);
 }
 
@@ -336,7 +337,8 @@
     left: .8em;
     top: .7em;
     transform: scale(1.2);
-    fill: #0924E9;
+    fill: #8d1703;
+    opacity: .6;
 }
 
 .event-length-in-hours {
