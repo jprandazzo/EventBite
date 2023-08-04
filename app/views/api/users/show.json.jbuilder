@@ -52,6 +52,7 @@ json.events do
                 ticketsSold: event.tickets_sold,
                 price: event.price.to_i,
                 description: event.description,
+                imgUrl: event.photo.url
             }
         end
     end
@@ -71,7 +72,8 @@ json.events do
                 capacity: event.capacity,
                 ticketsSold: event.tickets_sold,
                 price: event.price.to_i,
-                description: event.description
+                description: event.description,
+                imgUrl: event.photo.url
             }
         end
     end

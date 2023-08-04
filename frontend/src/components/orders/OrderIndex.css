@@ -103,11 +103,21 @@
 .order-index-tile-photo-link {
     position: relative;
     display: block;
-    border: 1px dotted black;
     left: 3em;
     top: 1.6em;
     width: 24em;
     height: 10em;
+}
+
+.order-index-tile-photo {
+    height: 10em;
+}
+
+.order-index-tile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .order-tile-date-small {

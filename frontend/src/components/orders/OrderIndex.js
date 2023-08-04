@@ -45,7 +45,7 @@ export default function OrderIndex () {
             document.querySelector(`#delete-button-${oid}`)?.classList.toggle('hidden')
         }
     }
-
+    
     if (currentUser) {return (
         <>
             <NavBarLoggedIn />
