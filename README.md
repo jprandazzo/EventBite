@@ -33,9 +33,11 @@ Alternatively, on successful signup, the user is redirected to the splash page:
 
 ### logout
 Users can, of course, logout, from a button in the navbar dropdown:
+
 <img width="304" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/23741b2a-1e68-461c-b1dd-f62ff22a268b">
 
 which takes them back to the signin page:
+
 <img width="585" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/64e93fe3-8d15-4e94-9551-e94bd448d7e2">
 
 
