@@ -152,6 +152,10 @@ export default function EventsSearch () {
         
     }
 
+    // if (prevString || prevPrice || prevCategory) {
+    // 
+    //}
+
     if (!allEvents) {
         return <></>
     } else return(
