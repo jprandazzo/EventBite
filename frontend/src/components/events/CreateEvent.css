@@ -76,7 +76,7 @@ section {
   width: 28px;
   left: -4.5em;
   top: .5em;
-  fill: #8d1703;
+  fill: #440a00;
   opacity: .4;
   transform: scale(1.7)
 }
@@ -249,7 +249,7 @@ input:focus {
   position: absolute;
   left: -4.5em;
   top: .5em;
-  fill: #8d1703;
+  fill: #440a00;
   opacity: .4;
   transform: scale(1.7)
 }
@@ -305,7 +305,7 @@ input:focus {
   position: absolute;
   left: -4.5em;
   top: .5em;
-  fill: #8d1703;
+  fill: #440a00;
   opacity: .4;
   transform: scale(1.7)
 }

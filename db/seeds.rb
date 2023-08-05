@@ -200,7 +200,7 @@ e6 = Event.create!({
 }).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/6.jpeg'), filename: 'comiccon.jpeg')
 
 e7 = Event.create!({
-    address: 'Metropolitan Museum of Art',
+    address: '1000 5th Ave, New York, NY 10028',
     capacity: 200,
     description: 'Embrace the enigmatic allure of the night at 
     the Met, a mesmerizing event tailored for the connoisseurs of 
@@ -214,12 +214,12 @@ e7 = Event.create!({
     elegance and eternal intrigue.',
     event_category: 'community_culture',
     event_type: 'attraction',
-    organizer_name: 'organizer',
+    organizer_name: "Count Orlok Foundation",
     price: 60,
     timestamp_start: DateTime.parse('22 Feb 2024 18:00'),
     timestamp_end: DateTime.parse('22 Feb 2024 23:00'),
     title: 'Nocturnal Museum Soiree, Taste the Elite',
-    venue_name: 'the met',
+    venue_name: 'Metropolitan Museum of Art',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
 }).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/7.png'), filename: 'museum.jpeg')
 
@@ -324,27 +324,27 @@ e11 = Event.create!({
 }).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/11.webp'), filename: 'casino.jpeg')
 
 e12 = Event.create!({
-    address: 'Madison Square Garden, New York',
+    address: '4 Pennsylvania Plaza, New York, NY 10001',
     capacity: 3000,
     description: "Embrace the ethereal enchantment of Twilight 
     Serenade, a mesmerizing concert experience tailor-made for 
     the nocturnal souls of the undead. Join us as the bewitching 
     voice of Florence Welch and the haunting melodies of the 
     Machine weave a tapestry of darkly poetic ballads and
-    powerful anthems. Feel something, while you taste something. 
+    powerful anthems. Feel something, while you taste someONE. 
     Immerse yourself in the spellbinding atmosphere of the night, 
     where the music ignites the immortal spirit within. 
     Dance with fellow vampires and let the music carry you 
     on a journey through the mystical realms of your immortal 
     heart as dine on someone else's.",
     event_category: 'music',
-    event_type: 'concert_performance',
-    organizer_name: 'Florence and the Machine',
+    event_type: "concert_performance",
+    organizer_name: "Florence and the Machine",
     price: 125,
-    timestamp_start: DateTime.parse('15 Apr 2024 20:00'),
-    timestamp_end: DateTime.parse('15 Apr 2024 23:00'),
+    timestamp_start: DateTime.parse('15 Apr 2024 20:00')
+    timestamp_end: DateTime.parse('15 Apr 2024 23:00'), 
     title: 'Florence and the Machine - Dance Frenzy',
-    venue_name: 'MSG',
+    venue_name: 'Madison Square Garden',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
     }).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/12.avif'), filename: 'florence.jpeg')
 

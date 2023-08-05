@@ -57,7 +57,7 @@ export default function ShowEvent () {
         if (e.target.innerHTML === '+') {
             setNumTickets(numTickets+1)
         } else {
-            setNumTickets(numTickets-1)
+            if (numTickets > 0) setNumTickets(numTickets-1)
         }
     }
 
@@ -110,11 +110,14 @@ export default function ShowEvent () {
                                     <div className='ticket-price-container'>
                                         General Admission<br/>{event.price ? `$${Number(event.price).toFixed(2)}` : 'Free'}
                                     </div>
-                                    <button className={`${numTickets ? 'clickable-count ticket-count-decrease' : 'unclickable-count ticket-count-decrease'}`}>—</button>
+                                    <button className={`${numTickets ? 'clickable-count ticket-count-decrease' : 'unclickable-count ticket-count-decrease'}`} 
+                                        onClick={e=>{handlePlusMinusClick(e)}}>—</button>
                                     <div className='ticket-count-text'>{numTickets}</div>
-                                    <button className='ticket-count-increase clickable-count' onClick={e=>{handlePlusMinusClick(e)}}>+</button>
+                                    <button className='ticket-count-increase clickable-count' o
+                                        nClick={e=>{handlePlusMinusClick(e)}}>+</button>
                                 </div>
-                                <button className='ticket-purchase-button' onClick={() =>handlePurchase(event.id)}>{event.price ? 'Get tickets' : 'Reserve a spot'}</button>
+                                <button className='ticket-purchase-button' 
+                                    onClick={() =>handlePurchase(event.id)}>{event.price ? 'Get tickets' : 'Reserve a spot'}</button>
                             </div>
 
                             <div className='show-event-when-where-container'>

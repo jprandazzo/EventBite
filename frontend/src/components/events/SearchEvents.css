@@ -223,7 +223,6 @@ input[type="radio"]:checked:after {
     left: 1em;
     height: 6.8em;
     width: 13.5em;
-    border: 1px dotted black;
 }
 
 .search-event-tile-title {

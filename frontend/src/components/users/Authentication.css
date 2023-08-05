@@ -31,6 +31,12 @@ main {
     text-align: center;
 }
 
+#signup-container {
+    position: absolute;
+    top: -7.2em;
+    left: -14em;
+}
+
 #eblogo-auth img {
     max-width: 160px;
     position: absolute;
@@ -74,7 +80,7 @@ main {
 }
 
 .active-div {
-    border: 2px solid #676974 !important;
+    border: 2px solid #2a46e2 !important;
 }
 
 .signup-signin-field-title {
@@ -124,6 +130,10 @@ input:focus {
     transition: filter 700ms;
 }
 
+#signup-button {
+    left: 0em;
+}
+
 #demo-login {
     position: relative;
     top: 2em;
@@ -164,6 +174,7 @@ input:focus {
     left: 1.5em;
     text-align: center;
     font-size: 16px;
+    color: #c6162e;
 }
 
 .email-errors {
@@ -172,12 +183,14 @@ input:focus {
     left: 2em;
     text-align: left;
     font-size: 13px;
+    color: #c6162e;
 }
 
-.pw-errors {
+.password-errors {
     position: relative;
     top: 2.4em;
     left: 2em;
     text-align: left;
     font-size: 13px;
+    color: #c6162e;
 }

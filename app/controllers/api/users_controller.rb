@@ -33,7 +33,6 @@ class Api::UsersController < ApplicationController
             @user.email = params[:email]
             @user.first_name = params[:first_name]
             @user.last_name = params[:last_name]
-            # @user.image_url = params[:image_url]
             @user.save
 
             browser_like = Like.new(event_id: params[:current_page_id], liker_id: @user.id)

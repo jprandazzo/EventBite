@@ -87,7 +87,7 @@ i {
 }
 
 .splash-event-tile {
-    border: 1px solid black;
+    box-shadow: 0 0 3px grey;
     position: relative;
     display: inline-block;
     height: 20em;
@@ -112,7 +112,6 @@ i {
     background-size: contain;
     background-repeat: no-repeat;
     top: 0em;
-    border: 1px dotted black;
     height: 8.3em;
     width: 100%;
 }
@@ -127,21 +126,19 @@ i {
 .splash-event-heart-like {
     right: 2.5em;
     top: 7em;
-    border: 1px solid grey;
+    border: 1px solid rgb(211, 211, 211);
     height: 2.7em;
     width: 2.7em;
     border-radius: 50%;
+    background-color: white;
     transition: all 300ms ease-in-out;
 }
 
 .splash-event-heart-like:hover {
     background-color: #f3f3f3;
-    opacity: .6;
+    transform: brightness(1.2);
+    box-shadow: 0 0 2px grey;
     cursor:pointer !important;
-}
-
-.splash-event-heart-like svg:hover{
-    opacity: 1;
 }
 
 .splash-event-heart-like svg {

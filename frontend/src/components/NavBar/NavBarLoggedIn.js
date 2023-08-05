@@ -58,17 +58,6 @@ export default function NavBarLoggedIn () {
     const logout = async (e) => {
         e.preventDefault();
         let res = await dispatch(sessionActions.logout(history))
-            // .catch(async (res) => {
-            //     let data;
-            //     try {
-            //         data = await res.clone().json();
-            //     } catch {
-            //         data = await res.text();
-            //     }
-            //     if (data?.errors) setErrors(data.errors);
-            //     else if (data) setErrors([data]);
-            //     else setErrors([res.statusText]);
-            // });
             history.push('/signin')
     }
 

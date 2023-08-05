@@ -12,15 +12,11 @@ export default function SignUpForm () {
     // not allow user to sign up
 
     const currentUser = useSelector(sessionActions.getCurrentUser)
-
-    useEffect(()=>{
-        if (currentUser) history.push('/')
-    }, [currentUser])
+    if (currentUser) history.push('/')
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([]);
-    console.log(errors)
     const errorClassesArray = ['error-text', 'error-div', 'login-errors', 'email-errors', 'pw-errors'];
 
     const focusInput = (e) => {
@@ -99,81 +95,81 @@ export default function SignUpForm () {
                 else if (data) setErrors([data]);
                 else setErrors([res.statusText]);
             })
-            .then(()=>{if (!errors.length) {
-                return history.push('/')}})
     }
+
     return(
         <>
             <main onClick={e => focusInput(e)}>
             <section className='split split-left' id='signin'>
-                    <div className='auth-centered'>
-                        <div id='eblogo-auth'>
-                            <Link to='/'>
-                                <img src='https://eventbite-dev.s3.amazonaws.com/eventbite+logo.jpg' />
-                            </Link>
-                        </div>
-                        <h1 id='signup-signin-h1'>Create an account</h1>
+                    <div className='auth-centered' id='signup-centered'>
+                        <div className='auth-container' id='signup-container'>
+                            <div id='eblogo-auth'>
+                                <Link to='/'>
+                                    <img src='https://eventbite-dev.s3.amazonaws.com/eventbite+logo.jpg' />
+                                </Link>
+                            </div>
+                            <h1 id='signup-signin-h1'>Create an account</h1>
+                            <form>
+                                <div className={errors.length ? `error-div auth-input-box` :`auth-input-box`}>
+                                    <div className={errors.length ? 'error-text signup-signin-field-title' : 'signup-signin-field-title'}>
+                                        Email address
+                                    </div>
 
-                        <form>
-                            <div className={errors.length ? `error-div auth-input-box` :`auth-input-box`}>
-                                <div className={errors.length ? 'error-text signup-signin-field-title' : 'signup-signin-field-title'}>
-                                    Email address
+                                    <br />
+
+                                    <span >
+                                        <label>
+                                            <input className='signup-signin-field-input'
+                                                type='text' 
+                                                name='email'
+                                                onChange={e => setEmail(e.target.value)}
+                                                onFocus={e => setClosestDivsActive(e)}
+                                                onBlur={e => setClosestDivsInactive(e)}
+                                            />
+                                        </label>
+                                    </span>
+                                    <div className='email-errors'>{errors?.filter(e=>e.toLowerCase().includes('email'))}</div>
                                 </div>
 
                                 <br />
 
-                                <span >
-                                    <label>
-                                        <input className='signup-signin-field-input'
-                                               type='text' 
-                                               name='email'
-                                               onChange={e => setEmail(e.target.value)}
-                                               onFocus={e => setClosestDivsActive(e)}
-                                               onBlur={e => setClosestDivsInactive(e)}
-                                        />
-                                    </label>
-                                </span>
-                            </div>
+                                <div className={errors.length ? `error-div auth-input-box` :`auth-input-box`}>
+                                    <div className={errors.length ? 'error-text signup-signin-field-title' : 'signup-signin-field-title'}>
+                                        Password
+                                    </div>
 
-                            <br />
+                                    <br />
 
-                            <div className={errors.length ? `error-div auth-input-box` :`auth-input-box`}>
-                                <div className={errors.length ? 'error-text signup-signin-field-title' : 'signup-signin-field-title'}>
-                                    Password
+                                    <span >
+                                        <label>
+                                            <input className='signup-signin-field-input'
+                                                type='password' 
+                                                name='password'
+                                                onChange={e => setPassword(e.target.value)}
+                                                onFocus={e => setClosestDivsActive(e)}
+                                                onBlur={e => setClosestDivsInactive(e)}
+                                            />
+                                        </label>
+                                    </span>
+                                    <div className='password-errors'>{errors?.filter(e=>e.toLowerCase().includes('password'))}</div>
                                 </div>
 
                                 <br />
 
-                                <span >
-                                    <label>
-                                        <input className='signup-signin-field-input'
-                                               type='password' 
-                                               name='password'
-                                               onChange={e => setPassword(e.target.value)}
-                                               onFocus={e => setClosestDivsActive(e)}
-                                               onBlur={e => setClosestDivsInactive(e)}
-                                        />
-                                    </label>
-                                </span>
+                                <br />
+
+                                <button className='auth-button' id='signup-button' onClick={handleSubmit}>
+                                    Sign up
+                                </button>
+                            </form>
+                            <div className='signup-signin-switch'>
+                                <Link to='/signin'>Log in</Link>
                             </div>
-
-                            <br />
-
-                            <br />
-
-                            <button className='auth-button' onClick={handleSubmit}>
-                                Sign up
-                            </button>
-                        </form>
-                        <div className='signup-signin-switch'>
-                            <Link to='/signin'>Log in</Link>
                         </div>
                     </div>
                 </section>
                 <section className='split split-right' id='auth-side-photo'>
-                    <div className='auth-centered login-image'>
-                        {/* <img src='https://i.ibb.co/Qp4jyky/Screenshot-2023-07-26-at-1-38-15-PM.png' /> */}
-                    </div>
+                    <div className='auth-centered login-image'/>
                 </section>
             </main>
         </>

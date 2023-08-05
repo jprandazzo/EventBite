@@ -15,11 +15,14 @@ export default function SignInForm () {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
     const errorClassesArray = ['error-text', 'error-div', 'login-errors', 'email-errors', 'pw-errors']
-    const currentUser = useSelector(sessionActions.getCurrentUser)
+    
 
-    useEffect(()=>{
-        if (currentUser) history.goBack()
-    }, [currentUser])
+
+    const currentUser = useSelector(sessionActions.getCurrentUser)
+    if (currentUser) history.goBack()
+
+
+    
     const focusInput = (e) => {
         e.stopPropagation()
         const selectedEl = e.target

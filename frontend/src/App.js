@@ -20,7 +20,7 @@ function App() {
 
       <Switch>
         <Route exact path="/" component={SplashPage} />
-        <Route path='/all-events' component={AllEvents} />
+        {/* <Route path='/all-events' component={AllEvents} /> */}
         <Route path="/signup" component={SignUpForm} /> 
         <Route path="/signin" component={SignInForm} />
         <Route path="/organizer/events" component={OrganizerEventIndex} />
