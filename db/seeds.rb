@@ -341,7 +341,7 @@ e12 = Event.create!({
     event_type: "concert_performance",
     organizer_name: "Florence and the Machine",
     price: 125,
-    timestamp_start: DateTime.parse('15 Apr 2024 20:00')
+    timestamp_start: DateTime.parse('15 Apr 2024 20:00'),
     timestamp_end: DateTime.parse('15 Apr 2024 23:00'), 
     title: 'Florence and the Machine - Dance Frenzy',
     venue_name: 'Madison Square Garden',
