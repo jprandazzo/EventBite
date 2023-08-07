@@ -70,7 +70,7 @@ e1 = Event.create!({
     title: 'Shakespeare in the Park - A Nostalgic Banquet',
     venue_name: 'Central Park West St',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/1.jpeg'), filename: 'shakespeare.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/1.jpeg'), filename: 'shakespeare.jpeg')
 
 e2 = Event.create!({
     address: 'Avant Gardner, Brooklyn',
@@ -94,7 +94,7 @@ e2 = Event.create!({
     title: 'Eternal Disco - Dance Til They Drop',
     venue_name: 'the great hall',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/2.jpeg'), filename: 'disco.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/2.jpeg'), filename: 'disco.jpeg')
 
 e3 = Event.create!({
     address: 'Chelsea Wine Market',
@@ -120,7 +120,7 @@ e3 = Event.create!({
     title: 'Wine Tasting - Enjoy Each Mouthwatering Sip',
     venue_name: 'chelsea wine market',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/3.jpeg'), filename: 'wine.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/3.jpeg'), filename: 'wine.jpeg')
 
 e4 = Event.create!({
     address: 'address',
@@ -147,7 +147,7 @@ e4 = Event.create!({
     title: "Camping Trip - Rotisserie Included",
     venue_name: 'the great hall',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/4.jpeg'), filename: 'camping.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/4.jpeg'), filename: 'camping.jpeg')
 
 e5 = Event.create!({
     address: 'address',
@@ -174,7 +174,7 @@ e5 = Event.create!({
     title: 'Cooking Class - Dine With (on) A Partner',
     venue_name: 'the great hall',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/5.jpg'), filename: 'dining.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/5.jpeg'), filename: 'dining.jpeg')
 
 e6 = Event.create!({
     address: 'Javits Center, New York',
@@ -197,7 +197,7 @@ e6 = Event.create!({
     title: 'Immortal Con - A Pun for the Darkest of Ages',
     venue_name: 'Javits Center',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/6.jpeg'), filename: 'comiccon.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/6.jpeg'), filename: 'comiccon.jpeg')
 
 e7 = Event.create!({
     address: '1000 5th Ave, New York, NY 10028',
@@ -221,7 +221,7 @@ e7 = Event.create!({
     title: 'Nocturnal Museum Soiree, Taste the Elite',
     venue_name: 'Metropolitan Museum of Art',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/7.png'), filename: 'museum.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/7.png'), filename: 'museum.jpeg')
 
 e8 = Event.create!({
     address: 'Bronx Night Market',
@@ -245,7 +245,7 @@ e8 = Event.create!({
     title: 'Night Market - An Ourdoor Frenzy',
     venue_name: 'the great hall',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/8-market.jpeg'), filename: 'nightmarket.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/8.jpeg'), filename: 'nightmarket.jpeg')
 
 e9 = Event.create!({
     address: 'The Bitter End',
@@ -271,7 +271,7 @@ e9 = Event.create!({
     title: 'Open Mic Night for Open Mouths',
     venue_name: 'the bitter end',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/9.jpeg'), filename: 'mic.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/9.jpeg'), filename: 'mic.jpeg')
 
 e10 = Event.create!({
     address: 'Industry City, Brooklyn',
@@ -296,7 +296,7 @@ e10 = Event.create!({
     title: 'City of Gods and Devils - The Big One',
     venue_name: 'brooklyn hall',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/10.png'), filename: 'halloween.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/10.png'), filename: 'halloween.jpeg')
 
 e11 = Event.create!({
     address: 'Empire City Casino',
@@ -321,7 +321,7 @@ e11 = Event.create!({
     title: 'Eternal Jackpot - A Casino Night for the Ages',
     venue_name: 'empire city casino',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/11.webp'), filename: 'casino.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/11.webp'), filename: 'casino.jpeg')
 
 e12 = Event.create!({
     address: '4 Pennsylvania Plaza, New York, NY 10001',
@@ -346,7 +346,7 @@ e12 = Event.create!({
     title: 'Florence and the Machine - Dance Frenzy',
     venue_name: 'Madison Square Garden',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-    }).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/12.avif'), filename: 'florence.jpeg')
+    }).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/12.avif'), filename: 'florence.jpeg')
 
 e13 = Event.create!({
     address: 'Prospect Park, Brooklyn',
@@ -371,7 +371,7 @@ e13 = Event.create!({
     title: 'Fashion Week the Casle Down Slay',
     venue_name: 'the great hall',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-    }).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/13.jpeg'), filename: 'park.jpeg')
+    }).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/13.jpeg'), filename: 'park.jpeg')
 
 e14 = Event.create!({
     address: 'Webster Hall',
@@ -395,7 +395,7 @@ e14 = Event.create!({
     title: 'Masquerade Ball - Disguises Welcomed',
     venue_name: 'webster hall',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/14.jpeg'), filename: 'masquerade.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/14.jpeg'), filename: 'masquerade.jpeg')
 
 e15 = Event.create!({
     address: 'Spring Studios, 50 Varick Street',
@@ -420,7 +420,7 @@ e15 = Event.create!({
     title: 'title',
     venue_name: 'the great hall',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: File.open('/Users/joerandazzo/Documents/App Academy/aA Projects/eventbite/app/images/15.webp'), filename: 'fashion.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/15.webp'), filename: 'fashion.jpeg')
 
 20.times do 
     user_id = User.all.map(&:id)[rand(User.count-1)]
