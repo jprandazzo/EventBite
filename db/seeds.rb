@@ -8,6 +8,9 @@
 
 require "open-uri";
 
+Like.destroy_all
+Order.destroy_all
+Event.destroy_all
 User.destroy_all
 
 demo = User.create!({
@@ -44,8 +47,6 @@ u5 = User.create!({
     last_name: 'Dracula',
     password: 'password',
 })
-
-Event.destroy_all
 
 e1 = Event.create!({
     address: 'Central Park, New York',
