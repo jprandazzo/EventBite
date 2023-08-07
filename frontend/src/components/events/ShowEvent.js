@@ -113,8 +113,7 @@ export default function ShowEvent () {
                                     <button className={`${numTickets ? 'clickable-count ticket-count-decrease' : 'unclickable-count ticket-count-decrease'}`} 
                                         onClick={e=>{handlePlusMinusClick(e)}}>—</button>
                                     <div className='ticket-count-text'>{numTickets}</div>
-                                    <button className='ticket-count-increase clickable-count' o
-                                        nClick={e=>{handlePlusMinusClick(e)}}>+</button>
+                                    <button className='ticket-count-increase clickable-count' onClick={e=>{handlePlusMinusClick(e)}}>+</button>
                                 </div>
                                 <button className='ticket-purchase-button' 
                                     onClick={() =>handlePurchase(event.id)}>{event.price ? 'Get tickets' : 'Reserve a spot'}</button>
