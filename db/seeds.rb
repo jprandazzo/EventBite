@@ -243,7 +243,7 @@ e8 = Event.create!({
     price: 0,
     timestamp_start: DateTime.parse('10 Oct 2023 17:00'),
     timestamp_end: DateTime.parse('10 Oct 2023 23:00'),
-    title: 'Night Market - An Ourdoor Frenzy',
+    title: 'Night Market - An Outdoor Frenzy',
     venue_name: 'the great hall',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
 }).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/8.jpeg'), filename: 'nightmarket.jpeg')
