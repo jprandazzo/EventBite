@@ -1,7 +1,8 @@
 ![eventbite logo 75p](https://github.com/jprandazzo/EventBite/assets/131551196/c9d57654-f288-4b69-8419-b1e26e55bc82)
 
 ***
-Welcome to Eventbite. This is a site by vampires, for vampires. I know how hungry you are, because I am too. And what better way to find your next meal by getting the humans to come to you?
+Welcome to Eventbite. This is a site by vampires, for vampires. I know how hungry you are - we live for the feed. And what better way to find your next meal by getting the humans to come to you?
+<br><br>
 Thankfully, we have the power of the internet at our fingertips (things sure have changed since I was young back in the 1670s). Eventbite will allow you to create events AND buy tickets to others' events - you can really double dip with this one (pun intended) and have some fun while you imbibe your sweet, sweet elixirs. And don't worry, humans see this site as a normal Eventbrite; only our dark magic allows us to see the truth.
 
 In order to build Eventbite, I used the following technologies:
@@ -182,10 +183,10 @@ See Eventbrite's search page:
 
 <br>
 vs mine:
-
+<br>
 
 <img width="895" alt="Screenshot 2023-08-04 at 6 09 15 PM" src="https://github.com/jprandazzo/EventBite/assets/131551196/a7fab812-304b-4e15-b10c-39a0e2b68821">
-
+<br>
 <br>
 
 I made sure hover effects made pages looked dynamic and vibrant with color and brightness shifts, cursor-to-pointer, and box-shadows - all over a 300ms `ease-in-out` transition: 
@@ -194,7 +195,7 @@ I made sure hover effects made pages looked dynamic and vibrant with color and b
 
 <br><br>
 <img width="342" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/ba6a2980-3733-4e6f-8015-69d486e20105">
-
+<br>
 <br>
 
 Lastly, I did decided to change up the color scheme, because I want my user to feel deliciously wicked navigating my sided as I did when I built it. 
