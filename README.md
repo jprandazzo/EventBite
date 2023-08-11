@@ -27,11 +27,13 @@ For active input box, the container and its inner text label both turn blue:
 ### User login with error handling and a demo login
 <img width="498" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/e7233ff1-b13b-4786-a972-3717234db3ba">
 <br>
+
 ### Redirect on login/signup
 With a successful login, the user is redirected to the previous page:
 
 <img width="560" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/4cf35f7c-4ded-4232-8d6f-c57df534d250">
 
+<br>
 <br>
 Alternatively, on successful signup, the user is redirected to the splash page:
 
