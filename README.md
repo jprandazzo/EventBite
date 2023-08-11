@@ -13,14 +13,17 @@ In order to build Eventbite, I used the following technologies:
 ## Users/Sessions
 
 ### Account creation with error handling
+
 #### Styling
 For active input box, the container and its inner text label both turn blue:
 
 <img width="572" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/80b8690f-8caa-45da-a8c2-26f2586fc491">
 <br>
+
 ### Error handling on account creation
 <img width="522" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/0ebbc1de-0a2a-46a8-8702-df43ce8e201c">
 <br>
+
 ### User login with error handling and a demo login
 <img width="498" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/e7233ff1-b13b-4786-a972-3717234db3ba">
 <br>
@@ -35,6 +38,7 @@ Alternatively, on successful signup, the user is redirected to the splash page:
 <img width="563" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/75f0f713-2a13-41ed-bc41-e1ea80d42831">
 
 <br>
+
 ### logout
 Users can, of course, logout, from a button in the navbar dropdown:
 
