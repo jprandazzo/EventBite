@@ -50,7 +50,7 @@ Users can, of course, logout, from a button in the navbar dropdown:
 <br>
 <br>
 which takes them back to the signin page:
-
+<br>
 <img width="585" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/64e93fe3-8d15-4e94-9551-e94bd448d7e2">
 
 
@@ -59,29 +59,29 @@ which takes them back to the signin page:
 
 ### Event Creation
 The event creation page is styled to look exactly like Eventbrite's creation page (as of August 2023), minus my own Mephistophalean color scheme:
-
+<br>
 <img width="736" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/e8d0b827-c3f3-4cc3-bd01-89e2b31ef646">
 
 <br>
 On clicking either date, a calendar pops up which allows a user to select a date (setting the corresponding state variable on click):
-
+<br>
 <img width="788" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/b0b29897-30d8-459b-98fe-b4d87ef25c62">
 
 <br>
 Parsing out the timestamp in the variable to show appropriate dates and times:
-
+<br>
 <img width="844" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/9dc3458f-cee6-4659-91e3-912928d3183e">
 
 <br>
 
 ### Event Index/Edit events:
 The Organizer Index page shows all events where the current user is the organizer, with the ability to edit from a clickable popup:
-
+<br>
 <img width="1117" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/04248778-9465-470e-a0e7-df4bbaea5a29">
 
 <br>
 A useEffect hook sets the values after fetch, making it easy to update the event based on its previous attributes:
-
+<br>
 <img width="727" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/b2973b21-1119-4dec-a121-1ca97890907a">
 
 <br>
@@ -99,8 +99,7 @@ The search page starts off showing all events, but the user can either enter a q
 
 <br>
 There's conditional logic to render a grey/empty or (blood) red/full heart based on whether that user currently likes that event:
-
-
+<br>
 <img width="609" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/dae1ac37-400a-45e6-b384-d435ea07f4c9">
 
 <br>
@@ -134,10 +133,10 @@ Considerable attention to detail was paid to make sure the positioning and hover
 ***
 ## Likes
 Implementing like actions was deceivingly complex (especially for such an unimposing little heart icon) - I opted to handle it entirely in the users state/reducer rather than creating a separate likes slice of state/controller actions/jbuilder return object. My logic was as follows:
-
+<br><br>
 Flip the value of the `activeHeart` variable, which will toggle between grey and red hears on the page. Set that event ID to the user's `currentPage` attribute, and update the user in the back end:
 
-
+<br>
 <img width="401" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/8279a12f-e568-4d01-95de-82523492aace">
 <br>
 
@@ -158,7 +157,7 @@ In the users controller, the `update` action:
 
 `orders` were slightly tricky to create successfully. To make sure an event doesn't get oversold, the event has both `capacity` and number of `tickets_sold`. I monkey patched the order `create!` method to first check there are enough available tickets for purchase, then upon verification, adds that many `num_tickets` to the event's `tickets_sold`. Finally, both the order and the event are persisted to the database. 
 
-
+<br><br>
 <img width="592" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/a97cddb7-cfb6-46ef-9a55-47cf03f9854b">
 
 <br>
@@ -166,16 +165,16 @@ In the users controller, the `update` action:
 
 As with Eventbrite's site, there are different nav bars depending whether a user is logged in or out:
 
-
+<br><br>
 <img width="1788" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/1a4301a4-d757-48db-a7a0-a8a84b6c938b">
-
+<br>
 
 <img width="1792" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/87ef9a37-28d6-4bf6-8efc-3819536e103b">
 
 <br>
 I paid strict attention to detail to ensure as much pixel-to-pixel congruence with the real Eventbrite site as possible (sizing, fonts, positioning, color schemes). 
 
-
+<br><br>
 See Eventbrite's search page:
 
 
