@@ -47,6 +47,7 @@ Users can, of course, logout, from a button in the navbar dropdown:
 <img width="304" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/23741b2a-1e68-461c-b1dd-f62ff22a268b">
 
 <br>
+<br>
 which takes them back to the signin page:
 
 <img width="585" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/64e93fe3-8d15-4e94-9551-e94bd448d7e2">
@@ -71,6 +72,7 @@ Parsing out the timestamp in the variable to show appropriate dates and times:
 <img width="844" alt="image" src="https://github.com/jprandazzo/EventBite/assets/131551196/9dc3458f-cee6-4659-91e3-912928d3183e">
 
 <br>
+
 ### Event Index/Edit events:
 The Organizer Index page shows all events where the current user is the organizer, with the ability to edit from a clickable popup:
 
