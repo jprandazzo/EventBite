@@ -19,10 +19,7 @@ export default function SignUpForm () {
     const [errors, setErrors] = useState([]);
     const errorClassesArray = ['error-text', 'error-div', 'login-errors', 'email-errors', 'pw-errors'];
 
-    const focusInput = (e) => {
-        e.stopPropagation()
-        const selectedEl = e.target
-        //blur anything that's currently focused
+    const blurOtherInput = (selectedEl) => {
         let arr = Array.from(document.querySelectorAll('*'))
         arr.forEach(el=> {
             if (el.classList.contains('.signup-signin-field-input')) {
@@ -33,6 +30,13 @@ export default function SignUpForm () {
                 if (el !== selectedEl) el.classList.remove('active-input')
             }
         })
+    }
+    const focusInput = async (e) => {
+        e.stopPropagation()
+        const selectedEl = e.target
+        //blur anything that's currently focused
+        await blurOtherInput(selectedEl)
+        
         //whichever div is clicked, find its input and focus it
         if (selectedEl.classList.contains('auth-input-box')) {
             e.stopPropagation()
@@ -59,10 +63,13 @@ export default function SignUpForm () {
         // document.querySelectorAll('*').forEach(el=>if ())
         //add 'focus' class to both surrounding divs of the input
         //that was focused
+        // debugger
         let outerDiv = e.target.closest('div')
         outerDiv.classList.add('active-div')
 
         let textFieldTitle = Array.from(outerDiv.childNodes).filter(el => el.className === 'signup-signin-field-title')[0]
+        console.log(outerDiv)
+        console.log(textFieldTitle)
         textFieldTitle.classList.add('active-input')
     }
 
@@ -122,7 +129,7 @@ export default function SignUpForm () {
                                             <input className='signup-signin-field-input'
                                                 type='text' 
                                                 name='email'
-                                                onChange={e => setEmail(e.target.value)}
+                                                onChange={e => setEmail(e.target.value.toLowerCase())}
                                                 onFocus={e => setClosestDivsActive(e)}
                                                 onBlur={e => setClosestDivsInactive(e)}
                                             />

@@ -116,7 +116,7 @@ a {
     display: none;
 }
 
-.help-organize-dropdown {
+.help-organize-about-dropdown {
     position: relative;
 }
 
@@ -128,13 +128,22 @@ a {
     width: 4em;
 }
 
-.help-organize-text {
-    position: absolute;
-    font-size: 13px;
-    top: 2.3em;
+#about-dropdown {
+    width: 9em;
+    right: 1em;
 }
 
-.help-organize-dropdown:hover .dropdown-content {
+.help-organize-about-text {
+    position: absolute;
+    text-align: center;
+    padding-right: 1em;
+    font-size: 13px;
+    font-weight: 500;
+    top: 2.3em;
+    color: #38364F;
+}
+
+.help-organize-about-dropdown:hover .dropdown-content {
     display: block;
     position: absolute;
     top: 5em;
@@ -149,7 +158,8 @@ a {
     font-weight: 500;
     color: rgb(107, 107, 107);
 }
-.dropdown-content a{
+
+.help-organize-about-dropdown:hover .dropdown-content a {
     color: rgb(107, 107, 107);
 }
 
@@ -171,7 +181,7 @@ a {
     width: 12em;
 }
 
-.help-organize-chevron-down {
+.help-organize-about-chevron-down {
     position: absolute;
     top: 1.5em;
     height: 28px;
@@ -181,13 +191,16 @@ a {
 }
 
 #organize-chevron {
-    right: 1.5em;
+    right: .6em;
 }
 
 #help-chevron {
-    right: .5em;
+    right: .1em;
 }
 
+#about-chevron {
+    right: -.4em;
+}
 
 
 #create-event-out {
@@ -213,6 +226,7 @@ a {
     top: 2.5em;
     left: 1.5em;
     height: 1em;
+    font-weight: 500;
 }
 
 #nav-out-signup {

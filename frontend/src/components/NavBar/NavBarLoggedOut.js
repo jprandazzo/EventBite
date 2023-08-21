@@ -50,9 +50,9 @@ export default function NavBarLoggedIn ({currentUser}) {
                     </li>
 
                     <li className='nav-right help-organize'> 
-                        <div className='help-organize-dropdown' id='help-dropdown'>
-                            <div className='help-organize-text' id='help-text'>Help</div>
-                            <svg className="help-organize-chevron-down" id='help-chevron' x="0" y="0" viewBox="0 0 24 24"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg>
+                        <div className='help-organize-about-dropdown' id='help-dropdown'>
+                            <div className='help-organize-about-text' id='help-text'>Help</div>
+                            <svg className="help-organize-about-chevron-down" id='help-chevron' x="0" y="0" viewBox="0 0 24 24"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg>
                             <div className='dropdown-content hidden' id='help-dropdown-content'>
                                 <ul>
                                     <li>
@@ -76,9 +76,9 @@ export default function NavBarLoggedIn ({currentUser}) {
                     </li>
 
                     <li className='nav-right help-organize'> 
-                        <div className='help-organize-dropdown' id='organize-dropdown'>
-                            <div className='help-organize-text' id='organize-text'>Organize</div>
-                            <svg className="help-organize-chevron-down" id='organize-chevron' x="0" y="0" viewBox="0 0 24 24"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg>
+                        <div className='help-organize-about-dropdown' id='organize-dropdown'>
+                            <div className='help-organize-about-text' id='organize-text'>Organize</div>
+                            <svg className="help-organize-about-chevron-down" id='organize-chevron' x="0" y="0" viewBox="0 0 24 24"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg>
                             <div className='dropdown-content hidden' id='organize-dropdown-content'>
                                 <ul>
                                     <li>
@@ -100,6 +100,33 @@ export default function NavBarLoggedIn ({currentUser}) {
                             </div>
                         </div>
                     </li>
+
+                    <li className='nav-right about-the-developer'> 
+                        <div className='help-organize-about-dropdown' id='about-dropdown'>
+                            <div className='help-organize-about-text'>About the developer</div>
+                            <svg className="help-organize-about-chevron-down" id='about-chevron' x="0" y="0" viewBox="0 0 24 24"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg>
+                            <div className='dropdown-content hidden' id='about-the-developer-dropdown-content'>
+                                <ul>
+                                    <li>
+                                        <a target="_blank" href='https://www.github.com/jprandazzo'>
+                                            <div className='dropdown-content-text-box'>Joe's Github</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="_blank" href='https://www.linked.com/in/jprandazzo'>
+                                            <div className='dropdown-content-text-box'>Joe's LinkedIn</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="_blank" href='/signin'>
+                                            <div className='dropdown-content-text-box'>Joe's Website</div>
+                                        </a>
+                                    </li>
+                                </ul> 
+                            </div>
+                        </div>
+                    </li>
+
                 </ul>
             <hr className='navbar-in-fullscreen-hr'/>
             </div>

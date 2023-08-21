@@ -184,7 +184,7 @@ i {
     color: #2c2b2d;
 }
 
-.splash-event-tile-timestanp {
+.splash-event-tile-timestamp {
     top: 14.3em;
     height: 1em;
     width: 20em;
@@ -198,7 +198,7 @@ i {
     top: 14.5em;
     left: 1em;
     height: 1em;
-    width: 20em;
+    width: 94%;
     font-size: 13;
     color: grey;
 }

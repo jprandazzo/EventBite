@@ -74,7 +74,7 @@ export default function SplashPage () {
                                 </div>
                                 <div className='splash-event-heart-like' onClick={(e)=>heartReact(e,ev)}>{heartIcon(ev)}</div>
                                 <div className='splash-event-tile-title'><Link to={`/events/${ev.id}`}>{ev.title?.toUpperCase()}</Link></div>
-                                <div className='splash-event-tile-timestanp'>{moment(ev.timestampStart).format('ddd, MMM d, h:MM A')}</div>
+                                <div className='splash-event-tile-timestamp'>{moment(ev.timestampStart).format('ddd, MMM d, h:MM A')}</div>
                                 <div className='splash-event-tile-location'>{ev.address}</div>
                                 <div className='splash-event-tile-organizer-name'>By {ev.organizerName}</div>
                                 

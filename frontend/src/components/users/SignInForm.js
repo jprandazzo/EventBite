@@ -91,6 +91,10 @@ export default function SignInForm () {
                 else if (data) setErrors([data]);
                 else setErrors([res.statusText]);
             })
+            // .finally((res)=>{
+            //     debugger
+            //     if (res.ok) history.push('/')
+            // })
     };
 
     const demoLogin = (e) => {
@@ -126,7 +130,7 @@ export default function SignInForm () {
                                         <input className='signup-signin-field-input'
                                                type='text' 
                                                name='email'
-                                               onChange={e => setEmail(e.target.value)}
+                                               onChange={e => setEmail(e.target.value.toLowerCase())}
                                                onFocus={e => setClosestDivsActive(e)}
                                         />
                                     </label>

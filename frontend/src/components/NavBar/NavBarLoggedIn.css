@@ -183,7 +183,8 @@ a {
     position: absolute;
     font-size: 13px;
     font-weight: 500;
-    top: 1.8em;
+    color: #38364F;
+    top: 2.4em;
     height: 2em;
     right: 2.5em;
     z-index: 2;
@@ -194,7 +195,7 @@ a {
     height: 40px;
     width: 40px;
     background: #F8F7FA;
-    top: .6em;
+    top: 1em;
     left: .8em;
     border-radius: 50%
 }
@@ -211,7 +212,7 @@ a {
 #user-in-chevron-down {
     position: absolute;
     right: .3em;
-    top: 1em;
+    top: 1.5em;
     height: 28px;
     width: 28px;
     fill: #a9a8b3;

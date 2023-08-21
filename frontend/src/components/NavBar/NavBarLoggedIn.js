@@ -121,6 +121,33 @@ export default function NavBarLoggedIn () {
                             </div>
                         </Link>
                     </li>
+
+                    <li className='nav-right about-the-developer'> 
+                        <div className='help-organize-about-dropdown' id='about-dropdown'>
+                            <div className='help-organize-about-text'>About the developer</div>
+                            <svg className="help-organize-about-chevron-down" id='about-chevron' x="0" y="0" viewBox="0 0 24 24"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg>
+                            <div className='dropdown-content hidden' id='about-the-developer-dropdown-content'>
+                                <ul>
+                                    <li>
+                                        <a target="_blank" href='https://www.github.com/jprandazzo'>
+                                            <div className='dropdown-content-text-box'>Joe's Github</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="_blank" href='https://www.linked.com/in/jprandazzo'>
+                                            <div className='dropdown-content-text-box'>Joe's LinkedIn</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="_blank" href='/signin'>
+                                            <div className='dropdown-content-text-box'>Joe's Website</div>
+                                        </a>
+                                    </li>
+                                </ul> 
+                            </div>
+                        </div>
+                    </li>
+                    
                 </ul>
             <hr className='navbar-in-fullscreen-hr'/>
             </div>
