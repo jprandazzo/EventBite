@@ -1,13 +1,12 @@
 import csrfFetch from "./csrf"
-import { useHistory } from "react-router-dom"
 
 const SET_CURRENT_USER = 'session/setCurrentUser'
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser'
 const RECEIVE_USER = 'receiveUser'
 const RECEIVE_USER_EVENTS = 'receiveUserEvents'
 
-const RECEIVE_ERRORS = 'receiveErrors';
-const REMOVE_ERRORS = 'removeErrors';
+// const RECEIVE_ERRORS = 'receiveErrors';
+// const REMOVE_ERRORS = 'removeErrors';
 
 const setCurrentUser = (user) => ({
     type: SET_CURRENT_USER,
@@ -27,11 +26,11 @@ const storeCSRFToken = response => {
     if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
 }
 
-async function restoreCSRF () {
-    const response = await csrfFetch("/api/session");
-    storeCSRFToken(response)
-    return response
-}
+// async function restoreCSRF () {
+//     const response = await csrfFetch("/api/session");
+//     storeCSRFToken(response)
+//     return response
+// }
   
 const storeCurrentUser = user => {
     if (user) sessionStorage.setItem("currentUser", JSON.stringify(user));
@@ -44,12 +43,14 @@ export const login = ({ email, password }) => async dispatch => {
       body: JSON.stringify({ email, password })
     });
     const data = await response.json();
+    debugger
     storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user))
     dispatch({
         type: RECEIVE_USER,
         user: data.user
     })
+    debugger
     return response;
 };
 

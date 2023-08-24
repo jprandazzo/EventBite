@@ -7,16 +7,18 @@ import SplashPage from './components/events/SplashPage';
 import SearchEvents from './components/events/SearchEvents';
 import CreateEvent from './components/events/CreateEvent';
 import EditEvent from './components/events/EditEvent';
-import AllEvents from './components/events/AllEvents';
+// import AllEvents from './components/events/AllEvents';
 import ShowEvent from './components/events/ShowEvent';
 import OrderIndex from './components/orders/OrderIndex';
-import OrderShow from './components/orders/OrderShow';
+// import OrderShow from './components/orders/OrderShow';
 import OrganizerEventIndex from './components/users/OrganizerEventIndex';
 import LikedEvents from './components/likes/LikedEvents';
 
 function App() {
+  sessionStorage.setItem('previousLocation', window.location.href);
+  // const previousLocation=sessionStorage.getItem('previousLocation')
+
   return (
-    <>
 
       <Switch>
         <Route exact path="/" component={SplashPage} />
@@ -38,7 +40,6 @@ function App() {
         <Route exact path="/events/:eventId" component={EventShow} />
         <Route path="/events/:eventId/edit" component={EventForm} /> */}
       </Switch>
-    </>
   );
 }
 

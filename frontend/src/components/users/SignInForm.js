@@ -4,9 +4,10 @@ import { useHistory, Link } from 'react-router-dom';
 import * as sessionActions from "../../store/sessionReducer"
 import './Authentication.css';
 
-export default function SignInForm () {
+export default function SignInForm (previousLocation) {
     const history = useHistory();
     const dispatch = useDispatch();
+    // const navigate = useNavigate();
     // need to set a sessionUser such that if present, redirect and do 
     // not allow user to sign up
     // const [firstName, setFirstName] = useState('')
@@ -16,10 +17,26 @@ export default function SignInForm () {
     const [errors, setErrors] = useState([]);
     const errorClassesArray = ['error-text', 'error-div', 'login-errors', 'email-errors', 'pw-errors']
     
-
+    // useEffect(() => {
+    //     const previousLocation = sessionStorage.getItem('previousLocation');
+    
+    //     if (previousLocation) {
+    //       sessionStorage.removeItem('previousLocation');
+    
+    //       // Use a setTimeout to delay the navigation to the previous location
+    //       const timeoutId = setTimeout(() => {
+    //         history.replace(previousLocation);
+    //       }, 0); // Use a minimal delay
+    
+    //       return () => {
+    //         clearTimeout(timeoutId);
+    //       };
+    //     }
+    //   }, [history]);
 
     const currentUser = useSelector(sessionActions.getCurrentUser)
-    if (currentUser) history.goBack()
+    debugger
+    if (currentUser) history.go(-1)
 
 
     
@@ -93,7 +110,7 @@ export default function SignInForm () {
             })
             // .finally((res)=>{
             //     debugger
-            //     if (res.ok) history.push('/')
+            //     if (res?.ok) history.push('/')
             // })
     };
 

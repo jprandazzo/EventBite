@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './NavBarLoggedOut.css';
 
-export default function NavBarLoggedOut ({currentUser}) {
+export default function NavBarLoggedOut (previousLocation) {
 
     return (
         <>
@@ -33,7 +33,7 @@ export default function NavBarLoggedOut ({currentUser}) {
                     </li>
 
                     <li className='nav-right'>
-                        <Link to='/signin'>
+                        <Link to='/signin' previouslocation={previousLocation}>
                             <div id='nav-out-signin'>
                                 <div id='nav-out-signin-text'>Log In
                                 </div>

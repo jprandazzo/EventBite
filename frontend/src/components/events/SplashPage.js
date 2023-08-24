@@ -16,6 +16,7 @@ export default function SplashPage () {
     const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
     const currentUser = useSelector(userActions.getUser(currentUserId))
     const allEvents = useSelector(eventActions.getEvents)
+    sessionStorage.setItem('previousLocation', window.location.href);
 
     useEffect(() =>{
         let getData = setTimeout(() => {
@@ -52,7 +53,7 @@ export default function SplashPage () {
     } else return(
         <>
         <main id='splash-main'>
-        {currentUser ? <NavBarLoggedIn /> : <NavBarLoggedOut />}
+        {currentUser ? <NavBarLoggedIn /> : <NavBarLoggedOut previouslocation={sessionStorage.getItem('previousLocation')} />}
         <div className='splash-banner'>
             <Link to='/search'>
                 <button id='event-search-button'>

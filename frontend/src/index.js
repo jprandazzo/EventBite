@@ -3,15 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { restoreSession } from './store/sessionReducer.js';
-import { BrowserRouter, useLocation } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import configureStore from './store';
 // import Grid from '@react-css/grid';
 import * as sessionActions from './store/sessionReducer'
 import * as eventActions from './store/eventsReducer'
 import * as userActions from './store/usersReducer'
-import { createUser, loginUser, logoutUser } from './store/usersReducer'; 
 import moment from 'moment-timezone';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,6 +21,7 @@ if (process.env.NODE_ENV !== "production") {
   window.eventActions = eventActions;
   window.userActions = userActions;
   window.store = store;
+  // window.previousLocation = sessionStorage.getItem('previousLocation')
 }
 
 const initializeApp = () => {
