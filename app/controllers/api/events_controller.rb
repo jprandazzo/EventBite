@@ -3,16 +3,24 @@ class Api::EventsController < ApplicationController
 
     wrap_parameters :event, include: Event.attribute_names + ['organizerName', 'eventType', 'eventCategory', 'venueName', 'organizerId', 'timestampStart', 'timestampEnd']
 
+    require "open-uri";
+
     def create
         @event = Event.new(event_params)
         @event.organizer_id = current_user.id
+        @event.photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/fangs.jpeg'), filename: 'fangs.jpeg')
         if @event.save
+            debugger
             render :show
         else
-            render json: {errors: @event.errors.full_messages},
-            status: :unprocessable_entity
-        end
+            error_hash = {}
 
+            @event.errors.each do |error|
+                error_hash[error.attribute] = error.full_message
+            end
+
+            render json: { errors: error_hash }, status: :unprocessable_entity
+        end
     end
 
     def index

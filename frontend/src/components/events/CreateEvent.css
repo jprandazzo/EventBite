@@ -806,3 +806,34 @@ input:focus {
   bottom: 1em;
   margin-bottom: 0em;
 }
+
+.error-div {
+  border: 1px solid #c6162e;
+}
+
+.error-text {
+  color: #c6162e;
+}
+
+.create-event-errors {
+  position: absolute;
+  top: 4.5em;
+  font-size: 11px;
+  color: #c6162e;
+}
+
+#create-event-venue-errors {
+  top: 4.7em;
+  font-size: 12px;
+}
+
+#create-event-timestamp-errors {
+  top: 17em;
+  left: 1em;
+  font-size: 14px;
+}
+
+#create-event-description-errors{
+  top: 36.5em;
+  left: 1em;
+}

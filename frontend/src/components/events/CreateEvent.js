@@ -13,22 +13,32 @@ export default function CreateEvent () {
     const history = useHistory();
     const currentUser = useSelector(sessionActions.getCurrentUser)
 
-    const [title, setTitle] = useState('')
-    const [organizerName, setOrganizerName] = useState('')
-    const [eventType, setEventType] = useState('')
-    const [eventCategory, setEventCategory] = useState('')
-    const [venueName, setVenueName] = useState('')
-    const [address, setAddress] = useState('')
+    const [title, setTitle] = useState(null)
+    const [organizerName, setOrganizerName] = useState(null)
+    const [eventType, setEventType] = useState(null)
+    const [eventCategory, setEventCategory] = useState(null)
+    const [venueName, setVenueName] = useState(null)
+    const [address, setAddress] = useState(null)
     const [eventStartDate, setEventStartDate] = useState(moment(moment().add(72, 'day').tz("America/New_York")).format('MM/DD/YYYY'))
     const [eventStartTime, setEventStartTime] = useState('12:00 PM')
     const [eventEndDate, setEventEndDate] = useState(eventStartDate)
     const [eventEndTime, setEventEndTime] = useState('3:00 PM')
-    const [capacity, setCapacity] = useState('')
+    const [timestampErrors, setTimestampErrors] = useState(false)
+    const [capacity, setCapacity] = useState(null)
     const [errors, setErrors] = useState([]);
-    const [price, setPrice] = useState(0);
-    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState(null);
+    const [description, setDescription] = useState(null);
     const [startCalActive, setStartCalActive] = useState(false);
     const [endCalActive, setEndCalActive] = useState(false);
+
+    useEffect(() => {
+        let timestampStart = moment(`${eventStartDate.toString().slice(0,15)} ${eventStartTime}`).tz('America/New_York')
+        let timestampEnd = moment(`${eventEndDate.toString().slice(0,15)} ${eventEndTime}`).tz('America/New_York')
+
+        if (timestampEnd < timestampStart) {
+            setTimestampErrors(true)
+        } else setTimestampErrors(false)
+    }, [eventStartDate, eventStartTime, eventEndDate, eventEndTime])
     
     const eventTypes = [
         {value: null, display: 'Type'},
@@ -113,16 +123,22 @@ export default function CreateEvent () {
     const toggleCalendar = (e) =>{
         e.preventDefault();
 
-        if ((e.target === document.querySelector('.event-start-date-button') || Array.from(document.querySelector('.event-start-date-button').querySelectorAll('*')).includes(e.target))
-            && !(e.target.classList.contains("event-date-value") 
-            || e.target.classList.contains('react-calendar__tile')
-            || e.target.parentNode.classList.contains('react-calendar__tile'))) {
+        if (e.target === document.querySelector('.event-start-date-button')
+            || e.target === document.querySelector('#event-start-date-value')
+            || (Array.from(document.querySelector('.event-start-date-button').querySelectorAll('*')).includes(e.target)
+            && !(e.target.classList.contains('react-calendar__tile')
+            || e.target.parentNode.classList.contains('react-calendar__tile')))) {
             setStartCalActive(true)
-        } else if ((e.target === document.querySelector('.event-end-date-button') || Array.from(document.querySelector('.event-end-date-button').querySelectorAll('*')).includes(e.target))
-            && !(e.target.classList.contains("event-date-value") 
-            || e.target.classList.contains('react-calendar__tile')
-            || e.target.parentNode.classList.contains('react-calendar__tile'))) {
+            setEndCalActive(false)
+            e.stopPropagation()
+        } else if (e.target === document.querySelector('.event-end-date-button') 
+            || e.target === document.querySelector('#event-end-date-value') 
+            || (Array.from(document.querySelector('.event-end-date-button').querySelectorAll('*')).includes(e.target)
+            && !(e.target.classList.contains('react-calendar__tile')
+            || e.target.parentNode.classList.contains('react-calendar__tile')))) {
             setEndCalActive(true)
+            setStartCalActive(false)
+            e.stopPropagation()
         } else {
             setStartCalActive(false)
             setEndCalActive(false)
@@ -133,10 +149,10 @@ export default function CreateEvent () {
         let event = {
             title,
             organizerName,
-            eventType,
-            eventCategory,
             venueName,
             address,
+            eventType,
+            eventCategory,
             timestampStart: moment(`${eventStartDate.toString().slice(0,15)} ${eventStartTime}`).tz('America/New_York').format(),
             timestampEnd: moment(`${eventEndDate.toString().slice(0,15)} ${eventEndTime}`).tz('America/New_York').format(),
             capacity,
@@ -146,19 +162,22 @@ export default function CreateEvent () {
         }
 
         setErrors([])
-        return dispatch(eventActions.createEvent(event))
-            // .catch(async (res) => {
-            //     let data;
-            //     try {
-            //         data = await res.clone().json();
-            //     } catch {
-            //         data = await res.text();
-            //     }
-            //     if (data?.errors) setErrors(data.errors);
-            //     else if (data) setErrors([data]);
-            //     else setErrors([res.statusText]);
-            // })
-            .then(() =>{history.push(`/organizer/events`)});
+        dispatch(eventActions.createEvent(event))
+            .catch(async (res) => {
+                let data;
+                try {
+                    data = await res.clone().json();
+                } catch {
+                    data = await res.text();
+                }
+                debugger
+                if (data?.errors) setErrors(data.errors);
+                else if (data) setErrors([data]);
+                else setErrors([res.statusText]);
+            })
+            .then(async (res) =>{
+                debugger
+                if (res && res.ok) history.push(`/organizer/events`)});
     };
 
     return (
@@ -176,7 +195,7 @@ export default function CreateEvent () {
             <form className='centered-create-event' onClick={(e) =>{toggleCalendar(e); focusInput(e)}}>
                 <section id='basic-info'>
                     <div id='basic-info-description-box'>
-                        <svg id="title-edit-svg" x="0" y="0" viewBox="0 0 24 24"><path id="title-edit_svg__eds-icon--title-edit_base" fillRule="evenodd" clipRule="evenodd" d="M2 2v3h1V3h5v10H6v1h5v-1H9V3h5v2h1V2H2z"></path><g id="title-edit_svg__eds-icon--title-edit_lines" fillRule="evenodd" clip-rule="evenodd"><path d="M15 9h7v1h-7zM15 13h7v1h-7zM6 17h16v1H6zM6 21h16v1H6z"></path></g></svg>
+                        <svg id="title-edit-svg" x="0" y="0" viewBox="0 0 24 24"><path id="title-edit_svg__eds-icon--title-edit_base" fillRule="evenodd" clipRule="evenodd" d="M2 2v3h1V3h5v10H6v1h5v-1H9V3h5v2h1V2H2z"></path><g id="title-edit_svg__eds-icon--title-edit_lines" fillRule="evenodd" clipRule="evenodd"><path d="M15 9h7v1h-7zM15 13h7v1h-7zM6 17h16v1H6zM6 21h16v1H6z"></path></g></svg>
                         <h2 id='basic-info-h2'>Basic Info</h2>
                         <div id='basic-info-p-container'>
                             <p>
@@ -185,8 +204,8 @@ export default function CreateEvent () {
                         </div>
                     </div>
 
-                    <div className='create-event-field-box'>
-                        <div className='create-event-field-text'>
+                    <div className={errors.title ? 'create-event-field-box error-div' : 'create-event-field-box'}>
+                        <div className={errors.title ? 'create-event-field-text error-text' : 'create-event-field-text'}>
                             Event Title <b style={{ color: 'red' }}>*</b>
                         </div>
 
@@ -204,6 +223,10 @@ export default function CreateEvent () {
                                 />
                             </label>
                         </span>
+
+                        <div className='create-event-errors error-text' id='create-event-title-errors'>
+                            {errors.title}
+                        </div>
                     </div>
                     
                     <div className='create-event-field-box'>
@@ -226,6 +249,7 @@ export default function CreateEvent () {
                             </label>
                         </span>
                     </div>
+
                     <div className='event-type-container'>
                         <select name='event-type' id="event-type-dropdown" onChange={(e) =>{setEventType(e.target.value)}} defaultValue={eventTypes[0]}>
                             {eventTypes.map(type =>{
@@ -237,7 +261,9 @@ export default function CreateEvent () {
                             })}
                         </select>
                     </div>
+
                     <br/>
+
                     <div className='event-category-container'>
                         <select name='event-category' id="event-category-dropdown" onChange={(e) =>{setEventCategory(e.target.value)}} defaultValue={eventCategories[0]}>
                             {eventCategories.map(cat =>{
@@ -255,7 +281,7 @@ export default function CreateEvent () {
 
                 <section id='Location-box'>
                     <div className='location-description-box'>
-                        <svg id="map_svg" x="0" y="0" viewBox="0 0 24 24"><path fillRule="evenodd" clip-rule="evenodd" d="M20 3c-1.1 0-2 .9-2 2H2v16h17.8c1.1 0 2.1-.9 2.1-2V5c.1-1.1-.8-2-1.9-2zm-.2 17H3V6h15v13h1c0-.6.4-1 1-1 .5 0 .9.4 1 .9-.1.6-.6 1.1-1.2 1.1zm1.2-2.7c-.3-.2-.6-.3-1-.3s-.7.1-1 .3V5c0-.6.4-1 1-1s1 .4 1 1v12.3z"></path><path id="map_svg__eds-icon--map_cross" fillRule="evenodd" clip-rule="evenodd" d="M8.8 12.7l.7-.7-1.1-1 1.1-1-.7-.7-1.1 1-1-1-.7.7 1 1-1 1 .7.7 1-1z"></path><path id="map_svg__eds-icon--map_dash_3_" fillRule="evenodd" clip-rule="evenodd" d="M12 10h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash_2_" fillRule="evenodd" clip-rule="evenodd" d="M15 12h1v2h-1z"></path><path id="map_svg__eds-icon--map_dash_1_" fillRule="evenodd" clip-rule="evenodd" d="M12 15h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash" fillRule="evenodd" clip-rule="evenodd" d="M8 15h2v1H8z"></path></svg>
+                        <svg id="map_svg" x="0" y="0" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M20 3c-1.1 0-2 .9-2 2H2v16h17.8c1.1 0 2.1-.9 2.1-2V5c.1-1.1-.8-2-1.9-2zm-.2 17H3V6h15v13h1c0-.6.4-1 1-1 .5 0 .9.4 1 .9-.1.6-.6 1.1-1.2 1.1zm1.2-2.7c-.3-.2-.6-.3-1-.3s-.7.1-1 .3V5c0-.6.4-1 1-1s1 .4 1 1v12.3z"></path><path id="map_svg__eds-icon--map_cross" fillRule="evenodd" clipRule="evenodd" d="M8.8 12.7l.7-.7-1.1-1 1.1-1-.7-.7-1.1 1-1-1-.7.7 1 1-1 1 .7.7 1-1z"></path><path id="map_svg__eds-icon--map_dash_3_" fillRule="evenodd" clipRule="evenodd" d="M12 10h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash_2_" fillRule="evenodd" clipRule="evenodd" d="M15 12h1v2h-1z"></path><path id="map_svg__eds-icon--map_dash_1_" fillRule="evenodd" clipRule="evenodd" d="M12 15h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash" fillRule="evenodd" clipRule="evenodd" d="M8 15h2v1H8z"></path></svg>
                         <h2 id='location-h2'>Location</h2>
                         <div id='location-p-container'>
                             <p>
@@ -263,7 +289,7 @@ export default function CreateEvent () {
                             </p>
                         </div>
                     </div>
-                    <div className='create-event-field-box' id='create-event-venue-box'>
+                    <div className={errors.venue_name ? 'create-event-field-box error-div' : 'create-event-field-box'} id='create-event-venue-box'>
                         <span className='create-event-field-input-box' id='create-event-venue-input-box'>
                             <label>
                                 <input className='create-event-field-input'
@@ -278,6 +304,10 @@ export default function CreateEvent () {
                                 <div className='create-edit-page-magnifying-glass'><svg id="magnifying-glass-venue" x="0" y="0" viewBox="0 0 24 24"><path id="magnifying-glass-chunky_svg__eds-icon--magnifying-glass-chunky_base" fillRule="evenodd" clipRule="evenodd" d="M10 14c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm3.5.9c-1 .7-2.2 1.1-3.5 1.1-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6c0 1.3-.4 2.5-1.1 3.4l5.1 5.1-1.5 1.5-5-5.1z"></path></svg></div>
                             </label>
                         </span>
+
+                        <div className='create-event-errors error-text' id='create-event-venue-errors'>
+                            {errors.venue_name}
+                        </div>
                     </div>
                 </section>
 
@@ -285,7 +315,7 @@ export default function CreateEvent () {
                 
                 <section id='date-and-time'>
                     <div className='datetime-description-box'>
-                        <svg id="calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar_svg__eds-icon--calendar_base" fillRule="evenodd" clip-rule="evenodd" d="M17 4V2h-1v2H8V2H7v2H2v18h20V4h-5zm4 17H3V9h18v12zM3 8V5h4v1h1V5h8v1h1V5h4v3H3z"></path><g id="calendar_svg__eds-icon--calendar_squares" fillRule="evenodd" clip-rule="evenodd"><path d="M15 16h2v2h-2zM11 16h2v2h-2zM7 16h2v2H7zM15 12h2v2h-2zM11 12h2v2h-2zM7 12h2v2H7z"></path></g></svg>
+                        <svg id="calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar_svg__eds-icon--calendar_base" fillRule="evenodd" clipRule="evenodd" d="M17 4V2h-1v2H8V2H7v2H2v18h20V4h-5zm4 17H3V9h18v12zM3 8V5h4v1h1V5h8v1h1V5h4v3H3z"></path><g id="calendar_svg__eds-icon--calendar_squares" fillRule="evenodd" clipRule="evenodd"><path d="M15 16h2v2h-2zM11 16h2v2h-2zM7 16h2v2H7zM15 12h2v2h-2zM11 12h2v2h-2zM7 12h2v2H7z"></path></g></svg>
                         <h2 id='location-h2'>Date and time</h2>
                         <div id='location-p-container'>
                             <p>
@@ -295,20 +325,20 @@ export default function CreateEvent () {
                     </div>
                     
                     <div className='event-start-box'>
-                        <div className='event-start-date-button timestamp-button'>
+                        <div className={timestampErrors ? 'event-start-date-button timestamp-button error-div' : 'event-start-date-button timestamp-button'}>
                             <div className='create-edit-page-small-calendar'><svg id="small_calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar-chunky_svg__eds-icon--calendar-chunky_base" d="M16.9 6.5v-2h-2v2h-6v-2h-2v2h-2v13h14v-13h-2zm0 11h-10v-7h10v7z"></path></svg></div>
-                            <div className='event-date-text event-date-text' id='event-start-date-text'>Event Starts</div>
-                            <div className='event-date-value event-date-value' id='event-start-date-value'>{`${moment(eventStartDate).format('MM/DD/YYYY')}`}</div>
+                            <div className={timestampErrors ? 'event-date-text error-text' : 'event-date-text'} id='event-start-date-text'>Event Starts</div>
+                            <div className='event-date-value' id='event-start-date-value'>{`${moment(eventStartDate).format('MM/DD/YYYY')}`}</div>
                             <div className='calendar-box' id='event-start-date-box'>
                                 <Calendar className={`calendar-timestamp-start calendar ${startCalActive ? '' : 'hidden'}`} onChange={setEventStartDate} defaultValue={eventStartDate} />
                             </div>
                             <br/>
                         </div>
 
-                        <div className='event-start-time-button timestamp-button' onClick={(e) =>{
+                        <div className={timestampErrors ? 'event-start-time-button timestamp-button error-div' : 'event-start-time-button timestamp-button'} onClick={(e) =>{
                                     document.querySelector('.event-start-times-dropdown').classList.toggle('hidden');
                                     document.querySelector('.event-start-times-dropdown').setAttribute('size', 12)}}>
-                            <div className='event-time-text' id='event-start-time-text'>Start Time</div>
+                            <div className={timestampErrors ? 'event-time-text error-text' : 'event-time-text'} id='event-start-time-text'>Start Time</div>
                             <div className='event-time-value' id='event-start-time-value'>{eventStartTime}</div>
                             <label>
                                     <select className='event-start-times-dropdown hidden' name='event-start-times' id="event-start-times" onChange={(e) =>{setEventStartTime(e.target.value)}} defaultValue={eventStartTime}>
@@ -326,10 +356,9 @@ export default function CreateEvent () {
                     </div>
 
                     <div className='event-end-container'>
-                        <div className='event-end-date-button timestamp-button'
-                            >
+                    <div className={timestampErrors ? 'event-end-date-button timestamp-button error-div' : 'event-end-date-button timestamp-button'}>
                             <div className='create-edit-page-small-calendar'><svg id="small_calendar_svg" x="0" y="0" viewBox="0 0 24 24"><path id="calendar-chunky_svg__eds-icon--calendar-chunky_base" d="M16.9 6.5v-2h-2v2h-6v-2h-2v2h-2v13h14v-13h-2zm0 11h-10v-7h10v7z"></path></svg></div>
-                            <div className='event-date-text' id='event-end-date-text'>Event Ends</div>
+                            <div className={timestampErrors ? 'event-date-text error-text' : 'event-date-text'} id='event-end-date-text'>Event Ends</div>
                             <div className='event-date-value' id='event-end-date-value'>{`${moment(eventEndDate).format('MM/DD/YYYY')}`}</div>
                             <div className='calendar-box' id='event-end-date-box'>
                                 <Calendar className={`calendar-timestamp-end calendar ${endCalActive ? '' : 'hidden'}`} onChange={setEventEndDate} defaultValue={eventEndDate} />
@@ -337,10 +366,10 @@ export default function CreateEvent () {
                             <br/>
                         </div>
                         
-                        <div className='event-end-time-button timestamp-button' onClick={(e) =>{
+                        <div className={timestampErrors ? 'event-end-time-button timestamp-button error-div' : 'event-end-time-button timestamp-button'} onClick={(e) =>{
                                     document.querySelector('.event-end-times-dropdown').classList.toggle('hidden');
                                     document.querySelector('.event-end-times-dropdown').setAttribute('size', 12)}}>
-                            <div className='event-time-text' id='event-end-time-text'>Start Time</div>
+                            <div className={timestampErrors ? 'event-time-text error-text' : 'event-time-text'} id='event-end-time-text'>Start Time</div>
                             <div className='event-time-value' id='event-end-time-value'>{eventEndTime}</div>
                             <label>
                                     <select className='event-end-times-dropdown hidden' name='event-end-times' id="event-end-times" onChange={(e) =>{setEventEndTime(e.target.value)}} defaultValue={eventEndTime}>
@@ -356,6 +385,10 @@ export default function CreateEvent () {
                             </label>
                             <br/>
                         </div>
+
+                        <div className='create-event-errors error-text' id='create-event-timestamp-errors'>
+                            {timestampErrors ? 'Event must end after it starts' : ''}
+                        </div>
                     </div>
                 </section>
                 <br/><br/><br/>
@@ -363,7 +396,7 @@ export default function CreateEvent () {
 
                 <section id='misc-description'>
                     <div className='misc-description-box'>
-                        <svg id="map_svg" x="0" y="0" viewBox="0 0 24 24"><path fillRule="evenodd" clip-rule="evenodd" d="M20 3c-1.1 0-2 .9-2 2H2v16h17.8c1.1 0 2.1-.9 2.1-2V5c.1-1.1-.8-2-1.9-2zm-.2 17H3V6h15v13h1c0-.6.4-1 1-1 .5 0 .9.4 1 .9-.1.6-.6 1.1-1.2 1.1zm1.2-2.7c-.3-.2-.6-.3-1-.3s-.7.1-1 .3V5c0-.6.4-1 1-1s1 .4 1 1v12.3z"></path><path id="map_svg__eds-icon--map_cross" fillRule="evenodd" clip-rule="evenodd" d="M8.8 12.7l.7-.7-1.1-1 1.1-1-.7-.7-1.1 1-1-1-.7.7 1 1-1 1 .7.7 1-1z"></path><path id="map_svg__eds-icon--map_dash_3_" fillRule="evenodd" clip-rule="evenodd" d="M12 10h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash_2_" fillRule="evenodd" clip-rule="evenodd" d="M15 12h1v2h-1z"></path><path id="map_svg__eds-icon--map_dash_1_" fillRule="evenodd" clip-rule="evenodd" d="M12 15h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash" fillRule="evenodd" clip-rule="evenodd" d="M8 15h2v1H8z"></path></svg>
+                        <svg id="map_svg" x="0" y="0" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M20 3c-1.1 0-2 .9-2 2H2v16h17.8c1.1 0 2.1-.9 2.1-2V5c.1-1.1-.8-2-1.9-2zm-.2 17H3V6h15v13h1c0-.6.4-1 1-1 .5 0 .9.4 1 .9-.1.6-.6 1.1-1.2 1.1zm1.2-2.7c-.3-.2-.6-.3-1-.3s-.7.1-1 .3V5c0-.6.4-1 1-1s1 .4 1 1v12.3z"></path><path id="map_svg__eds-icon--map_cross" fillRule="evenodd" clipRule="evenodd" d="M8.8 12.7l.7-.7-1.1-1 1.1-1-.7-.7-1.1 1-1-1-.7.7 1 1-1 1 .7.7 1-1z"></path><path id="map_svg__eds-icon--map_dash_3_" fillRule="evenodd" clipRule="evenodd" d="M12 10h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash_2_" fillRule="evenodd" clipRule="evenodd" d="M15 12h1v2h-1z"></path><path id="map_svg__eds-icon--map_dash_1_" fillRule="evenodd" clipRule="evenodd" d="M12 15h2v1h-2z"></path><path id="map_svg__eds-icon--map_dash" fillRule="evenodd" clipRule="evenodd" d="M8 15h2v1H8z"></path></svg>
                         <h2 id='location-h2'>Miscellaneous details</h2>
                         <div id='location-p-container'>
                             <p>
@@ -372,8 +405,8 @@ export default function CreateEvent () {
                         </div>
                     </div>
                     <br/><br/>
-                    <div className='create-event-field-box' id='create-event-capacity-box' onClick={(e) =>{focusInput(e)}}>
-                        <div className='create-event-field-text' id='event-capacity-text'>Capacity</div>
+                    <div className={errors.capacity ? 'create-event-field-box error-div' : 'create-event-field-box'} id='create-event-capacity-box' onClick={(e) =>{focusInput(e)}}>
+                        <div className={errors.capacity ? 'create-event-field-text error-text' : 'create-event-field-text'} id='event-capacity-text'>Capacity</div>
                         <span className='create-event-field-input-box' id='create-event-capacity-input-box'>
                             <label>
                                 <input className='create-event-field-input'
@@ -386,9 +419,14 @@ export default function CreateEvent () {
                                 />
                             </label>
                         </span>
+
+                        <div className='create-event-errors error-text' id='create-event-capacity-errors'>
+                            {errors.capacity}
+                        </div>
+
                     </div>
-                    <div className='create-event-field-box' id='create-event-price-box' onClick={(e) =>{focusInput(e)}}>
-                        <div className='create-event-field-text' id='event-price-text'><p>Price<br/>$</p></div>
+                    <div className={errors.price ? 'create-event-field-box error-div' : 'create-event-field-box'} id='create-event-price-box' onClick={(e) =>{focusInput(e)}}>
+                        <div className={errors.price ? 'create-event-field-text error-text' : 'create-event-field-text'} id='event-price-text'><p>Price<br/>$</p></div>
                         <span className='create-event-field-input-box' id='create-event-price-input-box'>
                             <label>
                                 <input className='create-event-field-input'
@@ -401,9 +439,13 @@ export default function CreateEvent () {
                                 />
                             </label>
                         </span>
+
+                        <div className='create-event-errors error-text' id='create-event-price-errors'>
+                            {errors.price}
+                        </div>
                     </div>
-                    <div className='create-event-field-box' id='create-event-description-box' onClick={(e) =>{focusInput(e)}}>
-                        <div className='create-event-field-text' id='event-description-text'>Description</div>
+                    <div className={errors.description ? 'create-event-field-box error-div' : 'create-event-field-box'} id='create-event-description-box' onClick={(e) =>{focusInput(e)}}>
+                        <div className={errors.description ? 'create-event-field-text error-text' :'create-event-field-text'} id='event-description-text'>Description</div>
                         <span className='create-event-field-input-box' id='create-event-description-input-box'>
                             <textarea className='create-event-field-input'
                                 id='create-event-description-input'
@@ -413,6 +455,10 @@ export default function CreateEvent () {
                                 onBlur={e => setClosestDivsInactive(e)}
                             />
                         </span>
+                    </div>
+
+                    <div className='create-event-errors error-text' id='create-event-description-errors'>
+                            {errors.description}
                     </div>
                 </section>
 

@@ -29,8 +29,14 @@
 #
 class Event < ApplicationRecord
 
-    validates :capacity, :tickets_sold, :timestamp_start, 
+    validates :title, :capacity, :tickets_sold, :timestamp_start, 
         :timestamp_end, :venue_name, :organizer_id, :price, :description, presence: true
+
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+    validates :capacity, numericality: { only_integer: true, greater_than: 0 }
+
+    validates :timestamp_end, comparison: { greater_than: :timestamp_start}
 
     belongs_to :organizer, class_name: :User, foreign_key: :organizer_id
 
@@ -51,7 +57,7 @@ class Event < ApplicationRecord
                 party_social_gathering 
                 type_other 
                 ),
-            message: "Not a valid valid event type"}
+            message: "Not a valid valid event type"}, allow_nil: true
 
     validates :event_category, inclusion: {in: %w(
                     community_culture 
@@ -62,5 +68,5 @@ class Event < ApplicationRecord
                     category_other 
                     travel_outdoor
                     ),
-                message: "Not a valid event category"}
+                message: "Not a valid event category"}, allow_nil: true
 end
