@@ -13,7 +13,7 @@ import './OrderIndex.css'
 
 export default function OrderIndex () {
     const dispatch = useDispatch();
-    const currentUserId = useSelector(sessionActions.getCurrentUser).id
+    const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
     const currentUser = useSelector(userActions.getUser(currentUserId))
     const orders = useSelector(orderActions.getOrders).sort((a,b) => b.id - a.id)
     const events = useSelector(eventActions.getEvents)

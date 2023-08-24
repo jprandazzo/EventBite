@@ -29,7 +29,7 @@ class Api::UsersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
-        if @user == current_user
+        if logged_in?
             @user.email = params[:email]
             @user.first_name = params[:first_name]
             @user.last_name = params[:last_name]
@@ -54,6 +54,9 @@ class Api::UsersController < ApplicationController
             new_likes.each {|like| like.save}
             
             render :show
+        else
+            @user = nil
+            render json: {message: 'Successfully logged out!'}
         end
 
     end

@@ -13,12 +13,12 @@ export default function NavBarLoggedIn () {
     const currentUser = useSelector(userActions.getUser(currentUserId))
     const location = useLocation();
 
-    useEffect(() =>{
-        let getData = setTimeout(() => {
-            if (currentUserId) dispatch(userActions.fetchUserEvents(currentUserId));
-          }, 0)
-        return () => clearTimeout(getData)
-    }, [])
+    // useEffect(() =>{
+    //     let getData = setTimeout(() => {
+    //         if (currentUserId) dispatch(userActions.fetchUserEvents(currentUserId));
+    //       }, 0)
+    //     return () => clearTimeout(getData)
+    // }, [])
 
     // const toggleDropdown = (e) => {
     //     let el = e.target.closest('span')
@@ -57,8 +57,8 @@ export default function NavBarLoggedIn () {
 
     const logout = async (e) => {
         e.preventDefault();
-        let res = await dispatch(sessionActions.logout(history))
-            history.push('/signin')
+        let res = await dispatch(sessionActions.logout())
+        history.push('/signin')
     }
 
 

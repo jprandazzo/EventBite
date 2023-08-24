@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './NavBarLoggedOut.css';
 
-export default function NavBarLoggedIn ({currentUser}) {
+export default function NavBarLoggedOut ({currentUser}) {
 
     return (
         <>

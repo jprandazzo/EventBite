@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom"
 const SET_CURRENT_USER = 'session/setCurrentUser'
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser'
 const RECEIVE_USER = 'receiveUser'
+const RECEIVE_USER_EVENTS = 'receiveUserEvents'
 
 const RECEIVE_ERRORS = 'receiveErrors';
 const REMOVE_ERRORS = 'removeErrors';
@@ -61,13 +62,13 @@ export const restoreSession = () => async dispatch => {
     return res;
 }
 
-export const logout = (history) => async dispatch => {
+export const logout = () => async dispatch => {
     const response = await csrfFetch('/api/session', {
         method: 'DELETE'
     });
     storeCurrentUser(null);
     dispatch(removeCurrentUser())
-    // return response
+    return response
 };
 
 export const signup = user => async dispatch => {
@@ -100,6 +101,8 @@ const sessionReducer = (state = initialState, action) => {
             return {...state, user: null};
         case RECEIVE_USER:
             debugger
+            return {...state, user: action.user}
+        case RECEIVE_USER_EVENTS:
             return {...state, user: action.user}
         default:
             return state;

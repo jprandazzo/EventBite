@@ -14,29 +14,31 @@ import NotFoundErrorPage from "../errorPages/NotFoundErrorPage";
 export default function LikedEvents () {
     const dispatch = useDispatch();
     const history = useHistory();
-    const currentUser = useSelector(sessionActions.getCurrentUser)
-    const [updatedLikedEvents, setUpdatedLikedEvents] = useState([...currentUser.likedEvents])
-    window.updatedLikedEvents = updatedLikedEvents;
-
-    // useEffect(() => {
-    //     setUpdatedUser(currentUser ? JSON.parse(JSON.stringify(currentUser)) : null)
-    // }, [currentUser])
-
     const [doneLoading, setDoneLoading] = useState(false);
-    // const [events, setEvents] = useState(undefined)
+    
+    const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
+    const currentUser = useSelector(userActions.getUser(currentUserId))
+    const [updatedLikedEvents, setUpdatedLikedEvents] = useState(currentUserId && currentUser ? [...currentUser.likedEvents] : [])
+    window.updatedLikedEvents = updatedLikedEvents;
+    debugger
+
     const allEvents = Array.from(useSelector(eventActions.getEvents))
     const userLikedEvents = (currentUser && allEvents) ? allEvents.filter(ev => currentUser.likedEvents.includes(ev.id)) : []
 
     useEffect(() =>{
         const awaitFetchBeforeLoading = async () => {
             const res = await dispatch(eventActions.fetchEvents())
-            if (currentUser) dispatch(userActions.fetchUserEvents(currentUser.id));
+            if (currentUserId) dispatch(userActions.fetchUserEvents(currentUserId));
             // setEvents(res[0])
             setDoneLoading(res[1])
         }
         awaitFetchBeforeLoading()
-        setUpdatedLikedEvents(currentUser.likedEvents)
+        setUpdatedLikedEvents(currentUser?.likedEvents)
     }, [])
+
+    useEffect(()=> {
+        setUpdatedLikedEvents(currentUser?.likedEvents)
+    }, [currentUser])
 
     useEffect(() => {
         const cleanup = () => {
@@ -84,8 +86,8 @@ export default function LikedEvents () {
         } else {
             likedEvents.push(ev.id);
         }
-        debugger
         setUpdatedLikedEvents(likedEvents);
+        debugger
     }
 
     if (!doneLoading || !currentUser || !allEvents) {
@@ -107,7 +109,7 @@ export default function LikedEvents () {
                                 <div className='liked-event-tile-timestanp liked-event-tile-left'>{moment(ev.timestampStart).format('ddd, MMM d, h:MM A')}</div>
                                 <div className='liked-event-tile-location liked-event-tile-left'>{ev.address}</div>
                                 <div className='liked-event-tile-photo liked-event-tile-right'><Link to={`/events/${ev.id}`}><img src={ev.imgUrl}/></Link></div>
-                                <div className='liked-event-heart-like liked-event-tile-right' onClick={(e)=>heartReact(e,ev)}>{updatedLikedEvents.includes(ev.id) ? filledHeart() : emptyHeart()}</div>
+                                <div className='liked-event-heart-like liked-event-tile-right' onClick={(e)=>heartReact(e,ev)}>{updatedLikedEvents?.includes(ev.id) ? filledHeart() : emptyHeart()}</div>
                             </div> 
                         )
                         
