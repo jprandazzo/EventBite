@@ -10,7 +10,6 @@ class Api::EventsController < ApplicationController
         @event.organizer_id = current_user.id
         @event.photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/fangs.jpeg'), filename: 'fangs.jpeg')
         if @event.save
-            debugger
             render :show
         else
             error_hash = {}

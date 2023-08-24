@@ -26,10 +26,10 @@ export default function OrderIndex () {
     }, [])
 
     const pluralizeOrders = (orders) =>{
-        if (!orders.length) return 'orders';
-        if (currentUser && orders.length === 1) {
+        if (!orders?.length) return 'orders';
+        if (currentUser && orders?.length === 1) {
             return '1 order'
-        } else return `${orders.length} orders`
+        } else return `${orders?.length} orders`
     }
 
     const pluralizeLikes = (likes) =>{

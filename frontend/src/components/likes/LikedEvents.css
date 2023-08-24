@@ -136,9 +136,15 @@
 }
 
 .liked-events-filled-heart {
-    transform: scale(1.5);
-    top: -.2em;
-    left: -.1em;
+    transform: scale(1.7);
+    top: -.35em;
+    left: -.3em;
+}
+
+.liked-events-empty-heart {
+    transform: scale(1);
+    top: -.02em;
+    left: 0em;
 }
 
 .liked-event-tile {

@@ -170,13 +170,11 @@ export default function CreateEvent () {
                 } catch {
                     data = await res.text();
                 }
-                debugger
                 if (data?.errors) setErrors(data.errors);
                 else if (data) setErrors([data]);
                 else setErrors([res.statusText]);
             })
             .then(async (res) =>{
-                debugger
                 if (res && res.ok) history.push(`/organizer/events`)});
     };
 

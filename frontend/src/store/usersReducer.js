@@ -32,12 +32,14 @@ export const fetchUserEvents = (userId) => async dispatch => {
 }
 
 export const updateUser = (user) => async dispatch => {
+    debugger
     const response = await csrfFetch(`/api/users/${user.id}`, {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(user)
     })
     const data = await response.json();
+    debugger
     dispatch({
         type: RECEIVE_USER,
         user: data.user

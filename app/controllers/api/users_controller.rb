@@ -35,14 +35,23 @@ class Api::UsersController < ApplicationController
             @user.last_name = params[:last_name]
             @user.save
 
-            browser_like = Like.new(event_id: params[:current_page_id], liker_id: @user.id)
-            db_like = Like.find_by(event_id: browser_like.event_id, liker_id: browser_like.liker_id)
+            db_likes = Like.where(liker_id: @user.id)
+            browser_likes = params[:liked_events].map {|eid| Like.new(event_id: eid, liker_id: @user.id)}
             
-            if db_like
-                db_like.destroy
-            else
-                browser_like.save
+            likes_to_delete = db_likes.filter do |db_like|
+                browser_likes.none? do |browser_like|
+                    browser_like.liker_id == db_like.liker_id && browser_like.event_id == db_like.event_id
+                end
             end
+
+            new_likes = browser_likes.filter do |browser_like| 
+                db_likes.none? do |db_like|
+                    browser_like.liker_id == db_like.liker_id && browser_like.event_id == db_like.event_id
+                end
+            end
+            
+            likes_to_delete.each {|like| like.destroy}
+            new_likes.each {|like| like.save}
             
             render :show
         end

@@ -41,16 +41,6 @@ export default function EventsSearch () {
         return () => clearTimeout(getData)
     }, [])
 
-    // useEffect(() =>{
-    //     if (prevString || prevPrice || prevCategory) {
-    //         dispatch(searchActions.fetchSearchResults({
-    //             string: prevString,
-    //             price: prevPrice,
-    //             category: prevCategory
-    //         }))
-    //     }
-    // }, [location])
-
     const heartIcon = (e) => {
         if (currentUser) {
             if (currentUser.likedEvents && currentUser.likedEvents.includes(e.id)) {
@@ -117,7 +107,14 @@ export default function EventsSearch () {
         e.stopPropagation();
         e.preventDefault();
         if (!currentUser) history.push('/signin')
-        currentUser['currentPageId'] = ev.id
+        
+        if (currentUser.likedEvents) {
+            if (currentUser.likedEvents.includes(ev.id)) {
+                const index = currentUser.likedEvents.indexOf(ev.id)
+                currentUser.likedEvents.splice(index,1)
+            } else currentUser.likedEvents.push(ev.id)
+        }
+        else currentUser['likedEvents'] = [ev.id]
           
         dispatch(userActions.updateUser(currentUser)) 
     }

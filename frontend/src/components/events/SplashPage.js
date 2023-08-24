@@ -32,9 +32,17 @@ export default function SplashPage () {
     }
 
     const heartReact = (e,ev) =>{ 
-        e.stopPropagation()
-        if (!currentUser) {return history.push('/signin')}
-        currentUser['currentPageId'] = ev.id
+        e.stopPropagation();
+        e.preventDefault();
+        if (!currentUser) history.push('/signin')
+        
+        if (currentUser.likedEvents) {
+            if (currentUser.likedEvents.includes(ev.id)) {
+                const index = currentUser.likedEvents.indexOf(ev.id)
+                currentUser.likedEvents.splice(index,1)
+            } else currentUser.likedEvents.push(ev.id)
+        }
+        else currentUser['likedEvents'] = [ev.id]
           
         dispatch(userActions.updateUser(currentUser)) 
     }

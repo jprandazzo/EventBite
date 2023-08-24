@@ -22,6 +22,12 @@ export default function ShowEvent () {
     const [event, setEvent] = useState(undefined)
     const [numTickets, setNumTickets] = useState(0)
     const [activeHeart, setActiveHeart] = useState(false)
+    const [withinCapacity,setWithinCapacity] = useState(true)
+
+    useEffect(()=> {
+        if (event?.capacity - event?.ticketsSold <= numTickets) setWithinCapacity(false) 
+        else setWithinCapacity(true)
+    }, [numTickets])
     
     useEffect(() =>{
         const awaitFetchBeforeLoading = async () => {
@@ -55,7 +61,7 @@ export default function ShowEvent () {
 
     const handlePlusMinusClick = (e) =>{
         if (e.target.innerHTML === '+') {
-            setNumTickets(numTickets+1)
+            if (withinCapacity) setNumTickets(numTickets+1)
         } else {
             if (numTickets > 0) setNumTickets(numTickets-1)
         }
@@ -112,8 +118,9 @@ export default function ShowEvent () {
                                     </div>
                                     <button className={`${numTickets ? 'clickable-count ticket-count-decrease' : 'unclickable-count ticket-count-decrease'}`} 
                                         onClick={e=>{handlePlusMinusClick(e)}}>—</button>
-                                    <div className='ticket-count-text'>{numTickets}</div>
-                                    <button className='ticket-count-increase clickable-count' onClick={e=>{handlePlusMinusClick(e)}}>+</button>
+                                    <div className={withinCapacity ? 'ticket-count-text' : 'ticket-count-text error-text'}>{numTickets}</div>
+                                    <button className={withinCapacity ? 'ticket-count-increase clickable-count' : 'ticket-count-increase unclickable-count'} onClick={e=>{handlePlusMinusClick(e)}}>+</button>
+                                    <div className='ticket-purchase-capacity-hit'>{withinCapacity ? '' : `Event capacity hit! Can't purchase any more tickets`}</div>
                                 </div>
                                 <button className='ticket-purchase-button' 
                                     onClick={() =>handlePurchase(event.id)}>{event.price ? 'Get tickets' : 'Reserve a spot'}</button>

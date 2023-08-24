@@ -203,10 +203,22 @@
 
 .ticket-count-text {
     position: absolute;
+    width: 1.6em;
+    text-align: center;
     top: .6em;
-    right: 2.5em;
+    right: 1.9em;
     font-size: 24px;
     font-weight: 500;
+}
+
+.ticket-purchase-capacity-hit {
+    position: absolute;
+    color: #c6162e;
+    width: 10em;
+    bottom: 1em;
+    right: 1em;
+    font-size: 11px;
+    text-align: center;
 }
 
 .ticket-purchase-button {
