@@ -149,7 +149,7 @@ export default function EventsSearch () {
         let elements = document.getElementsByTagName("input");
 
         for (var i = 0; i < elements.length; i++) {
-            if (elements[i].type == "radio") {
+            if (elements[i].type === "radio") {
                 elements[i].checked = false;
             }
         }

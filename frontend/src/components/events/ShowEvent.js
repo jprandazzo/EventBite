@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import moment from 'moment-timezone';
 import * as eventActions from '../../store/eventsReducer'
 import * as sessionActions from '../../store/sessionReducer'
