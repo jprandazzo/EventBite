@@ -30,7 +30,7 @@ export default function OrganizerEventIndex () {
     }, [])
 
     const focusInput = (e) => {
-        //whichever div is clicked, find its input and focus it
+        //whichever div is clicked, find its input and focus it 
 
         if (e.target.className === 'organizer-index-search-box' || e.target.className === 'organizer-index-search-create') {
             let input = e.target.querySelector('.organizer-index-search-input')

@@ -194,7 +194,7 @@ e6 = Event.create!({
     organizer_name: 'Immortal Con',
     price: 70,
     timestamp_start: DateTime.parse('15 Jan 2024 15:00'),
-    timestamp_end: DateTime.parse('15 Jan 2023 19:00'),
+    timestamp_end: DateTime.parse('15 Jan 2024 19:00'),
     title: 'Immortal Con - A Pun for the Darkest of Ages',
     venue_name: 'Javits Center',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
@@ -268,7 +268,7 @@ e9 = Event.create!({
     organizer_name: 'The Bitter End',
     price: 20,
     timestamp_start: DateTime.parse('23 Nov 2024 18:00'),
-    timestamp_end: DateTime.parse('23 Nov 2023 21:00'),
+    timestamp_end: DateTime.parse('23 Nov 2024 21:00'),
     title: 'Open Mic Night for Open Mouths',
     venue_name: 'the bitter end',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
