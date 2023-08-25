@@ -16,8 +16,8 @@ export default function SplashPage () {
     const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
     const currentUser = useSelector(userActions.getUser(currentUserId))
     const allEvents = useSelector(eventActions.getEvents)
-    sessionStorage.setItem('previousLocation', window.location.href);
 
+    debugger;
     useEffect(() =>{
         let getData = setTimeout(() => {
             if (currentUserId) dispatch(userActions.fetchUserEvents(currentUserId));

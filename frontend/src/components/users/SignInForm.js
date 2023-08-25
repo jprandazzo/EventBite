@@ -36,7 +36,7 @@ export default function SignInForm (previousLocation) {
 
     const currentUser = useSelector(sessionActions.getCurrentUser)
     debugger
-    if (currentUser) history.go(-1)
+    if (currentUser) history.go(-1);
 
 
     
@@ -115,7 +115,8 @@ export default function SignInForm (previousLocation) {
     };
 
     const demoLogin = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        e.stopPropagation();
         return dispatch(sessionActions.login({
             email: 'demo@demo.com',
             password: 'password'

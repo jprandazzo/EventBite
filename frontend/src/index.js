@@ -27,13 +27,13 @@ if (process.env.NODE_ENV !== "production") {
 const initializeApp = () => {
   
   root.render(
-    <React.StrictMode>
+    // <React.StrictMode>
       <ReduxProvider store={store}>
         <BrowserRouter>
           <App />
         </BrowserRouter>
       </ReduxProvider>
-    </React.StrictMode>
+    // </React.StrictMode>
   );
 }
 
