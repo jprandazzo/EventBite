@@ -32,7 +32,7 @@ class Event < ApplicationRecord
     validates :title, :capacity, :tickets_sold, :timestamp_start, 
         :timestamp_end, :venue_name, :organizer_id, :price, :description, presence: true
 
-    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+    validates :price, numericality: { greater_than_or_equal_to: 0 }
 
     validates :capacity, numericality: { only_integer: true, greater_than: 0 }
 

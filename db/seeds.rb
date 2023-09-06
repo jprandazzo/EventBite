@@ -71,7 +71,8 @@ e1 = Event.create!({
     title: 'Shakespeare in the Park - A Nostalgic Banquet',
     venue_name: 'Central Park West St',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/1.jpeg'), filename: 'shakespeare.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/shakespeare.jpeg'), filename: 'shakespeare.jpeg')
+# e1.photo.attach(io: File.open('app/assets/images/shakespeare.jpeg'), filename: 'shakespeare.jpeg')
 
 e2 = Event.create!({
     address: 'Avant Gardner, Brooklyn',
@@ -95,7 +96,7 @@ e2 = Event.create!({
     title: 'Eternal Disco - Dance Til They Drop',
     venue_name: 'the great hall',
     organizer_id: User.all.map(&:id)[rand(User.count-1)]
-}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/2.jpeg'), filename: 'disco.jpeg')
+}).photo.attach(io: URI.open('https://eventbite-dev.s3.amazonaws.com/disco.jpeg'), filename: 'disco.jpeg')
 
 e3 = Event.create!({
     address: 'Chelsea Wine Market',
