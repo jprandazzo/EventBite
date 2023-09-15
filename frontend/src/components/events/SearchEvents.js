@@ -22,13 +22,15 @@ export default function EventsSearch () {
     const prevString = searchParams.get('string');
     const prevPrice = searchParams.get('price');
     const prevCategory = searchParams.get('category');
+    // const prevDate = searchParams.get('date')
 
     const currentUserId = useSelector(sessionActions.getCurrentUser)?.id
     const currentUser = useSelector(userActions.getUser(currentUserId))
     const allEvents = useSelector(eventActions.getEvents)
     const [queryString, setQueryString] = useState(prevString ? prevString : '')
     const [queryPrice, setQueryPrice] = useState(prevPrice ? prevPrice : null)
-    const [queryCategory, setQueryCategory] = useState()
+    const [queryCategory, setQueryCategory] = useState(prevCategory ? prevCategory : null)
+    // const [queryDate, setQueryDate] = useState(prevDate ? prevDate : null)
     const [timer, setTimer] = useState(0);
 
     const searchResults = useSelector(searchActions.getSearchResults)
@@ -128,23 +130,16 @@ export default function EventsSearch () {
                 price: queryPrice,
                 category: queryCategory
             }))
-        }, 500))
+        }, 250))
     }, [queryString, queryPrice, queryCategory])
 
-    useEffect(()=>{
-        dispatch(searchActions.fetchSearchResults({
-            string: queryString,
-            price: queryPrice,
-            category: queryCategory
-        }))
-    }, [queryPrice, queryCategory])
-
     const clearSearchQuery = () => {
-        dispatch(searchActions.fetchSearchResults({
-            string: null,
-            price: null,
-            category: null
-        }))
+        // UNNECESSARY BECAUSE CHANGING STATE VARIABLES TRIGGERS USE EFFECT AND SEARCHES
+        // dispatch(searchActions.fetchSearchResults({
+        //     string: null,
+        //     price: null,
+        //     category: null
+        // })) 
 
         let elements = document.getElementsByTagName("input");
 
@@ -155,6 +150,9 @@ export default function EventsSearch () {
         }
 
         setQueryString('')
+        setQueryPrice(null)
+        setQueryCategory(null)
+        // setQueryDate(null)
         history.push('/search')
     }
 
@@ -195,7 +193,7 @@ export default function EventsSearch () {
                 </div>
                 <div id='search-filters-container'>
                     <div id='search-filters-title'>Filters</div>
-                    <div className='search-radio-button-section'>
+                    {/* <div className='search-radio-button-section'>
                         <div className='search-radio-button-title'>
                             Date
                         </div>
@@ -213,7 +211,7 @@ export default function EventsSearch () {
                                 Pick a Date...
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className='search-radio-button-section'>
                         <div className='search-radio-button-title'>
@@ -221,11 +219,11 @@ export default function EventsSearch () {
                         </div>
                         <div className='search-radio-button'>
                             <div className='search-radio-button-label'>
-                                <input type='radio' name='price' value='free' onClick={(event)=>setQueryPrice(event.target.value)} />
+                                <input type='radio' name='price' value='free' checked={prevPrice === 'free'} onClick={(event)=>setQueryPrice(event.target.value)} />
                                 Free
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio' name='price' value='paid' onClick={(event)=>setQueryPrice(event.target.value)} />
+                                <input type='radio' name='price' value='paid' checked={prevPrice === 'paid'} onClick={(event)=>setQueryPrice(event.target.value)} />
                                 Paid
                             </div>
                         </div>
@@ -237,31 +235,31 @@ export default function EventsSearch () {
                         </div>
                         <div className='search-radio-button'>
                             <div className='search-radio-button-label'>
-                                <input type='radio' name='category' value='community_culture' />
+                                <input type='radio' name='category' value='community_culture' checked={prevCategory === 'community_culture'} onClick={event=> setQueryCategory(event.target.value)}/>
                                 Community/Culture
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio' name='category' value='fashion_beauty' />
+                                <input type='radio' name='category' value='fashion_beauty' checked={prevCategory === 'fashion_beauty'} onClick={event=> setQueryCategory(event.target.value)}/>
                                 Fashion/Beauty
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio'  name='category'value='film_media_entertainment' />
+                                <input type='radio'  name='category'value='film_media_entertainment' checked={prevCategory === 'film_media_entertainment'} onClick={event=> setQueryCategory(event.target.value)}/>
                                 Film/Media/Entertainment
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio'  name='category'value='food_drink' />
+                                <input type='radio'  name='category'value='food_drink' checked={prevCategory === 'food_drink'} onClick={event=> setQueryCategory(event.target.value)}/>
                                 Food/Drink
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio'  name='category'value='music' />
+                                <input type='radio'  name='category'value='music' checked={prevCategory === 'music'} onClick={event=> setQueryCategory(event.target.value)}/>
                                 Music
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio'  name='category'value='travel_outdoor' />
+                                <input type='radio'  name='category'value='travel_outdoor' checked={prevCategory === 'travel_outdoor'} onClick={event=> setQueryCategory(event.target.value)}/>
                                 Travel/Outdoor
                             </div>
                             <div className='search-radio-button-label'>
-                                <input type='radio'  name='category' value='category_other' />
+                                <input type='radio'  name='category' value='category_other' checked={prevCategory === 'category_other'} onClick={event=> setQueryCategory(event.target.value)}/>
                                 Other
                             </div>
                         </div>

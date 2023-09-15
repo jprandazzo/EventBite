@@ -30,6 +30,7 @@ class Api::EventsController < ApplicationController
         string = params[:string]
         price = params[:price]
         date = params[:date]
+        category = params[:category] == 'null' ? nil : params[:category]
 
         @events = Event.all
         if string != 'null'
@@ -48,8 +49,12 @@ class Api::EventsController < ApplicationController
                 @events = @events.where('price>0', "%#{price}")
             end
         end
+
+        if category
+            @events = @events.where("event_category = ?", category)
+        end
         
-            render :search
+        render :search
     end
 
     def show

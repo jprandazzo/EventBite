@@ -134,7 +134,7 @@ export default function NavBarLoggedIn () {
                                         </a>
                                     </li>
                                     <li>
-                                        <a target="_blank" href='https://www.linked.com/in/jprandazzo'>
+                                        <a target="_blank" href='https://www.linkedin.com/in/jprandazzo'>
                                             <div className='dropdown-content-text-box'>Joe's LinkedIn</div>
                                         </a>
                                     </li>
